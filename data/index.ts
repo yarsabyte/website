@@ -1,5 +1,5 @@
 export { aboutIntro, aboutPillars } from "@/data/about";
-export { heroHeadlineRows, heroRotatingWords, heroStats } from "@/data/hero";
+export { heroLatestProject, heroMission, heroTaglines } from "@/data/hero";
 export { navLinks } from "@/data/nav";
 export { packages, packagesIntro } from "@/data/packages";
 export { processIntro, processSteps } from "@/data/process";

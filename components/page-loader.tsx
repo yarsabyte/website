@@ -1,0 +1,69 @@
+"use client";
+
+import { useEffect, useState, type ReactNode } from "react";
+
+import { LoadingScreen } from "@/components/loading-screen";
+
+const MIN_LOAD_MS = 2200;
+
+type PageLoaderProps = {
+  children: ReactNode;
+};
+
+export function PageLoader({ children }: PageLoaderProps) {
+  const [isLoading, setIsLoading] = useState(true);
+  const [isExiting, setIsExiting] = useState(false);
+
+  useEffect(() => {
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    if (prefersReducedMotion) {
+      setIsLoading(false);
+      return;
+    }
+
+    let cancelled = false;
+
+    const minDelay = new Promise<void>((resolve) => {
+      window.setTimeout(resolve, MIN_LOAD_MS);
+    });
+
+    const pageReady = new Promise<void>((resolve) => {
+      if (document.readyState === "complete") {
+        resolve();
+        return;
+      }
+
+      window.addEventListener("load", () => resolve(), { once: true });
+    });
+
+    void Promise.all([minDelay, pageReady]).then(() => {
+      if (cancelled) {
+        return;
+      }
+
+      setIsExiting(true);
+      window.setTimeout(() => {
+        if (!cancelled) {
+          setIsLoading(false);
+        }
+      }, 720);
+    });
+
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  return (
+    <>
+      {isLoading ? <LoadingScreen isExiting={isExiting} /> : null}
+      <div
+        className={isLoading ? "invisible" : "visible"}
+        aria-hidden={isLoading}
+      >
+        {children}
+      </div>
+    </>
+  );
+}
