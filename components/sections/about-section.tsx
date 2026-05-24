@@ -1,4 +1,10 @@
+"use client";
+
 import { CheckCircle2 } from "lucide-react";
+import { useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
 
 import { aboutIntro, aboutPillars } from "@/data/about";
 import { Container } from "@/components/ui/container";
@@ -6,11 +12,47 @@ import { GradientText } from "@/components/ui/gradient-text";
 import { Reveal } from "@/components/ui/reveal";
 import { SectionHeading } from "@/components/ui/section-heading";
 
+gsap.registerPlugin(ScrollTrigger, useGSAP);
+
 export function AboutSection() {
+  const containerRef = useRef<HTMLElement>(null);
+  const glowRef = useRef<HTMLDivElement>(null);
+
+  useGSAP(
+    () => {
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        return;
+      }
+
+      gsap.fromTo(
+        glowRef.current,
+        { y: -60 },
+        {
+          y: 60,
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: 1,
+          },
+        }
+      );
+    },
+    { scope: containerRef }
+  );
+
   return (
-    <section id="about" className="section-spacing border-b border-foreground/10 bg-background/20 relative overflow-hidden">
+    <section
+      ref={containerRef}
+      id="about"
+      className="section-spacing border-b border-foreground/10 bg-background/20 relative overflow-hidden"
+    >
       {/* Subtle background glow */}
-      <div className="absolute -left-48 top-1/4 size-96 rounded-full bg-accent/3 blur-[120px] pointer-events-none" />
+      <div 
+        ref={glowRef}
+        className="absolute -left-48 top-1/4 size-96 rounded-full bg-accent/3 blur-[120px] pointer-events-none" 
+        aria-hidden="true"
+      />
 
       <Container>
         <div className="grid gap-10 lg:grid-cols-[1fr_0.68fr] lg:items-end">
