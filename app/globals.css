@@ -66,7 +66,7 @@ h1,
 h2,
 h3 {
   font-family: "TT Tunnels Bold", Impact, sans-serif;
-  font-weight: 400;
+  font-weight: 700;
   font-style: normal;
 }
 
@@ -121,7 +121,7 @@ h3 {
 
   .font-display {
     font-family: "TT Tunnels Bold", Impact, sans-serif;
-    font-weight: 400;
+    font-weight: 700;
     font-style: normal;
     letter-spacing: 0.02em;
   }
@@ -129,6 +129,12 @@ h3 {
   .font-tunnels {
     font-family: "TT Tunnels Bold", Impact, sans-serif;
     font-weight: 400;
+    font-style: normal;
+  }
+
+  .font-tunnels-bold {
+    font-family: "TT Tunnels Bold", Impact, sans-serif;
+    font-weight: 700;
     font-style: normal;
   }
 
