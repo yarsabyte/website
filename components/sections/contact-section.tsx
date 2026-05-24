@@ -5,10 +5,10 @@ import { Reveal } from "@/components/ui/reveal";
 
 export function ContactSection() {
   return (
-    <section id="contact" className="py-24 sm:py-32">
+    <section id="contact" className="section-spacing-tight">
       <Container>
         <Reveal>
-          <div className="grid gap-10 rounded-[2rem] bg-lime-300 p-7 text-black sm:p-10 lg:grid-cols-[1.15fr_0.85fr] lg:items-end">
+          <div className="grid gap-10 rounded-[2rem] bg-gradient-to-br from-cyan via-electric to-violet p-7 text-[#03040a] shadow-[0_30px_90px_rgba(79,140,255,0.28)] sm:p-10 lg:grid-cols-[1.15fr_0.85fr] lg:items-end">
             <div>
               <p className="text-sm font-black uppercase tracking-[0.2em]">Start with Sajilo</p>
               <h2 className="mt-5 max-w-4xl text-5xl font-black uppercase leading-[0.9] sm:text-6xl lg:text-7xl">
@@ -16,7 +16,7 @@ export function ContactSection() {
               </h2>
             </div>
             <div className="lg:justify-self-end">
-              <p className="max-w-md text-base leading-7 text-black/68">
+              <p className="max-w-md text-base leading-7 text-[#03040a]/72">
                 Bring your business name, offer, and a rough goal. We will help shape the
                 website, visuals, content, and digital setup around it.
               </p>

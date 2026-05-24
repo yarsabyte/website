@@ -40,6 +40,7 @@ html.lenis body {
 }
 
 body {
+  position: relative;
   min-height: 100vh;
   background:
     radial-gradient(circle at 18% 12%, rgba(79, 140, 255, 0.2), transparent 24rem),
@@ -58,7 +59,7 @@ body {
 body::before {
   position: fixed;
   inset: 0;
-  z-index: -1;
+  z-index: 0;
   pointer-events: none;
   content: "";
   opacity: 0.38;
@@ -74,7 +75,12 @@ body::before {
     96px 96px,
     96px 96px,
     3px 3px;
-  mask-image: linear-gradient(to bottom, black 0%, black 55%, transparent 100%);
+  mix-blend-mode: screen;
+}
+
+body > * {
+  position: relative;
+  z-index: 1;
 }
 
 ::selection {

@@ -1,11 +1,11 @@
-import { services } from "@/data/site";
+import { services } from "@/data/services";
 import { Container } from "@/components/ui/container";
 import { Reveal } from "@/components/ui/reveal";
 import { SectionHeading } from "@/components/ui/section-heading";
 
 export function ServicesSection() {
   return (
-    <section id="services" className="border-b border-white/10 py-24 sm:py-32">
+    <section id="services" className="section-spacing border-b border-white/10">
       <Container>
         <Reveal>
           <SectionHeading
@@ -15,7 +15,7 @@ export function ServicesSection() {
           />
         </Reveal>
 
-        <div className="mt-14 grid gap-px overflow-hidden rounded-3xl border border-white/10 bg-white/10 md:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-14 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {services.map((service, index) => {
             const Icon = service.icon;
 
@@ -23,9 +23,9 @@ export function ServicesSection() {
               <Reveal
                 key={service.title}
                 delay={index * 0.04}
-                className="min-h-72 bg-[#080808] p-7 transition hover:bg-[#10100d]"
+                className="animated-border studio-card min-h-72 rounded-3xl p-7 transition hover:-translate-y-1"
               >
-                <div className="mb-10 grid size-12 place-items-center rounded-2xl bg-lime-300 text-black">
+                <div className="mb-10 grid size-12 place-items-center rounded-2xl bg-gradient-to-br from-cyan via-electric to-violet text-[#03040a]">
                   <Icon className="size-5" aria-hidden="true" />
                 </div>
                 <h3 className="text-2xl font-semibold text-white">{service.title}</h3>

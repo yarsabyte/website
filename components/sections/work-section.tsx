@@ -1,13 +1,13 @@
 import { ArrowUpRight } from "lucide-react";
 
-import { projects } from "@/data/site";
+import { projects } from "@/data/projects";
 import { Container } from "@/components/ui/container";
 import { Reveal } from "@/components/ui/reveal";
 import { SectionHeading } from "@/components/ui/section-heading";
 
 export function WorkSection() {
   return (
-    <section id="work" className="border-b border-white/10 py-24 sm:py-32">
+    <section id="work" className="section-spacing border-b border-white/10">
       <Container>
         <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr]">
           <Reveal>
@@ -20,8 +20,8 @@ export function WorkSection() {
           <div className="space-y-4">
             {projects.map((project, index) => (
               <Reveal key={project.name} delay={index * 0.06}>
-                <article className="group grid gap-6 rounded-3xl border border-white/10 bg-white/[0.04] p-5 transition hover:border-lime-300/40 hover:bg-white/[0.07] md:grid-cols-[190px_1fr_auto] md:items-center">
-                  <div className="aspect-[4/3] rounded-2xl border border-white/10 bg-[linear-gradient(135deg,#d9ff55_0_28%,#111_28%_58%,#ff6f59_58%_100%)]" />
+                <article className="animated-border studio-card group grid gap-6 rounded-3xl p-5 transition hover:-translate-y-1 md:grid-cols-[190px_1fr_auto] md:items-center">
+                  <div className={`aspect-[4/3] rounded-2xl border border-white/10 bg-gradient-to-br ${project.accent}`} />
                   <div>
                     <div className="flex flex-wrap gap-2 text-xs uppercase tracking-[0.18em] text-white/44">
                       <span>{project.type}</span>
@@ -32,7 +32,7 @@ export function WorkSection() {
                       {project.summary}
                     </p>
                   </div>
-                  <div className="grid size-12 place-items-center rounded-full border border-white/12 text-white transition group-hover:border-lime-300 group-hover:bg-lime-300 group-hover:text-black">
+                  <div className="grid size-12 place-items-center rounded-full border border-white/12 text-white transition group-hover:border-cyan group-hover:bg-cyan group-hover:text-[#03040a]">
                     <ArrowUpRight className="size-5" aria-hidden="true" />
                   </div>
                 </article>

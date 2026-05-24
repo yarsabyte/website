@@ -18,7 +18,6 @@ export function SectionHeading({
 }: SectionHeadingProps) {
   return (
     <div className={cn("max-w-3xl", className)}>
-      <Eyebrow>{eyebrow}</Eyebrow>
       <SectionLabel>{eyebrow}</SectionLabel>
       <h2 className="mt-5 text-4xl font-black uppercase leading-[0.9] text-white text-balance sm:text-5xl lg:text-6xl">
         {title}

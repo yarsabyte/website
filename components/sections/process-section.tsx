@@ -1,11 +1,11 @@
-import { processSteps } from "@/data/site";
+import { processSteps } from "@/data/process";
 import { Container } from "@/components/ui/container";
 import { Reveal } from "@/components/ui/reveal";
 import { SectionHeading } from "@/components/ui/section-heading";
 
 export function ProcessSection() {
   return (
-    <section id="process" className="border-b border-white/10 bg-[#f4f0df] py-24 text-black sm:py-32">
+    <section id="process" className="section-spacing border-b border-white/10 bg-[#eef7ff] text-[#03040a]">
       <Container>
         <Reveal>
           <SectionHeading
@@ -20,7 +20,7 @@ export function ProcessSection() {
           {processSteps.map((item, index) => (
             <Reveal key={item.step} delay={index * 0.06}>
               <article className="min-h-80 rounded-3xl border border-black/10 bg-black p-7 text-white">
-                <span className="text-sm font-black text-lime-300">{item.step}</span>
+                <span className="text-sm font-black text-cyan">{item.step}</span>
                 <h3 className="mt-20 text-3xl font-semibold">{item.title}</h3>
                 <p className="mt-5 text-sm leading-7 text-white/62">{item.description}</p>
               </article>

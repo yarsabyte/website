@@ -1,18 +1,18 @@
 import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
 
-import { navLinks } from "@/data/site";
+import { navLinks } from "@/data/nav";
 import { Container } from "@/components/ui/container";
+import { PremiumButton } from "@/components/ui/premium-button";
 
 export function SiteHeader() {
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-black/72 backdrop-blur-xl">
       <Container className="flex h-16 items-center justify-between">
         <Link href="/" className="flex items-center gap-3" aria-label="Sajilo Studio home">
-          <span className="grid size-9 place-items-center rounded-full bg-lime-300 text-sm font-black text-black">
+          <span className="grid size-9 place-items-center rounded-full bg-gradient-to-br from-cyan via-electric to-violet text-sm font-black text-[#03040a] shadow-[0_0_28px_rgba(79,140,255,0.42)]">
             SS
           </span>
-          <span className="text-sm font-semibold uppercase tracking-[0.2em] text-white">
+          <span className="text-sm font-semibold uppercase tracking-[0.18em] text-white">
             Sajilo Studio
           </span>
         </Link>
@@ -27,13 +27,9 @@ export function SiteHeader() {
             </a>
           ))}
         </nav>
-        <a
-          href="#contact"
-          className="inline-flex h-10 items-center gap-2 rounded-full bg-white px-4 text-sm font-semibold text-black transition hover:bg-lime-300"
-        >
+        <PremiumButton href="#contact" className="hidden h-10 px-4 sm:inline-flex">
           Start
-          <ArrowUpRight className="size-4" aria-hidden="true" />
-        </a>
+        </PremiumButton>
       </Container>
     </header>
   );
