@@ -1,22 +1,92 @@
+"use client";
+
+import { useEffect, useRef, useState } from "react";
+import { useInView } from "framer-motion";
+
 import { stats } from "@/data/stats";
 import { Container } from "@/components/ui/container";
 import { Reveal } from "@/components/ui/reveal";
+import { GradientText } from "@/components/ui/gradient-text";
+
+function parseStatValue(val: string) {
+  const match = val.match(/^(\d+)(%?)$/);
+  if (match) {
+    return {
+      isNumeric: true,
+      numericValue: parseInt(match[1], 10),
+      suffix: match[2] || "",
+    };
+  }
+  return {
+    isNumeric: false,
+    numericValue: 0,
+    suffix: val,
+  };
+}
+
+function StatCounter({ value }: { value: string }) {
+  const { isNumeric, numericValue, suffix } = parseStatValue(value);
+  const [count, setCount] = useState(0);
+  const ref = useRef<HTMLSpanElement>(null);
+  const isInView = useInView(ref, { once: true, margin: "-10%" });
+
+  useEffect(() => {
+    if (!isNumeric || !isInView) return;
+
+    let start = 0;
+    const end = numericValue;
+    const duration = 2000; // 2 seconds
+    const startTime = performance.now();
+
+    const animate = (now: number) => {
+      const elapsed = now - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      // Ease out cubic
+      const easeProgress = 1 - Math.pow(1 - progress, 3);
+      const current = Math.floor(easeProgress * (end - start) + start);
+
+      setCount(current);
+
+      if (progress < 1) {
+        requestAnimationFrame(animate);
+      }
+    };
+
+    requestAnimationFrame(animate);
+  }, [isInView, isNumeric, numericValue]);
+
+  if (!isNumeric) {
+    return <span className="gradient-text">{value}</span>;
+  }
+
+  return (
+    <span ref={ref} className="gradient-text">
+      {count}
+      {suffix}
+    </span>
+  );
+}
 
 export function StatsSection() {
   return (
-    <section className="border-b border-foreground/10 py-10">
+    <section className="border-b border-foreground/10 py-16 bg-background/50">
       <Container>
-        <div className="grid gap-px overflow-hidden rounded-[1.75rem] border border-foreground/10 bg-foreground/10 md:grid-cols-4">
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
           {stats.map((item, index) => (
-            <Reveal key={item.label} delay={index * 0.04}>
-              <div className="min-h-44 bg-background/90 p-5">
-                <p className="text-3xl font-black uppercase leading-none text-foreground">
-                  {item.value}
+            <Reveal key={item.label} delay={index * 0.08}>
+              <div className="studio-card group relative min-h-48 overflow-hidden rounded-[2rem] p-7 transition-all duration-500 hover:-translate-y-1.5 hover:shadow-[0_20px_50px_rgba(98,176,255,0.06)]">
+                {/* Decorative background glow on hover */}
+                <div className="absolute -right-12 -top-12 size-32 rounded-full bg-sky/5 blur-3xl transition-opacity duration-500 group-hover:bg-sky/10" />
+
+                <p className="font-display text-5xl font-black tracking-tight leading-none">
+                  <StatCounter value={item.value} />
                 </p>
-                <p className="mt-3 text-xs font-semibold uppercase tracking-[0.18em] text-sky">
+                <p className="mt-4 text-xs font-semibold uppercase tracking-[0.2em] text-sky/90">
                   {item.label}
                 </p>
-                <p className="mt-4 text-sm leading-6 text-foreground/52">{item.detail}</p>
+                <p className="mt-3 text-sm leading-relaxed text-foreground/60 transition-colors duration-300 group-hover:text-foreground/80">
+                  {item.detail}
+                </p>
               </div>
             </Reveal>
           ))}
@@ -25,3 +95,4 @@ export function StatsSection() {
     </section>
   );
 }
+
