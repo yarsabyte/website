@@ -1,5 +1,6 @@
 import { services } from "@/data/services";
 import { Container } from "@/components/ui/container";
+import { GradientText } from "@/components/ui/gradient-text";
 import { Reveal } from "@/components/ui/reveal";
 import { SectionHeading } from "@/components/ui/section-heading";
 
@@ -10,7 +11,12 @@ export function ServicesSection() {
         <Reveal>
           <SectionHeading
             eyebrow="Services"
-            title="A connected digital studio for the things local businesses need most."
+            title={
+              <>
+                A connected digital studio for the things local businesses{" "}
+                <GradientText>need most.</GradientText>
+              </>
+            }
             description="Each service is designed to work alone or as part of a full launch system."
           />
         </Reveal>

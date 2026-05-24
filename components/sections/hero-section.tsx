@@ -59,12 +59,12 @@ export function HeroSection() {
               <span data-hero-line className="block">
                 Premium
               </span>
-            </span>
+            </span>{" "}
             <span className="block overflow-hidden">
               <span data-hero-line className="block">
                 <GradientText>digital</GradientText>
               </span>
-            </span>
+            </span>{" "}
             <span className="block overflow-hidden">
               <span data-hero-line className="block">
                 made sajilo.

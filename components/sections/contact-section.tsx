@@ -11,7 +11,7 @@ export function ContactSection() {
           <div className="grid gap-10 rounded-[2rem] bg-gradient-to-br from-cyan via-electric to-violet p-7 text-[#03040a] shadow-[0_30px_90px_rgba(79,140,255,0.28)] sm:p-10 lg:grid-cols-[1.15fr_0.85fr] lg:items-end">
             <div>
               <p className="text-sm font-black uppercase tracking-[0.2em]">Start with Sajilo</p>
-              <h2 className="mt-5 max-w-4xl text-5xl font-black uppercase leading-[0.9] sm:text-6xl lg:text-7xl">
+              <h2 className="mt-5 max-w-4xl text-5xl font-black uppercase leading-[0.9] text-balance sm:text-6xl lg:text-7xl">
                 Ready to make your business look serious online?
               </h2>
             </div>
