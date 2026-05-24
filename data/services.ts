@@ -13,7 +13,7 @@ export const services = [
     description:
       "Business websites, landing pages, portfolio websites, e-commerce basics, plus domain and hosting setup.",
     outcome: "A polished web presence ready to share with customers.",
-    accent: "from-cyan via-electric to-violet",
+    accent: "from-sky via-blue to-accent",
     featured: true,
     icon: Code2,
   },
@@ -22,7 +22,7 @@ export const services = [
     description:
       "Personal, student, creator, and professional CV-style websites with clear proof of work.",
     outcome: "A premium profile that helps people trust your skills quickly.",
-    accent: "from-blue-300 via-cyan-400 to-amber-300",
+    accent: "from-blue via-sky to-accent",
     icon: BadgeCheck,
   },
   {
@@ -30,7 +30,7 @@ export const services = [
     description:
       "Social media posters, banners, ads, event posters, and brand visuals for regular campaigns.",
     outcome: "Scroll-stopping creatives shaped for local audiences.",
-    accent: "from-amber-300 via-violet-400 to-blue-500",
+    accent: "from-accent via-blue to-sky",
     icon: PenTool,
   },
   {
@@ -38,7 +38,7 @@ export const services = [
     description:
       "Short-form reels, business promos, event edits, cinematic cuts, and ad creatives.",
     outcome: "Clean edits that help offers feel sharper and more memorable.",
-    accent: "from-violet via-electric to-cyan",
+    accent: "from-navy via-blue to-sky",
     icon: Clapperboard,
   },
   {
@@ -46,7 +46,7 @@ export const services = [
     description:
       "Logo direction, color system, typography, brand kit, and online visual consistency.",
     outcome: "A practical identity system your team can actually use.",
-    accent: "from-cyan-300 via-blue-500 to-violet-500",
+    accent: "from-sky via-blue to-navy",
     icon: Palette,
   },
   {
@@ -54,7 +54,7 @@ export const services = [
     description:
       "Google Business Profile, business email, social media page setup, and launch support.",
     outcome: "The essential setup pieces handled without confusion.",
-    accent: "from-amber via-cyan to-electric",
+    accent: "from-accent via-sky to-blue",
     icon: MailCheck,
   },
 ];

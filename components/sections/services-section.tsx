@@ -48,7 +48,7 @@ function ServiceCard({
         href="#contact"
         className={cn(
           "animated-border studio-card relative flex h-full min-h-80 flex-col overflow-hidden rounded-[1.75rem] p-px transition duration-300 will-change-transform",
-          "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan",
+          "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-sky",
         )}
         onPointerMove={(event) => {
           const target = cardRef.current;
@@ -75,8 +75,8 @@ function ServiceCard({
           target.style.transform = "translate3d(0, 0, 0)";
         }}
       >
-        <div className="absolute inset-0 rounded-[inherit] bg-[radial-gradient(circle_at_var(--service-glow-x,50%)_var(--service-glow-y,20%),rgba(100,233,255,0.22),transparent_18rem)] opacity-0 transition duration-300 group-hover/service:opacity-100" />
-        <div className="absolute inset-0 rounded-[inherit] bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.16)_0.8px,transparent_0.9px)] bg-[size:3px_3px] opacity-[0.12]" />
+        <div className="absolute inset-0 rounded-[inherit] bg-[radial-gradient(circle_at_var(--service-glow-x,50%)_var(--service-glow-y,20%),color-mix(in_srgb,var(--sky)_22%,transparent),transparent_18rem)] opacity-0 transition duration-300 group-hover/service:opacity-100" />
+        <div className="absolute inset-0 rounded-[inherit] bg-[radial-gradient(circle_at_center,color-mix(in_srgb,var(--foreground)_16%,transparent)_0.8px,transparent_0.9px)] bg-[size:3px_3px] opacity-[0.12]" />
         <div
           className={cn(
             "absolute inset-x-0 top-0 h-32 bg-gradient-to-br opacity-24 blur-2xl transition duration-500 group-hover/service:opacity-38",
@@ -86,20 +86,20 @@ function ServiceCard({
 
         <div
           className={cn(
-            "relative flex h-full flex-col rounded-[calc(1.75rem-1px)] bg-[#070913]/88 p-6",
+            "relative flex h-full flex-col rounded-[calc(1.75rem-1px)] bg-background/88 p-6",
             service.featured ? "sm:p-8" : "",
           )}
         >
           <div className="flex items-start justify-between gap-5">
             <div
               className={cn(
-                "grid size-13 place-items-center rounded-2xl bg-gradient-to-br text-[#03040a] shadow-[0_18px_46px_rgba(79,140,255,0.22)] transition duration-300 group-hover/service:scale-105 group-hover/service:rotate-3",
+                "grid size-13 place-items-center rounded-2xl bg-gradient-to-br text-background shadow-[0_18px_46px_color-mix(in_srgb,var(--blue)_22%,transparent)] transition duration-300 group-hover/service:scale-105 group-hover/service:rotate-3",
                 service.accent,
               )}
             >
               <Icon className="size-6" aria-hidden="true" />
             </div>
-            <span className="rounded-full border border-white/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-white/42">
+            <span className="rounded-full border border-foreground/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-foreground/42">
               0{index + 1}
             </span>
           </div>
@@ -107,22 +107,22 @@ function ServiceCard({
           <div className={cn("mt-12", service.featured ? "lg:mt-24" : "")}>
             <h3
               className={cn(
-                "max-w-xl font-black uppercase leading-[0.95] text-white text-balance",
+                "max-w-xl font-black uppercase leading-[0.95] text-foreground text-balance",
                 service.featured ? "text-4xl sm:text-5xl" : "text-2xl",
               )}
             >
               {service.title}
             </h3>
-            <p className="mt-5 max-w-2xl text-sm leading-7 text-white/62">
+            <p className="mt-5 max-w-2xl text-sm leading-7 text-foreground/62">
               {service.description}
             </p>
           </div>
 
           <div className="mt-auto pt-10">
-            <p className="max-w-xl text-sm leading-6 text-cyan/86">
+            <p className="max-w-xl text-sm leading-6 text-sky/86">
               {service.outcome}
             </p>
-            <span className="mt-6 inline-flex items-center gap-2 text-sm font-bold text-white">
+            <span className="mt-6 inline-flex items-center gap-2 text-sm font-bold text-foreground">
               Explore service
               <ArrowUpRight
                 className="size-4 transition group-hover/service:translate-x-0.5 group-hover/service:-translate-y-0.5"
@@ -140,9 +140,9 @@ export function ServicesSection() {
   return (
     <section
       id="services"
-      className="section-spacing relative overflow-hidden border-b border-white/10"
+      className="section-spacing relative overflow-hidden border-b border-foreground/10"
     >
-      <div className="absolute inset-x-0 top-0 -z-10 h-80 bg-[radial-gradient(circle_at_18%_20%,rgba(100,233,255,0.12),transparent_26rem),radial-gradient(circle_at_82%_8%,rgba(155,107,255,0.14),transparent_28rem)]" />
+      <div className="absolute inset-x-0 top-0 -z-10 h-80 bg-[radial-gradient(circle_at_18%_20%,color-mix(in_srgb,var(--sky)_12%,transparent),transparent_26rem),radial-gradient(circle_at_82%_8%,color-mix(in_srgb,var(--blue)_14%,transparent),transparent_28rem)]" />
       <Container>
         <div className="grid gap-10 lg:grid-cols-[0.95fr_0.55fr] lg:items-end">
           <SectionHeading
@@ -161,14 +161,14 @@ export function ServicesSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-12% 0px" }}
             transition={{ duration: 0.7, ease: cardEase }}
-            className="grid gap-2 rounded-[1.5rem] border border-white/10 bg-white/[0.035] p-3"
+            className="grid gap-2 rounded-[1.5rem] border border-foreground/10 bg-foreground/[0.035] p-3"
           >
             {serviceHighlights.map((highlight) => (
               <div
                 key={highlight}
-                className="flex items-center gap-3 rounded-2xl px-3 py-2 text-sm text-white/68"
+                className="flex items-center gap-3 rounded-2xl px-3 py-2 text-sm text-foreground/68"
               >
-                <span className="grid size-6 place-items-center rounded-full bg-cyan/12 text-cyan">
+                <span className="grid size-6 place-items-center rounded-full bg-sky/12 text-sky">
                   <Check className="size-3.5" aria-hidden="true" />
                 </span>
                 {highlight}

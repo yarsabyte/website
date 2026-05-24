@@ -6,7 +6,7 @@ import { SectionHeading } from "@/components/ui/section-heading";
 
 export function TestimonialsSection() {
   return (
-    <section className="section-spacing border-b border-white/10">
+    <section className="section-spacing border-b border-foreground/10">
       <Container>
         <Reveal>
           <SectionHeading
@@ -24,15 +24,15 @@ export function TestimonialsSection() {
           {testimonials.map((item, index) => (
             <Reveal key={item.author} delay={index * 0.06}>
               <figure className="studio-card min-h-72 rounded-3xl p-7">
-                <p className="mb-8 inline-flex rounded-full border border-white/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-amber">
+                <p className="mb-8 inline-flex rounded-full border border-foreground/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-accent">
                   {item.label}
                 </p>
-                <blockquote className="text-2xl font-medium leading-snug text-white">
+                <blockquote className="text-2xl font-medium leading-snug text-foreground">
                   {item.quote}
                 </blockquote>
                 <figcaption className="mt-10">
-                  <p className="font-semibold text-cyan">{item.author}</p>
-                  <p className="mt-1 text-sm text-white/48">{item.role}</p>
+                  <p className="font-semibold text-sky">{item.author}</p>
+                  <p className="mt-1 text-sm text-foreground/48">{item.role}</p>
                 </figcaption>
               </figure>
             </Reveal>

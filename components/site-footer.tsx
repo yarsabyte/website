@@ -9,7 +9,7 @@ import { GradientText } from "@/components/ui/gradient-text";
 
 export function SiteFooter() {
   return (
-    <footer className="border-t border-white/10 bg-[#03040a]">
+    <footer className="border-t border-foreground/10 bg-background">
       <Container className="section-spacing-tight">
         <div className="grid gap-12 lg:grid-cols-[1.1fr_0.9fr_0.8fr]">
           <div>
@@ -18,21 +18,21 @@ export function SiteFooter() {
               className="inline-flex items-center gap-3"
               aria-label="Sajilo Studio home"
             >
-              <span className="grid size-10 place-items-center rounded-full bg-gradient-to-br from-cyan via-electric to-violet text-sm font-black text-[#03040a]">
+              <span className="grid size-10 place-items-center rounded-full bg-gradient-to-br from-sky via-blue to-accent text-sm font-black text-background">
                 SS
               </span>
-              <span className="text-sm font-semibold uppercase tracking-[0.18em] text-white">
+              <span className="text-sm font-semibold uppercase tracking-[0.18em] text-foreground">
                 Sajilo Studio
               </span>
             </Link>
-            <p className="mt-6 max-w-md text-base leading-7 text-white/58">
+            <p className="mt-6 max-w-md text-base leading-7 text-foreground/58">
               Sajilo Studio is a simple, reliable digital partner for Nepali
               businesses that need websites, portfolios, posters, videos, branding,
               and launch-ready online setup.
             </p>
             <a
               href="mailto:hello@sajilostudio.com"
-              className="group mt-7 inline-flex items-center gap-2 text-sm font-bold text-cyan transition hover:text-white"
+              className="group mt-7 inline-flex items-center gap-2 text-sm font-bold text-sky transition hover:text-foreground"
             >
               Start a Project
               <ArrowUpRight
@@ -44,7 +44,7 @@ export function SiteFooter() {
 
           <div className="grid gap-10 sm:grid-cols-2">
             <div>
-              <h2 className="text-sm font-semibold uppercase tracking-[0.18em] text-white/46">
+              <h2 className="text-sm font-semibold uppercase tracking-[0.18em] text-foreground/46">
                 Services
               </h2>
               <ul className="mt-5 space-y-3">
@@ -52,7 +52,7 @@ export function SiteFooter() {
                   <li key={service.title}>
                     <a
                       href="#services"
-                      className="text-sm text-white/68 transition hover:text-cyan"
+                      className="text-sm text-foreground/68 transition hover:text-sky"
                     >
                       {service.title}
                     </a>
@@ -62,7 +62,7 @@ export function SiteFooter() {
             </div>
 
             <div>
-              <h2 className="text-sm font-semibold uppercase tracking-[0.18em] text-white/46">
+              <h2 className="text-sm font-semibold uppercase tracking-[0.18em] text-foreground/46">
                 Studio
               </h2>
               <ul className="mt-5 space-y-3">
@@ -70,7 +70,7 @@ export function SiteFooter() {
                   <li key={link.href}>
                     <a
                       href={link.href}
-                      className="text-sm text-white/68 transition hover:text-cyan"
+                      className="text-sm text-foreground/68 transition hover:text-sky"
                     >
                       {link.label}
                     </a>
@@ -81,7 +81,7 @@ export function SiteFooter() {
           </div>
 
           <div>
-            <h2 className="text-sm font-semibold uppercase tracking-[0.18em] text-white/46">
+            <h2 className="text-sm font-semibold uppercase tracking-[0.18em] text-foreground/46">
               Social
             </h2>
             <div className="mt-5 flex flex-wrap gap-2">
@@ -89,13 +89,13 @@ export function SiteFooter() {
                 <a
                   key={link.label}
                   href={link.href}
-                  className="rounded-full border border-white/10 px-4 py-2 text-sm text-white/68 transition hover:border-cyan/50 hover:bg-white/[0.05] hover:text-white"
+                  className="rounded-full border border-foreground/10 px-4 py-2 text-sm text-foreground/68 transition hover:border-sky/50 hover:bg-foreground/[0.05] hover:text-foreground"
                 >
                   {link.label}
                 </a>
               ))}
             </div>
-            <p className="mt-8 text-3xl font-black uppercase leading-none text-white sm:text-4xl">
+            <p className="mt-8 text-3xl font-black uppercase leading-none text-foreground sm:text-4xl">
               Build local.
               <br />
               <GradientText>Look premium.</GradientText>
@@ -103,7 +103,7 @@ export function SiteFooter() {
           </div>
         </div>
 
-        <div className="mt-16 flex flex-col gap-3 border-t border-white/10 pt-6 text-sm text-white/42 sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-16 flex flex-col gap-3 border-t border-foreground/10 pt-6 text-sm text-foreground/42 sm:flex-row sm:items-center sm:justify-between">
           <p>Copyright © 2026 Sajilo Studio. All rights reserved.</p>
           <p>Kathmandu, Nepal · Digital studio for modern businesses.</p>
         </div>

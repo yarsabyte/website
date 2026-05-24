@@ -5,7 +5,7 @@ export const projects = [
     category: "Education Consultancy",
     year: "Sample Direction",
     tags: ["Web Design", "Branding", "Launch"],
-    accent: "from-cyan via-electric to-violet",
+    accent: "from-sky via-blue to-accent",
     visual: "consultancy",
     summary:
       "A premium website direction for education and abroad-study consultancies that need trust, clarity, and inquiry flow.",
@@ -18,7 +18,7 @@ export const projects = [
     category: "Cafe & Restaurant",
     year: "Sample Direction",
     tags: ["Posters", "Video", "Branding"],
-    accent: "from-amber via-violet to-electric",
+    accent: "from-accent via-blue to-sky",
     visual: "restaurant",
     summary:
       "Poster and reel design direction for cafes and restaurants launching offers, menus, events, or seasonal campaigns.",
@@ -30,7 +30,7 @@ export const projects = [
     category: "Student & Creator",
     year: "Sample Direction",
     tags: ["Portfolio", "Web Design", "Branding"],
-    accent: "from-blue-300 via-cyan-400 to-violet-500",
+    accent: "from-blue via-sky to-accent",
     visual: "portfolio",
     summary:
       "Portfolio direction for students, freelancers, and creators who need a sharper way to present skills and work.",
@@ -42,7 +42,7 @@ export const projects = [
     category: "Business Launch",
     year: "Sample Direction",
     tags: ["Web Design", "Posters", "Branding"],
-    accent: "from-violet via-electric to-cyan",
+    accent: "from-navy via-blue to-sky",
     visual: "launch",
     summary:
       "A practical launch package for local businesses that need website, posters, Google Business setup, and brand consistency.",

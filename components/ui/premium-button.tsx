@@ -31,10 +31,10 @@ export function PremiumButton({
       href={href}
       className={cn(
         "group inline-flex h-12 items-center justify-center gap-2 rounded-full px-5 text-sm font-bold transition duration-300 will-change-transform",
-        "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan",
+        "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-sky",
         variant === "primary"
-          ? "button-gradient text-[#03040a] hover:brightness-110"
-          : "button-ghost text-white hover:border-cyan/50 hover:bg-white/[0.08]",
+          ? "button-gradient text-background hover:brightness-110"
+          : "button-ghost text-foreground hover:border-sky/50 hover:bg-foreground/[0.08]",
         className,
       )}
       onPointerMove={(event) => {
