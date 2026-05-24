@@ -69,7 +69,7 @@ export function TestimonialsSection() {
                   </blockquote>
 
                   <figcaption className="mt-8 flex items-center gap-4 border-t border-foreground/5 pt-6">
-                    <div className="grid size-12 shrink-0 place-items-center rounded-full bg-gradient-to-br from-sky/20 to-blue/20 border border-sky/30 text-xs font-black text-sky shadow-[0_0_20px_rgba(98,176,255,0.15)] transition-transform duration-500 group-hover:scale-105">
+                    <div className="grid size-12 shrink-0 place-items-center rounded-full bg-navy border border-sky/30 text-xs font-black text-sky transition-transform duration-500 group-hover:scale-105">
                       {initials}
                     </div>
                     <div>

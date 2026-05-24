@@ -18,15 +18,7 @@ const revealEase = [0.22, 1, 0.36, 1] as const;
 function ProjectVisual({ project }: { project: Project }) {
   return (
     <div className="relative aspect-[1.18/1] overflow-hidden rounded-[1.35rem] border border-foreground/10 bg-background">
-      <div
-        className={cn(
-          "absolute inset-0 bg-gradient-to-br opacity-80 transition duration-700 group-hover/project:scale-110",
-          project.accent,
-        )}
-      />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,color-mix(in_srgb,var(--foreground)_55%,transparent),transparent_10rem),linear-gradient(135deg,color-mix(in_srgb,var(--background)_0%,transparent),color-mix(in_srgb,var(--background)_64%,transparent))]" />
-      <div className="absolute inset-0 bg-[linear-gradient(90deg,color-mix(in_srgb,var(--foreground)_14%,transparent)_1px,transparent_1px),linear-gradient(color-mix(in_srgb,var(--foreground)_12%,transparent)_1px,transparent_1px)] bg-[size:30px_30px] opacity-20" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,color-mix(in_srgb,var(--foreground)_22%,transparent)_0.8px,transparent_0.9px)] bg-[size:3px_3px] opacity-18" />
+      <div className="absolute inset-0 bg-navy opacity-90 transition duration-700 group-hover/project:scale-105" />
 
       {project.visual === "consultancy" ? (
         <div className="absolute inset-5 flex flex-col justify-between rounded-3xl border border-foreground/14 bg-background/34 p-4 backdrop-blur-sm">
@@ -143,7 +135,6 @@ function ProjectCard({
         target.style.transform = "perspective(900px) rotateX(0deg) rotateY(0deg) translateY(0)";
       }}
     >
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_var(--project-glow-x,50%)_var(--project-glow-y,20%),color-mix(in_srgb,var(--sky)_20%,transparent),transparent_18rem)] opacity-0 transition duration-300 group-hover/project:opacity-100" />
       <div className="relative grid h-full gap-6 rounded-[calc(1.75rem-1px)] bg-background/88 p-5 md:p-6 lg:grid-cols-[0.95fr_1fr]">
         <ProjectVisual project={project} />
 
@@ -204,7 +195,6 @@ export function WorkSection() {
       id="work"
       className="section-spacing relative overflow-hidden border-b border-foreground/10"
     >
-      <div className="absolute inset-x-0 top-0 -z-10 h-96 bg-[radial-gradient(circle_at_30%_12%,color-mix(in_srgb,var(--blue)_16%,transparent),transparent_28rem),radial-gradient(circle_at_76%_30%,color-mix(in_srgb,var(--accent)_10%,transparent),transparent_24rem)]" />
       <Container>
         <div className="grid gap-10 lg:grid-cols-[0.85fr_0.55fr] lg:items-end">
           <SectionHeading

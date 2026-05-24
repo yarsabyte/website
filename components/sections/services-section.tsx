@@ -75,15 +75,6 @@ function ServiceCard({
           target.style.transform = "translate3d(0, 0, 0)";
         }}
       >
-        <div className="absolute inset-0 rounded-[inherit] bg-[radial-gradient(circle_at_var(--service-glow-x,50%)_var(--service-glow-y,20%),color-mix(in_srgb,var(--sky)_22%,transparent),transparent_18rem)] opacity-0 transition duration-300 group-hover/service:opacity-100" />
-        <div className="absolute inset-0 rounded-[inherit] bg-[radial-gradient(circle_at_center,color-mix(in_srgb,var(--foreground)_16%,transparent)_0.8px,transparent_0.9px)] bg-[size:3px_3px] opacity-[0.12]" />
-        <div
-          className={cn(
-            "absolute inset-x-0 top-0 h-32 bg-gradient-to-br opacity-24 blur-2xl transition duration-500 group-hover/service:opacity-38",
-            service.accent,
-          )}
-        />
-
         <div
           className={cn(
             "relative flex h-full flex-col rounded-[calc(1.75rem-1px)] bg-background/88 p-6",
@@ -93,8 +84,7 @@ function ServiceCard({
           <div className="flex items-start justify-between gap-5">
             <div
               className={cn(
-                "grid size-13 place-items-center rounded-2xl bg-gradient-to-br text-background shadow-[0_18px_46px_color-mix(in_srgb,var(--blue)_22%,transparent)] transition duration-300 group-hover/service:scale-105 group-hover/service:rotate-3",
-                service.accent,
+                "grid size-13 place-items-center rounded-2xl bg-accent text-foreground transition duration-300 group-hover/service:scale-105 group-hover/service:rotate-3",
               )}
             >
               <Icon className="size-6" aria-hidden="true" />
@@ -142,7 +132,6 @@ export function ServicesSection() {
       id="services"
       className="section-spacing relative overflow-hidden border-b border-foreground/10"
     >
-      <div className="absolute inset-x-0 top-0 -z-10 h-80 bg-[radial-gradient(circle_at_18%_20%,color-mix(in_srgb,var(--sky)_12%,transparent),transparent_26rem),radial-gradient(circle_at_82%_8%,color-mix(in_srgb,var(--blue)_14%,transparent),transparent_28rem)]" />
       <Container>
         <div className="grid gap-10 lg:grid-cols-[0.95fr_0.55fr] lg:items-end">
           <SectionHeading

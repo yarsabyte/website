@@ -110,16 +110,6 @@ export function ContactSection() {
       id="contact" 
       className="section-spacing border-t border-foreground/10 bg-background relative overflow-hidden"
     >
-      {/* Visual background accents */}
-      <div 
-        className="absolute -right-48 -bottom-48 size-[35rem] rounded-full bg-[radial-gradient(circle,color-mix(in_srgb,var(--accent)_10%,transparent),transparent_70%)] pointer-events-none" 
-        aria-hidden="true"
-      />
-      <div 
-        className="absolute -left-48 top-1/3 size-[30rem] rounded-full bg-[radial-gradient(circle,color-mix(in_srgb,var(--blue)_6%,transparent),transparent_70%)] pointer-events-none" 
-        aria-hidden="true"
-      />
-
       <Container>
         <div className="grid gap-12 lg:grid-cols-[1fr_1.1fr] lg:items-start">
           
@@ -192,11 +182,7 @@ export function ContactSection() {
           {/* Right Column: Inquiry Form Card */}
           <Reveal delay={0.12} className="w-full">
             <div className="studio-card relative overflow-hidden rounded-[2.25rem] p-6 sm:p-9 shadow-[0_30px_90px_rgba(0,0,0,0.4)]">
-              {/* Card top gradient line accent */}
-              <div 
-                className="absolute left-0 right-0 top-0 h-1 bg-gradient-to-r from-sky via-blue to-accent" 
-                aria-hidden="true"
-              />
+              <div className="absolute left-0 right-0 top-0 h-1 bg-accent" aria-hidden="true" />
 
               <AnimatePresence mode="wait">
                 {!isSubmitted ? (

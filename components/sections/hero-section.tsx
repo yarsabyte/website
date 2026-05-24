@@ -29,7 +29,6 @@ const fadeUp = {
 export function HeroSection() {
   return (
     <section className="relative min-h-screen overflow-hidden bg-[#14183a] pt-[4.5rem]">
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_78%_18%,color-mix(in_srgb,var(--accent)_12%,transparent),transparent_32rem),radial-gradient(circle_at_12%_80%,color-mix(in_srgb,var(--blue)_14%,transparent),transparent_28rem)]" />
 
       <motion.div
         className="studio-container relative flex min-h-[calc(100vh-4.5rem)] flex-col justify-center py-10 lg:py-16"
@@ -102,7 +101,7 @@ export function HeroSection() {
       <motion.a
         href="#contact"
         className={cn(
-          "fixed bottom-6 right-6 z-40 grid size-12 place-items-center rounded-full bg-accent text-foreground shadow-[0_0_40px_color-mix(in_srgb,var(--accent)_45%,transparent)] transition hover:scale-105 lg:bottom-8 lg:right-8 lg:size-14",
+          "fixed bottom-6 right-6 z-40 grid size-12 place-items-center rounded-full bg-accent text-foreground transition hover:scale-105 lg:bottom-8 lg:right-8 lg:size-14",
         )}
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1 }}

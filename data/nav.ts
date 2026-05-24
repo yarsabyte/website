@@ -1,7 +1,9 @@
-export const navLinks = [
+export const menuLinks = [
   { label: "Work", href: "#work" },
   { label: "Services", href: "#services" },
-  { label: "Packages", href: "#packages" },
-  { label: "About", href: "#about" },
+  { label: "Studio", href: "#about" },
   { label: "Contact", href: "#contact" },
 ];
+
+/** @deprecated Use menuLinks */
+export const navLinks = menuLinks;

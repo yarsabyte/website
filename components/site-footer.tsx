@@ -18,7 +18,7 @@ export function SiteFooter() {
               className="inline-flex items-center gap-3"
               aria-label="Sajilo Studio home"
             >
-              <span className="grid size-10 place-items-center rounded-full bg-gradient-to-br from-sky via-blue to-accent text-sm font-black text-background">
+              <span className="grid size-10 place-items-center rounded-full bg-accent text-sm font-black text-foreground">
                 SS
               </span>
               <span className="text-sm font-semibold uppercase tracking-[0.18em] text-foreground">

@@ -1,10 +1,6 @@
 "use client";
 
 import { Check, Sparkles } from "lucide-react";
-import { useRef } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useGSAP } from "@gsap/react";
 
 import { packages, packagesIntro } from "@/data/packages";
 import { cn } from "@/lib/utils";
@@ -14,46 +10,12 @@ import { PremiumButton } from "@/components/ui/premium-button";
 import { Reveal } from "@/components/ui/reveal";
 import { SectionHeading } from "@/components/ui/section-heading";
 
-gsap.registerPlugin(ScrollTrigger, useGSAP);
-
 export function PackagesSection() {
-  const containerRef = useRef<HTMLElement>(null);
-  const glowRef = useRef<HTMLDivElement>(null);
-
-  useGSAP(
-    () => {
-      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-        return;
-      }
-
-      gsap.fromTo(
-        glowRef.current,
-        { y: -50 },
-        {
-          y: 50,
-          scrollTrigger: {
-            trigger: containerRef.current,
-            start: "top bottom",
-            end: "bottom top",
-            scrub: 1.2,
-          },
-        }
-      );
-    },
-    { scope: containerRef }
-  );
-
   return (
     <section
-      ref={containerRef}
       id="packages"
       className="section-spacing relative overflow-hidden border-b border-foreground/10"
     >
-      <div 
-        ref={glowRef}
-        className="absolute inset-x-0 top-0 -z-10 h-96 bg-[radial-gradient(circle_at_48%_0%,color-mix(in_srgb,var(--sky)_16%,transparent),transparent_30rem),radial-gradient(circle_at_88%_18%,color-mix(in_srgb,var(--accent)_12%,transparent),transparent_24rem)]" 
-        aria-hidden="true"
-      />
       <Container>
         <div className="grid gap-10 lg:grid-cols-[0.9fr_0.55fr] lg:items-end">
           <SectionHeading
@@ -95,9 +57,7 @@ export function PackagesSection() {
                 <div
                   className={cn(
                     "absolute inset-0",
-                    item.recommended
-                      ? "bg-[radial-gradient(circle_at_50%_0%,color-mix(in_srgb,var(--sky)_28%,transparent),transparent_18rem)]"
-                      : "bg-foreground/[0.025]",
+                    item.recommended ? "bg-navy/40" : "bg-foreground/[0.025]",
                   )}
                 />
                 <div className="relative flex h-full flex-col rounded-[calc(1.75rem-1px)] bg-background/92 p-6">

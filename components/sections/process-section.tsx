@@ -65,7 +65,7 @@ export function ProcessSection() {
     <section
       ref={containerRef}
       id="process"
-      className="section-spacing border-b border-foreground/10 bg-[linear-gradient(180deg,color-mix(in_srgb,var(--blue)_8%,transparent),var(--background))]"
+      className="section-spacing border-b border-foreground/10 bg-background"
     >
       <Container>
         <Reveal>
@@ -85,12 +85,12 @@ export function ProcessSection() {
           {/* Vertical connecting line on mobile, horizontal on desktop */}
           <div 
             data-timeline-mobile
-            className="absolute left-10 top-10 bottom-10 w-[2px] bg-gradient-to-b from-sky/60 via-blue/30 to-accent/10 lg:hidden" 
+            className="absolute left-10 top-10 bottom-10 w-[2px] bg-sky/40 lg:hidden" 
             aria-hidden="true"
           />
           <div 
             data-timeline-desktop
-            className="absolute left-10 right-10 top-[3.25rem] h-[2px] bg-gradient-to-r from-sky/60 via-blue/30 to-accent/10 hidden lg:block" 
+            className="absolute left-10 right-10 top-[3.25rem] h-[2px] bg-sky/40 hidden lg:block" 
             aria-hidden="true"
           />
 
