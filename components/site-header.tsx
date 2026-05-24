@@ -97,10 +97,10 @@ export function SiteHeader() {
             </span>
           </Link>
 
-          <p className="hidden items-center justify-center gap-2 text-center text-[0.58rem] font-medium uppercase tracking-[0.2em] text-foreground/72 md:flex lg:text-[0.62rem]">
+          <p className="hidden items-center justify-center gap-2.5 text-center text-[0.58rem] font-medium uppercase tracking-[0.22em] text-foreground/80 md:flex lg:text-[0.62rem]">
             <span>We</span>
             <span
-              className="inline-block size-1.5 rounded-full border border-foreground/50"
+              className="inline-block size-1.5 shrink-0 rounded-full bg-accent"
               aria-hidden="true"
             />
             <AnimatePresence mode="wait">

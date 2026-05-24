@@ -2,118 +2,120 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowRight, Pencil } from "lucide-react";
+import { Pencil } from "lucide-react";
 
 import { HeroCanvasShell } from "@/components/hero/hero-canvas-shell";
 import { HeroGrain } from "@/components/hero/hero-grain";
 import { heroLatestProject, heroMission } from "@/data/hero";
-import { cn } from "@/lib/utils";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
-const container = {
-  hidden: {},
-  visible: {
-    transition: { staggerChildren: 0.1, delayChildren: 0.12 },
-  },
-};
-
-const fadeUp = {
-  hidden: { opacity: 0, y: 32 },
+const fade = {
+  hidden: { opacity: 0, y: 24 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.85, ease },
+    transition: { duration: 0.75, ease },
   },
 };
 
-const heroWord =
-  "text-[clamp(3rem,11.5vw,12.5rem)] font-bold leading-[0.82] tracking-[-0.02em]";
+const heroDisplay =
+  "font-tunnels-bold text-[clamp(3.5rem,15.2vw,14.65rem)] uppercase leading-[0.8] tracking-[-0.02em]";
 
 export function HeroSection() {
   return (
     <section className="relative min-h-screen overflow-hidden bg-[#1D2145] pt-[4.5rem]">
+      <div
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_24%_44%,rgba(0,126,255,0.16),transparent_48%)]"
+        aria-hidden="true"
+      />
       <HeroGrain />
       <HeroCanvasShell />
 
-      <motion.div
-        className="studio-container relative z-10 flex min-h-[calc(100vh-4.5rem)] flex-col pb-28"
-        variants={container}
-        initial="hidden"
-        animate="visible"
-      >
-        <h1
-          className="pointer-events-none relative z-10 font-tunnels-bold uppercase text-[#EEEEF2]"
-          aria-label="Creative Sajilo Studio"
-        >
-          <motion.span className={cn("block", heroWord)} variants={fadeUp}>
-            Creative
-          </motion.span>
-          <motion.span
-            className={cn("block w-fit -mt-[0.06em] text-accent", heroWord)}
-            variants={fadeUp}
+      <div className="studio-container relative z-10 flex min-h-[calc(100vh-4.5rem)] flex-col pb-24">
+        <div className="relative z-20 ml-auto w-full lg:max-w-[88%]">
+          <motion.h1
+            className="pointer-events-none relative z-20 pt-6 text-right lg:pt-10"
+            aria-label="Sajilo Studio"
+            initial="hidden"
+            animate="visible"
+            variants={{
+              hidden: {},
+              visible: { transition: { staggerChildren: 0.1 } },
+            }}
           >
-            Sajilo
-          </motion.span>
-          <motion.span
-            className={cn("mt-1 block text-right", heroWord)}
-            variants={fadeUp}
-          >
-            Studio.
-          </motion.span>
-        </h1>
+            <motion.span
+              className={`relative z-20 block text-accent ${heroDisplay}`}
+              variants={fade}
+            >
+              Sajilo
+            </motion.span>
+            <motion.span
+              className={`relative z-20 block text-[#EEEEF2] ${heroDisplay}`}
+              variants={fade}
+            >
+              Studio
+            </motion.span>
+          </motion.h1>
 
-        <div className="relative mt-auto flex flex-col gap-10 pt-10 lg:pt-16">
           <motion.div
-            variants={fadeUp}
-            className="pointer-events-auto flex justify-center lg:justify-end"
+            className="pointer-events-auto relative z-10 mt-10 flex justify-end sm:mt-12 lg:mt-14"
+            variants={fade}
+            initial="hidden"
+            animate="visible"
+            transition={{ delay: 0.2 }}
           >
             <Link
               href={heroLatestProject.href}
-              className="group inline-flex max-w-full items-center gap-3 border border-foreground/14 bg-foreground/[0.02] px-4 py-2.5 transition hover:border-foreground/28 hover:bg-foreground/[0.05] sm:gap-5 sm:px-6 sm:py-3"
+              className="group flex w-fit max-w-full items-center gap-4 border border-foreground/14 bg-[#1D2145] px-5 py-3 transition hover:border-foreground/25"
             >
-              <span className="shrink-0 text-[0.58rem] font-semibold uppercase tracking-[0.26em] text-foreground/45 sm:text-[0.62rem]">
+              <span className="shrink-0 text-[0.62rem] font-semibold uppercase tracking-[0.28em] text-foreground/50">
                 {heroLatestProject.label}
               </span>
               <span
-                className="hidden h-px w-8 bg-foreground/25 sm:block lg:w-14"
+                className="h-px w-16 shrink-0 bg-foreground/28 transition group-hover:w-20 group-hover:bg-foreground/40 sm:w-28 lg:w-40"
                 aria-hidden="true"
               />
-              <ArrowRight
-                className="size-4 shrink-0 text-foreground/70 transition group-hover:translate-x-1"
+              <span
+                className="hidden text-foreground/50 sm:inline"
                 aria-hidden="true"
-              />
-              <span className="truncate text-xs font-bold uppercase tracking-[0.14em] text-foreground sm:text-sm">
+              >
+                →
+              </span>
+              <span className="truncate text-xs font-bold uppercase tracking-[0.12em] text-foreground sm:text-sm">
                 {heroLatestProject.title}
               </span>
             </Link>
           </motion.div>
-
-          <motion.p
-            variants={fadeUp}
-            className="pointer-events-none max-w-sm self-center text-center text-[0.58rem] font-medium uppercase leading-[1.85] tracking-[0.18em] text-foreground/42 sm:text-[0.62rem] lg:max-w-xs lg:self-end lg:text-right"
-          >
-            {heroMission}
-          </motion.p>
         </div>
-      </motion.div>
 
-      <motion.p
-        className="absolute bottom-8 left-1/2 z-10 hidden -translate-x-1/2 text-[0.62rem] font-semibold uppercase tracking-[0.32em] text-foreground/50 sm:block"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.9, duration: 0.8 }}
-        aria-hidden="true"
-      >
-        [ Scroll ]
-      </motion.p>
+        <motion.p
+          className="absolute bottom-[22%] left-4 z-10 text-[0.62rem] font-semibold uppercase tracking-[0.32em] text-foreground/55 sm:left-8 lg:left-[6%]"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.7, duration: 0.6 }}
+          aria-hidden="true"
+        >
+          [ Scroll ]
+        </motion.p>
+
+        <motion.p
+          className="relative z-10 mt-auto hidden max-w-md self-end text-right text-[0.58rem] font-medium uppercase leading-[1.9] tracking-[0.18em] text-foreground/45 lg:block lg:text-[0.62rem]"
+          variants={fade}
+          initial="hidden"
+          animate="visible"
+          transition={{ delay: 0.35 }}
+        >
+          {heroMission}
+        </motion.p>
+      </div>
 
       <motion.a
         href="#contact"
-        className="fixed bottom-6 right-6 z-40 grid size-12 place-items-center rounded-full bg-accent text-foreground transition hover:scale-105 lg:bottom-8 lg:right-8 lg:size-14"
-        initial={{ opacity: 0, scale: 0.85 }}
+        className="fixed bottom-6 right-6 z-40 grid size-12 place-items-center rounded-full bg-accent text-foreground shadow-none transition hover:scale-105 lg:bottom-8 lg:right-8 lg:size-14"
+        initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
-        transition={{ delay: 0.95, duration: 0.45, type: "spring", stiffness: 260, damping: 20 }}
+        transition={{ delay: 0.5, duration: 0.4 }}
         aria-label="Start a project"
       >
         <Pencil className="size-5 lg:size-6" />

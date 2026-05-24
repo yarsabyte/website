@@ -136,7 +136,7 @@ export function FullscreenMenu({ open, onClose, origin }: FullscreenMenuProps) {
                       <a
                         href={link.href}
                         onClick={onClose}
-                        className="font-tunnels group inline-flex items-baseline gap-3 text-[clamp(2.6rem,7.5vw,5.75rem)] leading-[0.92] text-[#1D2145] transition hover:opacity-75"
+                        className="font-tunnels-bold group inline-flex items-baseline gap-3 text-[clamp(2.6rem,7.5vw,5.75rem)] leading-[0.92] text-[#1D2145] transition hover:opacity-75"
                       >
                         {link.label}
                         <MenuHexDot />

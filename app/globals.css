@@ -1,5 +1,20 @@
 @import "tailwindcss";
 
+/* TT Tunnels Bold — weight 700 (TypeType) */
+@font-face {
+  font-family: "TT Tunnels";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src:
+    local("TT Tunnels Bold"),
+    local("TT Tunnels Trial Bold"),
+    local("TTTunnels-Bold"),
+    local("TTTunnelsTrial-Bold"),
+    url("/fonts/TTTunnels-Bold.woff2") format("woff2"),
+    url("/fonts/TTTunnels-Bold.woff") format("woff");
+}
+
 :root {
   --background: #000000;
   --foreground: #EEEEF2;
@@ -24,8 +39,8 @@
   --color-surface-soft: var(--background);
   --font-sans: var(--font-inter), "Inter", -apple-system, BlinkMacSystemFont,
     "Segoe UI", Roboto, "Helvetica Neue", Helvetica, Arial, sans-serif;
-  --font-display: "TT Tunnels Bold", Impact, sans-serif;
-  --font-tunnels: "TT Tunnels Bold", Impact, sans-serif;
+  --font-display: "TT Tunnels", sans-serif;
+  --font-tunnels: "TT Tunnels", sans-serif;
 }
 
 html {
@@ -65,9 +80,10 @@ a {
 h1,
 h2,
 h3 {
-  font-family: "TT Tunnels Bold", Impact, sans-serif;
+  font-family: var(--font-tunnels), "TT Tunnels", sans-serif;
   font-weight: 700;
   font-style: normal;
+  font-synthesis: none;
 }
 
 @layer utilities {
@@ -120,22 +136,25 @@ h3 {
   }
 
   .font-display {
-    font-family: "TT Tunnels Bold", Impact, sans-serif;
+    font-family: var(--font-display), "TT Tunnels", sans-serif;
     font-weight: 700;
     font-style: normal;
+    font-synthesis: none;
     letter-spacing: 0.02em;
   }
 
   .font-tunnels {
-    font-family: "TT Tunnels Bold", Impact, sans-serif;
-    font-weight: 400;
+    font-family: var(--font-tunnels), "TT Tunnels", sans-serif;
+    font-weight: 700;
     font-style: normal;
+    font-synthesis: none;
   }
 
   .font-tunnels-bold {
-    font-family: "TT Tunnels Bold", Impact, sans-serif;
+    font-family: var(--font-tunnels), "TT Tunnels", sans-serif;
     font-weight: 700;
     font-style: normal;
+    font-synthesis: none;
   }
 
   .text-balance {

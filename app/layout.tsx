@@ -14,12 +14,12 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Sajilo Studio — Creative Digital Studio in Nepal",
+  title: "Sajilo Studio — Digital Studio in Nepal",
   description:
     "Sajilo Studio helps Nepali businesses create websites, portfolios, posters, videos, reels, branding, and digital setups for a professional online presence.",
   metadataBase: new URL("https://sajilostudio.com"),
   openGraph: {
-    title: "Sajilo Studio — Creative Digital Studio in Nepal",
+    title: "Sajilo Studio — Digital Studio in Nepal",
     description:
       "Sajilo Studio helps Nepali businesses create websites, portfolios, posters, videos, reels, branding, and digital setups for a professional online presence.",
     siteName: "Sajilo Studio",

@@ -4,9 +4,9 @@
  */
 export const BLOB_CONFIG = {
   /** Overall mesh scale inside the canvas */
-  scale: 1.35,
+  scale: 1.72,
   /** Base fill color of the distorted sphere */
-  color: "#0c1438",
+  color: "#080e28",
   /** Hex / wireframe line color */
   wireframeColor: "#62B0FF",
   /** Surface opacity (0–1) */
@@ -18,7 +18,7 @@ export const BLOB_CONFIG = {
   /** Icosahedron subdivision (higher = smoother, heavier) */
   geometryDetail: 32,
   /** Wireframe layer opacity — pattern intensity */
-  patternIntensity: 0.42,
+  patternIntensity: 0.48,
   /** Idle Y rotation per frame */
   rotationSpeed: 0.0025,
   /** How much the cursor tilts the blob (radians) */
