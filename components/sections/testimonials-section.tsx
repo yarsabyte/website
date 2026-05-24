@@ -1,22 +1,32 @@
-import { testimonials } from "@/data/testimonials";
+import { testimonials, testimonialsIntro } from "@/data/testimonials";
 import { Container } from "@/components/ui/container";
+import { GradientText } from "@/components/ui/gradient-text";
 import { Reveal } from "@/components/ui/reveal";
 import { SectionHeading } from "@/components/ui/section-heading";
 
 export function TestimonialsSection() {
   return (
-    <section id="about" className="section-spacing border-b border-white/10">
+    <section className="section-spacing border-b border-white/10">
       <Container>
         <Reveal>
           <SectionHeading
-            eyebrow="Client signal"
-            title="Built for founders who want the internet to finally match the ambition."
+            eyebrow={testimonialsIntro.eyebrow}
+            title={
+              <>
+                Built to hold real client proof as Sajilo Studio{" "}
+                <GradientText>grows.</GradientText>
+              </>
+            }
+            description={testimonialsIntro.description}
           />
         </Reveal>
         <div className="mt-14 grid gap-5 lg:grid-cols-2">
           {testimonials.map((item, index) => (
             <Reveal key={item.author} delay={index * 0.06}>
               <figure className="studio-card min-h-72 rounded-3xl p-7">
+                <p className="mb-8 inline-flex rounded-full border border-white/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-amber">
+                  {item.label}
+                </p>
                 <blockquote className="text-2xl font-medium leading-snug text-white">
                   {item.quote}
                 </blockquote>
