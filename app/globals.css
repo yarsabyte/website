@@ -1,42 +1,85 @@
 @import "tailwindcss";
 
 :root {
-  --background: #050505;
-  --foreground: #f7f4eb;
-  --muted: #a8a195;
-  --accent: #d9ff55;
-  --coral: #ff6f59;
-  --surface: #0c0c0b;
-  --surface-soft: #141411;
+  --background: #04050a;
+  --foreground: #f7f8ff;
+  --muted: #a6adbd;
+  --electric: #4f8cff;
+  --cyan: #64e9ff;
+  --violet: #9b6bff;
+  --amber: #ffbd6b;
+  --surface: #090b12;
+  --surface-soft: #111522;
+  --border-soft: rgba(255, 255, 255, 0.12);
+  --glow-blue: rgba(79, 140, 255, 0.34);
+  --glow-cyan: rgba(100, 233, 255, 0.2);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-muted: var(--muted);
-  --color-accent: var(--accent);
-  --color-coral: var(--coral);
+  --color-electric: var(--electric);
+  --color-cyan: var(--cyan);
+  --color-violet: var(--violet);
+  --color-amber: var(--amber);
   --color-surface: var(--surface);
   --color-surface-soft: var(--surface-soft);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
-  text-rendering: geometricPrecision;
-}
-
-::selection {
-  background: var(--accent);
-  color: #050505;
-}
-
 html {
   scroll-behavior: auto;
   background: var(--background);
+}
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+body {
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 18% 12%, rgba(79, 140, 255, 0.2), transparent 24rem),
+    radial-gradient(circle at 84% 8%, rgba(155, 107, 255, 0.18), transparent 25rem),
+    radial-gradient(circle at 70% 62%, rgba(255, 189, 107, 0.1), transparent 24rem),
+    linear-gradient(180deg, #050712 0%, var(--background) 52%, #020308 100%);
+  color: var(--foreground);
+  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  font-synthesis-weight: none;
+  overflow-x: hidden;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: geometricPrecision;
+}
+
+body::before {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  content: "";
+  opacity: 0.38;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    radial-gradient(circle at center, rgba(255, 255, 255, 0.18) 0.8px, transparent 0.9px);
+  background-position:
+    center,
+    center,
+    0 0;
+  background-size:
+    96px 96px,
+    96px 96px,
+    3px 3px;
+  mask-image: linear-gradient(to bottom, black 0%, black 55%, transparent 100%);
+}
+
+::selection {
+  background: var(--cyan);
+  color: #04050a;
 }
 
 button,
@@ -45,6 +88,73 @@ a {
 }
 
 @layer utilities {
+  .studio-container {
+    width: min(100% - 2rem, 80rem);
+    margin-inline: auto;
+  }
+
+  .section-spacing {
+    padding-block: clamp(5rem, 12vw, 9rem);
+  }
+
+  .section-spacing-tight {
+    padding-block: clamp(4rem, 9vw, 7rem);
+  }
+
+  .gradient-text {
+    color: transparent;
+    background: linear-gradient(100deg, var(--cyan), var(--electric) 46%, var(--violet));
+    -webkit-background-clip: text;
+    background-clip: text;
+  }
+
+  .studio-card {
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.025)),
+      rgba(9, 11, 18, 0.78);
+    border: 1px solid var(--border-soft);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  }
+
+  .animated-border {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+  }
+
+  .animated-border::before {
+    position: absolute;
+    inset: -1px;
+    z-index: -1;
+    content: "";
+    background: conic-gradient(
+      from 180deg,
+      transparent,
+      rgba(100, 233, 255, 0.68),
+      rgba(155, 107, 255, 0.62),
+      rgba(255, 189, 107, 0.52),
+      transparent
+    );
+    opacity: 0;
+    transition: opacity 220ms ease;
+  }
+
+  .animated-border:hover::before {
+    opacity: 1;
+  }
+
+  .button-gradient {
+    background: linear-gradient(100deg, var(--cyan), var(--electric) 48%, var(--violet));
+    box-shadow:
+      0 18px 48px rgba(79, 140, 255, 0.24),
+      inset 0 1px 0 rgba(255, 255, 255, 0.38);
+  }
+
+  .button-ghost {
+    background: rgba(255, 255, 255, 0.045);
+    border: 1px solid var(--border-soft);
+  }
+
   .text-balance {
     text-wrap: balance;
   }
