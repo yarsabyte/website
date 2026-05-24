@@ -1,44 +1,186 @@
-import { services } from "@/data/services";
+"use client";
+
+import { ArrowUpRight, Check } from "lucide-react";
+import { motion } from "framer-motion";
+import { useRef } from "react";
+
+import {
+  serviceHighlights,
+  services,
+  servicesIntro,
+} from "@/data/services";
+import { cn } from "@/lib/utils";
 import { Container } from "@/components/ui/container";
 import { GradientText } from "@/components/ui/gradient-text";
-import { Reveal } from "@/components/ui/reveal";
 import { SectionHeading } from "@/components/ui/section-heading";
+
+type Service = (typeof services)[number];
+
+const cardEase = [0.22, 1, 0.36, 1] as const;
+
+function ServiceCard({
+  service,
+  index,
+}: {
+  service: Service;
+  index: number;
+}) {
+  const cardRef = useRef<HTMLAnchorElement>(null);
+  const Icon = service.icon;
+
+  return (
+    <motion.article
+      initial={{ opacity: 0, y: 36, scale: 0.96 }}
+      whileInView={{ opacity: 1, y: 0, scale: 1 }}
+      viewport={{ once: true, margin: "-12% 0px" }}
+      transition={{
+        duration: 0.72,
+        delay: index * 0.06,
+        ease: cardEase,
+      }}
+      className={cn(
+        "group/service relative",
+        service.featured ? "lg:col-span-2 lg:row-span-2" : "",
+      )}
+    >
+      <a
+        ref={cardRef}
+        href="#contact"
+        className={cn(
+          "animated-border studio-card relative flex h-full min-h-80 flex-col overflow-hidden rounded-[1.75rem] p-px transition duration-300 will-change-transform",
+          "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan",
+        )}
+        onPointerMove={(event) => {
+          const target = cardRef.current;
+          if (!target || window.matchMedia("(pointer: coarse)").matches) {
+            return;
+          }
+
+          const rect = target.getBoundingClientRect();
+          const x = event.clientX - rect.left;
+          const y = event.clientY - rect.top;
+          const moveX = (x - rect.width / 2) * 0.035;
+          const moveY = (y - rect.height / 2) * 0.035;
+
+          target.style.setProperty("--service-glow-x", `${x}px`);
+          target.style.setProperty("--service-glow-y", `${y}px`);
+          target.style.transform = `translate3d(${moveX}px, ${moveY}px, 0)`;
+        }}
+        onPointerLeave={() => {
+          const target = cardRef.current;
+          if (!target) {
+            return;
+          }
+
+          target.style.transform = "translate3d(0, 0, 0)";
+        }}
+      >
+        <div className="absolute inset-0 rounded-[inherit] bg-[radial-gradient(circle_at_var(--service-glow-x,50%)_var(--service-glow-y,20%),rgba(100,233,255,0.22),transparent_18rem)] opacity-0 transition duration-300 group-hover/service:opacity-100" />
+        <div className="absolute inset-0 rounded-[inherit] bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.16)_0.8px,transparent_0.9px)] bg-[size:3px_3px] opacity-[0.12]" />
+        <div
+          className={cn(
+            "absolute inset-x-0 top-0 h-32 bg-gradient-to-br opacity-24 blur-2xl transition duration-500 group-hover/service:opacity-38",
+            service.accent,
+          )}
+        />
+
+        <div
+          className={cn(
+            "relative flex h-full flex-col rounded-[calc(1.75rem-1px)] bg-[#070913]/88 p-6",
+            service.featured ? "sm:p-8" : "",
+          )}
+        >
+          <div className="flex items-start justify-between gap-5">
+            <div
+              className={cn(
+                "grid size-13 place-items-center rounded-2xl bg-gradient-to-br text-[#03040a] shadow-[0_18px_46px_rgba(79,140,255,0.22)] transition duration-300 group-hover/service:scale-105 group-hover/service:rotate-3",
+                service.accent,
+              )}
+            >
+              <Icon className="size-6" aria-hidden="true" />
+            </div>
+            <span className="rounded-full border border-white/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-white/42">
+              0{index + 1}
+            </span>
+          </div>
+
+          <div className={cn("mt-12", service.featured ? "lg:mt-24" : "")}>
+            <h3
+              className={cn(
+                "max-w-xl font-black uppercase leading-[0.95] text-white text-balance",
+                service.featured ? "text-4xl sm:text-5xl" : "text-2xl",
+              )}
+            >
+              {service.title}
+            </h3>
+            <p className="mt-5 max-w-2xl text-sm leading-7 text-white/62">
+              {service.description}
+            </p>
+          </div>
+
+          <div className="mt-auto pt-10">
+            <p className="max-w-xl text-sm leading-6 text-cyan/86">
+              {service.outcome}
+            </p>
+            <span className="mt-6 inline-flex items-center gap-2 text-sm font-bold text-white">
+              Explore service
+              <ArrowUpRight
+                className="size-4 transition group-hover/service:translate-x-0.5 group-hover/service:-translate-y-0.5"
+                aria-hidden="true"
+              />
+            </span>
+          </div>
+        </div>
+      </a>
+    </motion.article>
+  );
+}
 
 export function ServicesSection() {
   return (
-    <section id="services" className="section-spacing border-b border-white/10">
+    <section
+      id="services"
+      className="section-spacing relative overflow-hidden border-b border-white/10"
+    >
+      <div className="absolute inset-x-0 top-0 -z-10 h-80 bg-[radial-gradient(circle_at_18%_20%,rgba(100,233,255,0.12),transparent_26rem),radial-gradient(circle_at_82%_8%,rgba(155,107,255,0.14),transparent_28rem)]" />
       <Container>
-        <Reveal>
+        <div className="grid gap-10 lg:grid-cols-[0.95fr_0.55fr] lg:items-end">
           <SectionHeading
-            eyebrow="Services"
+            eyebrow={servicesIntro.eyebrow}
             title={
               <>
-                A connected digital studio for the things local businesses{" "}
-                <GradientText>need most.</GradientText>
+                Digital services that make Nepali businesses{" "}
+                <GradientText>look credible fast.</GradientText>
               </>
             }
-            description="Each service is designed to work alone or as part of a full launch system."
+            description={servicesIntro.description}
           />
-        </Reveal>
 
-        <div className="mt-14 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-          {services.map((service, index) => {
-            const Icon = service.icon;
-
-            return (
-              <Reveal
-                key={service.title}
-                delay={index * 0.04}
-                className="animated-border studio-card min-h-72 rounded-3xl p-7 transition hover:-translate-y-1"
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-12% 0px" }}
+            transition={{ duration: 0.7, ease: cardEase }}
+            className="grid gap-2 rounded-[1.5rem] border border-white/10 bg-white/[0.035] p-3"
+          >
+            {serviceHighlights.map((highlight) => (
+              <div
+                key={highlight}
+                className="flex items-center gap-3 rounded-2xl px-3 py-2 text-sm text-white/68"
               >
-                <div className="mb-10 grid size-12 place-items-center rounded-2xl bg-gradient-to-br from-cyan via-electric to-violet text-[#03040a]">
-                  <Icon className="size-5" aria-hidden="true" />
-                </div>
-                <h3 className="text-2xl font-semibold text-white">{service.title}</h3>
-                <p className="mt-4 text-sm leading-7 text-white/58">{service.description}</p>
-              </Reveal>
-            );
-          })}
+                <span className="grid size-6 place-items-center rounded-full bg-cyan/12 text-cyan">
+                  <Check className="size-3.5" aria-hidden="true" />
+                </span>
+                {highlight}
+              </div>
+            ))}
+          </motion.div>
+        </div>
+
+        <div className="mt-14 grid auto-rows-fr gap-4 md:grid-cols-2 lg:grid-cols-3">
+          {services.map((service, index) => (
+            <ServiceCard key={service.title} service={service} index={index} />
+          ))}
         </div>
       </Container>
     </section>

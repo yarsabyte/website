@@ -1,41 +1,167 @@
 "use client";
 
 import { useRef } from "react";
-import { Play } from "lucide-react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-import { motion } from "framer-motion";
 
-import { stats } from "@/data/stats";
+import { heroHeadlineRows, heroRotatingWords, heroStats } from "@/data/hero";
 import { Container } from "@/components/ui/container";
-import { GradientText } from "@/components/ui/gradient-text";
 import { PremiumButton } from "@/components/ui/premium-button";
 import { SectionLabel } from "@/components/ui/section-label";
 
 gsap.registerPlugin(useGSAP);
 
+const ANIMATION_SPEED = 1;
+
+function splitWord(word: string) {
+  return word.split("").map((character, index) => (
+    <span
+      key={`${word}-${character}-${index}`}
+      data-hero-char
+      className="inline-block will-change-transform"
+      aria-hidden="true"
+    >
+      {character}
+    </span>
+  ));
+}
+
 export function HeroSection() {
   const scope = useRef<HTMLElement>(null);
+  const rotatingWordRef = useRef<HTMLSpanElement>(null);
+  const rotatingIndex = useRef(0);
 
   useGSAP(
     () => {
-      gsap.from("[data-hero-line]", {
-        yPercent: 110,
-        rotate: 4,
+      const mm = gsap.matchMedia();
+      const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+      gsap.set("[data-hero-char]", {
+        yPercent: 116,
         opacity: 0,
-        duration: 1.1,
-        ease: "power4.out",
-        stagger: 0.12,
+        rotateX: -74,
+        transformOrigin: "50% 100%",
+      });
+      gsap.set("[data-hero-fade]", { y: 26, opacity: 0 });
+      gsap.set("[data-hero-shape]", { opacity: 0, scale: 0.72 });
+
+      if (prefersReducedMotion) {
+        gsap.set("[data-hero-char], [data-hero-fade], [data-hero-shape]", {
+          yPercent: 0,
+          y: 0,
+          opacity: 1,
+          rotateX: 0,
+          scale: 1,
+        });
+        return () => mm.revert();
+      }
+
+      const entrance = gsap.timeline({ defaults: { ease: "power4.out" } });
+
+      entrance
+        .to("[data-hero-char]", {
+          yPercent: 0,
+          opacity: 1,
+          rotateX: 0,
+          duration: 0.82 / ANIMATION_SPEED,
+          stagger: {
+            each: 0.014 / ANIMATION_SPEED,
+            from: "start",
+          },
+        })
+        .to(
+          "[data-hero-fade]",
+          {
+            y: 0,
+            opacity: 1,
+            duration: 0.78 / ANIMATION_SPEED,
+            stagger: 0.08 / ANIMATION_SPEED,
+          },
+          "-=0.35",
+        )
+        .to(
+          "[data-hero-shape]",
+          {
+            opacity: 1,
+            scale: 1,
+            duration: 1 / ANIMATION_SPEED,
+            stagger: 0.09 / ANIMATION_SPEED,
+          },
+          "-=0.9",
+        );
+
+      const wordTimeline = gsap.timeline({ repeat: -1, repeatDelay: 0.35 });
+      const wordNode = rotatingWordRef.current;
+
+      if (wordNode) {
+        wordTimeline
+          .to(wordNode, {
+            yPercent: -105,
+            opacity: 0,
+            filter: "blur(8px)",
+            duration: 0.42 / ANIMATION_SPEED,
+            ease: "power3.in",
+            delay: 1.8 / ANIMATION_SPEED,
+            onComplete: () => {
+              rotatingIndex.current = (rotatingIndex.current + 1) % heroRotatingWords.length;
+              wordNode.textContent = heroRotatingWords[rotatingIndex.current];
+              gsap.set(wordNode, { yPercent: 105 });
+            },
+          })
+          .to(wordNode, {
+            yPercent: 0,
+            opacity: 1,
+            filter: "blur(0px)",
+            duration: 0.58 / ANIMATION_SPEED,
+            ease: "power4.out",
+          });
+      }
+
+      mm.add("(min-width: 768px)", () => {
+        const floatTween = gsap.to("[data-hero-shape]", {
+          y: "random(-24, 24)",
+          x: "random(-18, 18)",
+          rotate: "random(-10, 10)",
+          duration: "random(4.5, 7)",
+          repeat: -1,
+          yoyo: true,
+          ease: "sine.inOut",
+          stagger: 0.18,
+        });
+
+        const scanTween = gsap.to("[data-scanline]", {
+          yPercent: 105,
+          duration: 4.8,
+          repeat: -1,
+          ease: "none",
+        });
+
+        return () => {
+          floatTween.kill();
+          scanTween.kill();
+        };
       });
 
-      gsap.from("[data-hero-fade]", {
-        y: 24,
-        opacity: 0,
-        duration: 0.9,
-        ease: "power3.out",
-        stagger: 0.08,
-        delay: 0.35,
-      });
+      const section = scope.current;
+
+      const handlePointerMove = (event: PointerEvent) => {
+        if (!section) {
+          return;
+        }
+
+        const rect = section.getBoundingClientRect();
+        section.style.setProperty("--spotlight-x", `${event.clientX - rect.left}px`);
+        section.style.setProperty("--spotlight-y", `${event.clientY - rect.top}px`);
+      };
+
+      section?.addEventListener("pointermove", handlePointerMove, { passive: true });
+
+      return () => {
+        entrance.kill();
+        wordTimeline.kill();
+        mm.revert();
+        section?.removeEventListener("pointermove", handlePointerMove);
+      };
     },
     { scope },
   );
@@ -43,98 +169,128 @@ export function HeroSection() {
   return (
     <section
       ref={scope}
-      className="relative isolate min-h-screen overflow-hidden border-b border-white/10 pt-28"
+      className="relative isolate min-h-screen overflow-hidden border-b border-white/10 pt-28 [--spotlight-x:50%] [--spotlight-y:38%]"
     >
-      <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_24%_20%,rgba(100,233,255,0.2),transparent_28%),radial-gradient(circle_at_74%_12%,rgba(155,107,255,0.22),transparent_32%),linear-gradient(180deg,rgba(4,5,10,0.12),#04050a_82%)]" />
+      <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_var(--spotlight-x)_var(--spotlight-y),rgba(100,233,255,0.18),transparent_20rem),radial-gradient(circle_at_18%_20%,rgba(79,140,255,0.2),transparent_26rem),radial-gradient(circle_at_82%_12%,rgba(155,107,255,0.18),transparent_28rem),linear-gradient(180deg,rgba(4,5,10,0.04),#04050a_84%)]" />
+      <div className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(255,255,255,0.055)_1px,transparent_1px),linear-gradient(rgba(255,255,255,0.04)_1px,transparent_1px)] bg-[size:72px_72px] opacity-35 [mask-image:radial-gradient(circle_at_50%_24%,black,transparent_68%)]" />
+      <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden opacity-35">
+        <div data-scanline className="h-32 w-full bg-gradient-to-b from-transparent via-cyan/20 to-transparent" />
+      </div>
+      <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.14)_0.8px,transparent_0.9px)] bg-[size:3px_3px] opacity-18" />
       <div className="absolute bottom-0 left-1/2 -z-10 h-px w-[88vw] -translate-x-1/2 bg-gradient-to-r from-transparent via-cyan/60 to-transparent" />
 
-      <Container className="grid min-h-[calc(100vh-7rem)] items-end gap-12 pb-10 lg:grid-cols-[1.1fr_0.9fr] lg:pb-14">
-        <div className="pb-4">
+      <div
+        data-hero-shape
+        className="absolute right-[8%] top-32 -z-10 hidden h-28 w-28 rounded-[2rem] border border-cyan/30 bg-cyan/10 shadow-[0_0_80px_rgba(100,233,255,0.22)] md:block"
+      />
+      <div
+        data-hero-shape
+        className="absolute bottom-36 right-[22%] -z-10 hidden h-36 w-20 rotate-12 rounded-full border border-violet/30 bg-violet/10 shadow-[0_0_90px_rgba(155,107,255,0.2)] md:block"
+      />
+      <div
+        data-hero-shape
+        className="absolute left-[7%] top-[38%] -z-10 hidden h-16 w-44 -rotate-6 rounded-full border border-amber/30 bg-amber/10 shadow-[0_0_70px_rgba(255,189,107,0.16)] lg:block"
+      />
+      <div
+        data-hero-fade
+        className="pointer-events-none absolute bottom-24 right-[7%] hidden h-64 w-44 items-center justify-center rounded-full border border-white/12 bg-white/[0.035] shadow-[inset_0_1px_0_rgba(255,255,255,0.12)] xl:flex"
+        aria-hidden="true"
+      >
+        <div className="absolute inset-4 rounded-full border border-cyan/20" />
+        <div className="absolute inset-9 rounded-full border border-violet/20" />
+        <div className="size-20 rounded-full bg-gradient-to-br from-cyan via-electric to-violet shadow-[0_0_70px_rgba(79,140,255,0.36)]" />
+      </div>
+
+      <Container className="flex min-h-[calc(100vh-7rem)] items-end pb-9 lg:pb-12">
+        <div className="max-w-6xl pb-4">
           <div data-hero-fade>
-            <SectionLabel>Digital presence for next Nepali businesses</SectionLabel>
+            <SectionLabel>Premium digital presence for Nepal</SectionLabel>
           </div>
 
-          <h1 className="mt-7 max-w-5xl overflow-hidden text-6xl font-black uppercase leading-[0.82] text-white text-balance sm:text-7xl lg:text-8xl xl:text-9xl">
-            <span className="block overflow-hidden">
-              <span data-hero-line className="block">
-                Premium
+          <h1
+            className="mt-6 max-w-6xl text-5xl font-black uppercase leading-[0.88] text-white text-balance sm:text-6xl lg:text-7xl xl:text-8xl"
+            aria-label="We build digital presence that makes Nepali businesses look premium."
+          >
+            {heroHeadlineRows.map((row, rowIndex) => (
+              <span key={row.join("-")} className="block overflow-hidden pb-1">
+                {row.map((word, wordIndex) => {
+                  const isGradient = word === "digital" || word === "premium.";
+
+                  return (
+                    <span key={`${word}-${rowIndex}-${wordIndex}`}>
+                      <span
+                        className="mr-[0.16em] inline-block overflow-hidden align-bottom"
+                        aria-hidden="true"
+                      >
+                        <span
+                          className={
+                            isGradient
+                              ? "gradient-text inline-block"
+                              : "inline-block"
+                          }
+                        >
+                          {splitWord(word)}
+                        </span>
+                      </span>
+                      {wordIndex < row.length - 1 ? " " : null}
+                    </span>
+                  );
+                })}
               </span>
-            </span>{" "}
-            <span className="block overflow-hidden">
-              <span data-hero-line className="block">
-                <GradientText>digital</GradientText>
-              </span>
-            </span>{" "}
-            <span className="block overflow-hidden">
-              <span data-hero-line className="block">
-                made sajilo.
-              </span>
-            </span>
+            ))}
           </h1>
 
-          <div className="mt-8 grid gap-6 text-white/68 md:grid-cols-[1fr_auto] md:items-end">
-            <p data-hero-fade className="max-w-xl text-lg leading-8">
-              Sajilo Studio builds websites, portfolio systems, posters, video edits,
-              reels, branding, and launch-ready digital setups for Nepali businesses
-              that want to look sharp online.
+          <div data-hero-fade className="mt-6 flex flex-wrap items-center gap-3">
+            <span className="text-sm font-semibold uppercase tracking-[0.22em] text-white/46">
+              Now shaping
+            </span>
+            <span className="inline-flex h-12 min-w-40 items-center justify-center overflow-hidden rounded-full border border-white/12 bg-white/[0.06] px-5 text-lg font-black uppercase text-cyan shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]">
+              <span ref={rotatingWordRef} className="inline-block will-change-transform">
+                {heroRotatingWords[0]}
+              </span>
+            </span>
+          </div>
+
+          <div className="mt-8 grid gap-7 text-white/68 md:grid-cols-[minmax(0,44rem)_auto] md:items-end">
+            <p data-hero-fade className="max-w-2xl text-base leading-8 sm:text-lg">
+              Sajilo Studio creates websites, visual content, portfolios, videos,
+              and digital setups for businesses, creators, consultancies, and local
+              brands.
             </p>
             <div data-hero-fade className="flex flex-wrap gap-3">
-              <PremiumButton href="#contact">Build my presence</PremiumButton>
-              <PremiumButton href="#work" variant="ghost" showIcon={false}>
-                <Play className="size-4 fill-white" aria-hidden="true" />
-                See work
+              <PremiumButton href="#contact">Start a Project</PremiumButton>
+              <PremiumButton href="#work" variant="ghost">
+                View Our Work
               </PremiumButton>
             </div>
           </div>
-        </div>
 
-        <motion.div
-          data-hero-fade
-          initial={{ opacity: 0, scale: 0.96 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1], delay: 0.55 }}
-          className="animated-border studio-card relative min-h-[440px] overflow-hidden rounded-[2rem] p-px shadow-2xl shadow-black"
-        >
-          <div className="relative flex h-full min-h-[438px] flex-col justify-between rounded-[calc(2rem-1px)] bg-[#070913]/88 p-5">
-            <div className="flex items-center justify-between">
-              <span className="text-xs font-semibold uppercase tracking-[0.24em] text-white/56">
-                Launch board
-              </span>
-              <span className="rounded-full bg-amber px-3 py-1 text-xs font-black text-[#03040a]">
-                Live
-              </span>
-            </div>
-            <div className="space-y-4">
-              {["Website", "Brand Kit", "Poster Set", "Reels"].map((item, index) => (
-                <motion.div
-                  key={item}
-                  initial={{ width: "38%" }}
-                  animate={{ width: `${88 - index * 12}%` }}
-                  transition={{
-                    duration: 1.1,
-                    delay: 0.85 + index * 0.1,
-                    ease: [0.22, 1, 0.36, 1],
-                  }}
-                  className="h-14 rounded-full border border-white/10 bg-white/[0.07] px-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]"
-                >
-                  <div className="flex h-full items-center justify-between gap-3">
-                    <span className="text-sm font-semibold text-white">{item}</span>
-                    <span className="text-xs text-cyan">Ready</span>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-            <div className="grid grid-cols-3 gap-3">
-              {stats.map((item) => (
-                <div key={item.label} className="rounded-2xl border border-white/10 bg-white/[0.06] p-3">
-                  <p className="text-2xl font-black text-white">{item.value}</p>
-                  <p className="mt-1 text-xs leading-4 text-white/52">{item.label}</p>
-                </div>
-              ))}
-            </div>
+          <div
+            data-hero-fade
+            className="mt-10 grid gap-px overflow-hidden rounded-[1.5rem] border border-white/10 bg-white/10 sm:grid-cols-2 lg:grid-cols-4"
+          >
+            {heroStats.map((item) => (
+              <div key={item.label} className="bg-[#070913]/78 p-4 sm:p-5">
+                <p className="text-2xl font-black uppercase text-white">{item.value}</p>
+                <p className="mt-1 text-xs font-semibold uppercase tracking-[0.18em] text-white/46">
+                  {item.label}
+                </p>
+              </div>
+            ))}
           </div>
-        </motion.div>
+        </div>
       </Container>
+
+      <div
+        data-hero-fade
+        className="absolute bottom-6 left-1/2 hidden -translate-x-1/2 items-center gap-3 text-xs font-semibold uppercase tracking-[0.24em] text-white/42 sm:flex"
+        aria-hidden="true"
+      >
+        <span>Scroll</span>
+        <span className="relative h-10 w-px overflow-hidden bg-white/14">
+          <span className="absolute left-0 top-0 h-4 w-px animate-[scrollPulse_1.5s_ease-in-out_infinite] bg-cyan" />
+        </span>
+      </div>
     </section>
   );
 }

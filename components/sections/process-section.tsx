@@ -6,7 +6,7 @@ import { SectionHeading } from "@/components/ui/section-heading";
 export function ProcessSection() {
   return (
     <section
-      id="process"
+      id="packages"
       className="section-spacing border-b border-white/10 bg-[linear-gradient(180deg,rgba(79,140,255,0.12),rgba(4,5,10,0.98))]"
     >
       <Container>

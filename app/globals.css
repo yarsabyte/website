@@ -78,11 +78,6 @@ body::before {
   mix-blend-mode: screen;
 }
 
-body > * {
-  position: relative;
-  z-index: 1;
-}
-
 ::selection {
   background: var(--cyan);
   color: #04050a;
@@ -163,5 +158,21 @@ a {
 
   .text-balance {
     text-wrap: balance;
+  }
+}
+
+@keyframes scrollPulse {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+
+  35% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(260%);
+    opacity: 0;
   }
 }

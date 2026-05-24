@@ -2,46 +2,73 @@ import {
   BadgeCheck,
   Clapperboard,
   Code2,
+  MailCheck,
   Palette,
   PenTool,
-  Sparkles,
 } from "lucide-react";
 
 export const services = [
   {
-    title: "Websites",
+    title: "Website Design & Development",
     description:
-      "Fast, polished marketing sites for shops, consultants, creators, schools, and growing local teams.",
+      "Business websites, landing pages, portfolio websites, e-commerce basics, plus domain and hosting setup.",
+    outcome: "A polished web presence ready to share with customers.",
+    accent: "from-cyan via-electric to-violet",
+    featured: true,
     icon: Code2,
   },
   {
-    title: "Portfolio Systems",
+    title: "Portfolio Creation",
     description:
-      "Personal and business portfolios with clean storytelling, case sections, and conversion-focused contact flows.",
+      "Personal, student, creator, and professional CV-style websites with clear proof of work.",
+    outcome: "A premium profile that helps people trust your skills quickly.",
+    accent: "from-blue-300 via-cyan-400 to-amber-300",
     icon: BadgeCheck,
   },
   {
-    title: "Brand Identity",
+    title: "Poster & Graphic Design",
     description:
-      "Logo direction, visual language, social templates, color systems, and the everyday brand pieces teams actually use.",
-    icon: Palette,
-  },
-  {
-    title: "Poster Design",
-    description:
-      "Campaign posters, event visuals, launch graphics, and offer creatives shaped for Nepali audiences.",
+      "Social media posters, banners, ads, event posters, and brand visuals for regular campaigns.",
+    outcome: "Scroll-stopping creatives shaped for local audiences.",
+    accent: "from-amber-300 via-violet-400 to-blue-500",
     icon: PenTool,
   },
   {
-    title: "Video Editing",
+    title: "Video & Reels Editing",
     description:
-      "Crisp edits for promos, explainers, product videos, reels, and story-led short-form content.",
+      "Short-form reels, business promos, event edits, cinematic cuts, and ad creatives.",
+    outcome: "Clean edits that help offers feel sharper and more memorable.",
+    accent: "from-violet via-electric to-cyan",
     icon: Clapperboard,
+  },
+  {
+    title: "Branding & Digital Identity",
+    description:
+      "Logo direction, color system, typography, brand kit, and online visual consistency.",
+    outcome: "A practical identity system your team can actually use.",
+    accent: "from-cyan-300 via-blue-500 to-violet-500",
+    icon: Palette,
   },
   {
     title: "Digital Setup",
     description:
-      "Domain, hosting, business pages, analytics, email, profile polish, and practical launch support.",
-    icon: Sparkles,
+      "Google Business Profile, business email, social media page setup, and launch support.",
+    outcome: "The essential setup pieces handled without confusion.",
+    accent: "from-amber via-cyan to-electric",
+    icon: MailCheck,
   },
+];
+
+export const servicesIntro = {
+  eyebrow: "Services",
+  title: "Digital services that make Nepali businesses look credible fast.",
+  description:
+    "Pick one focused service or combine them into a launch-ready online presence for your shop, consultancy, creator brand, or local company.",
+};
+
+export const serviceHighlights = [
+  "Mobile-first delivery",
+  "Business-ready copy flow",
+  "Local market context",
+  "Launch support included",
 ];

@@ -5,7 +5,7 @@ import { SectionHeading } from "@/components/ui/section-heading";
 
 export function TestimonialsSection() {
   return (
-    <section className="section-spacing border-b border-white/10">
+    <section id="about" className="section-spacing border-b border-white/10">
       <Container>
         <Reveal>
           <SectionHeading
