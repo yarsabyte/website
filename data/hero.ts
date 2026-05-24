@@ -15,7 +15,7 @@ export const heroHeadlineRows = [
 ];
 
 export const heroStats = [
-  { value: "5+", label: "services" },
+  { value: "6", label: "core services" },
   { value: "Fast", label: "delivery" },
   { value: "Nepal", label: "focused" },
   { value: "Custom", label: "design" },

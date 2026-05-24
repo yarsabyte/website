@@ -1,12 +1,69 @@
+"use client";
+
+import { useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
+
 import { processIntro, processSteps } from "@/data/process";
 import { Container } from "@/components/ui/container";
 import { GradientText } from "@/components/ui/gradient-text";
 import { Reveal } from "@/components/ui/reveal";
 import { SectionHeading } from "@/components/ui/section-heading";
 
+gsap.registerPlugin(ScrollTrigger, useGSAP);
+
 export function ProcessSection() {
+  const containerRef = useRef<HTMLElement>(null);
+
+  useGSAP(
+    () => {
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        return;
+      }
+
+      const mm = gsap.matchMedia();
+
+      mm.add("(min-width: 1024px)", () => {
+        gsap.fromTo(
+          "[data-timeline-desktop]",
+          { scaleX: 0, transformOrigin: "left center" },
+          {
+            scaleX: 1,
+            scrollTrigger: {
+              trigger: containerRef.current,
+              start: "top 66%",
+              end: "45% 55%",
+              scrub: 0.6,
+            },
+          }
+        );
+      });
+
+      mm.add("(max-width: 1023px)", () => {
+        gsap.fromTo(
+          "[data-timeline-mobile]",
+          { scaleY: 0, transformOrigin: "center top" },
+          {
+            scaleY: 1,
+            scrollTrigger: {
+              trigger: containerRef.current,
+              start: "top 72%",
+              end: "bottom 88%",
+              scrub: 0.6,
+            },
+          }
+        );
+      });
+
+      return () => mm.revert();
+    },
+    { scope: containerRef }
+  );
+
   return (
     <section
+      ref={containerRef}
       id="process"
       className="section-spacing border-b border-foreground/10 bg-[linear-gradient(180deg,color-mix(in_srgb,var(--blue)_8%,transparent),var(--background))]"
     >
@@ -27,10 +84,12 @@ export function ProcessSection() {
         <div className="relative mt-16 grid gap-8 lg:grid-cols-4 lg:gap-6">
           {/* Vertical connecting line on mobile, horizontal on desktop */}
           <div 
+            data-timeline-mobile
             className="absolute left-10 top-10 bottom-10 w-[2px] bg-gradient-to-b from-sky/60 via-blue/30 to-accent/10 lg:hidden" 
             aria-hidden="true"
           />
           <div 
+            data-timeline-desktop
             className="absolute left-10 right-10 top-[3.25rem] h-[2px] bg-gradient-to-r from-sky/60 via-blue/30 to-accent/10 hidden lg:block" 
             aria-hidden="true"
           />

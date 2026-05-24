@@ -6,7 +6,6 @@ import { useInView } from "framer-motion";
 import { stats } from "@/data/stats";
 import { Container } from "@/components/ui/container";
 import { Reveal } from "@/components/ui/reveal";
-import { GradientText } from "@/components/ui/gradient-text";
 
 function parseStatValue(val: string) {
   const match = val.match(/^(\d+)(%?)$/);
@@ -33,7 +32,7 @@ function StatCounter({ value }: { value: string }) {
   useEffect(() => {
     if (!isNumeric || !isInView) return;
 
-    let start = 0;
+    const start = 0;
     const end = numericValue;
     const duration = 2000; // 2 seconds
     const startTime = performance.now();

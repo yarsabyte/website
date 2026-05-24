@@ -7,14 +7,14 @@ import { SiteHeader } from "@/components/site-header";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Sajilo Studio | Premium Digital Presence for Nepali Businesses",
+  title: "Sajilo Studio — Websites, Posters, Videos & Digital Branding in Nepal",
   description:
-    "Sajilo Studio builds websites, portfolios, posters, video edits, branding, and digital setup systems for Nepali businesses.",
+    "Sajilo Studio helps Nepali businesses create websites, portfolios, posters, videos, reels, branding, and digital setups for a professional online presence.",
   metadataBase: new URL("https://sajilostudio.com"),
   openGraph: {
-    title: "Sajilo Studio",
+    title: "Sajilo Studio — Websites, Posters, Videos & Digital Branding in Nepal",
     description:
-      "Premium digital presence, websites, branding, posters, reels, and launch support for Nepali businesses.",
+      "Sajilo Studio helps Nepali businesses create websites, portfolios, posters, videos, reels, branding, and digital setups for a professional online presence.",
     siteName: "Sajilo Studio",
     locale: "en_US",
     type: "website",
