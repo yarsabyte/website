@@ -2,14 +2,31 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 import { FullscreenMenu } from "@/components/fullscreen-menu";
 import { MenuIcon } from "@/components/menu-icon";
 import { Container } from "@/components/ui/container";
 
+type MenuOrigin = { x: number; y: number };
+
 export function SiteHeader() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [menuOrigin, setMenuOrigin] = useState<MenuOrigin | null>(null);
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
+
+  const updateMenuOrigin = useCallback(() => {
+    const button = menuButtonRef.current;
+    if (!button) {
+      return;
+    }
+
+    const rect = button.getBoundingClientRect();
+    setMenuOrigin({
+      x: rect.left + rect.width / 2,
+      y: rect.top + rect.height / 2,
+    });
+  }, []);
 
   useEffect(() => {
     document.body.style.overflow = isMenuOpen ? "hidden" : "";
@@ -27,6 +44,24 @@ export function SiteHeader() {
       window.removeEventListener("keydown", onKeyDown);
     };
   }, [isMenuOpen]);
+
+  useEffect(() => {
+    if (!isMenuOpen) {
+      return;
+    }
+
+    updateMenuOrigin();
+    window.addEventListener("resize", updateMenuOrigin);
+
+    return () => window.removeEventListener("resize", updateMenuOrigin);
+  }, [isMenuOpen, updateMenuOrigin]);
+
+  const toggleMenu = () => {
+    if (!isMenuOpen) {
+      updateMenuOrigin();
+    }
+    setIsMenuOpen((current) => !current);
+  };
 
   return (
     <>
@@ -49,11 +84,12 @@ export function SiteHeader() {
           </Link>
 
           <button
+            ref={menuButtonRef}
             type="button"
             aria-label={isMenuOpen ? "Close navigation" : "Open navigation"}
             aria-controls="site-menu"
             aria-expanded={isMenuOpen}
-            onClick={() => setIsMenuOpen((current) => !current)}
+            onClick={toggleMenu}
             className="pointer-events-auto grid size-14 place-items-center text-foreground transition hover:opacity-80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
           >
             <MenuIcon open={isMenuOpen} stroke={isMenuOpen ? "#1D2145" : "currentColor"} />
@@ -61,7 +97,11 @@ export function SiteHeader() {
         </Container>
       </header>
 
-      <FullscreenMenu open={isMenuOpen} onClose={() => setIsMenuOpen(false)} />
+      <FullscreenMenu
+        open={isMenuOpen}
+        onClose={() => setIsMenuOpen(false)}
+        origin={menuOrigin}
+      />
     </>
   );
 }
