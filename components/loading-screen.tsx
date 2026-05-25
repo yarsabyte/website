@@ -19,7 +19,7 @@ export function LoadingScreen({ isExiting }: LoadingScreenProps) {
   return (
     <div
       className={cn(
-        "fixed inset-0 z-[100] flex flex-col items-center justify-center bg-[#14183a] transition-[opacity,visibility] duration-700 ease-[cubic-bezier(0.76,0,0.24,1)]",
+        "fixed inset-0 z-[1000] flex flex-col items-center justify-center bg-[#14183a] transition-[opacity,visibility] duration-700 ease-[cubic-bezier(0.76,0,0.24,1)]",
         isExiting ? "pointer-events-none opacity-0 invisible" : "opacity-100 visible",
       )}
       aria-hidden={isExiting}

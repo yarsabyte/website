@@ -35,14 +35,16 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} h-full antialiased`}>
       <body className="min-h-full font-sans text-foreground">
-        <div className="site-frame">
-          <SmoothScrollProvider>
-            <PageLoader>
-            <SiteHeader />
-            {children}
-          </PageLoader>
-          </SmoothScrollProvider>
-        </div>
+        <PageLoader>
+          <div className="site-frame">
+            <div className="site-frame-content">
+              <SmoothScrollProvider>
+                <SiteHeader />
+                {children}
+              </SmoothScrollProvider>
+            </div>
+          </div>
+        </PageLoader>
       </body>
     </html>
   );

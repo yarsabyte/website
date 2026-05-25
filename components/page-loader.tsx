@@ -13,6 +13,7 @@ type PageLoaderProps = {
 export function PageLoader({ children }: PageLoaderProps) {
   const [isLoading, setIsLoading] = useState(true);
   const [isExiting, setIsExiting] = useState(false);
+  const shouldShowContent = isExiting || !isLoading;
 
   useEffect(() => {
     const prefersReducedMotion = window.matchMedia(
@@ -61,10 +62,14 @@ export function PageLoader({ children }: PageLoaderProps) {
     <>
       {isLoading ? <LoadingScreen isExiting={isExiting} /> : null}
       <div
-        className={isLoading ? "invisible" : "visible"}
-        aria-hidden={isLoading}
+        className={
+          shouldShowContent
+            ? "visible translate-y-0 scale-100 opacity-100 transition-[opacity,transform] duration-[1100ms] ease-[cubic-bezier(0.16,1,0.3,1)]"
+            : "invisible translate-y-8 scale-[0.985] opacity-0"
+        }
+        aria-hidden={!shouldShowContent}
       >
-        {children}
+        {shouldShowContent ? children : null}
       </div>
     </>
   );

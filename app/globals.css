@@ -77,6 +77,10 @@ body::-webkit-scrollbar {
   background: var(--background);
 }
 
+.site-frame-content {
+  min-height: 100vh;
+}
+
 main > section:not(:first-child) {
   content-visibility: auto;
   contain-intrinsic-size: auto 56rem;
@@ -90,27 +94,30 @@ main > section:not(:first-child) {
 
   body {
     padding: 0.75rem;
-  }
-
-  body::before {
-    content: "";
-    pointer-events: none;
-    position: fixed;
-    inset: 0;
-    z-index: 999;
-    border: 0.75rem solid var(--menu-bg);
-    border-radius: 1.45rem;
+    overflow: hidden;
   }
 
   .site-frame {
-    min-height: calc(100vh - 1.5rem);
-    overflow: clip;
+    height: calc(100vh - 1.5rem);
+    min-height: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
     border-radius: 1.45rem;
     box-shadow: 0 24px 70px color-mix(in srgb, #0b0d24 16%, transparent);
+    scrollbar-width: none;
+    overscroll-behavior: contain;
+  }
+
+  .site-frame::-webkit-scrollbar {
+    display: none;
+  }
+
+  .site-frame-content {
+    min-height: 100%;
   }
 
   .site-frame main > section:first-child {
-    min-height: calc(100vh - 1.5rem);
+    min-height: 100%;
   }
 
   .site-frame main > section:first-child > .studio-container {

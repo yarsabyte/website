@@ -17,7 +17,16 @@ export function useLenisScroll() {
       return;
     }
 
+    const wrapper = document.querySelector<HTMLElement>(".site-frame");
+    const content = document.querySelector<HTMLElement>(".site-frame-content");
+
+    if (!wrapper || !content) {
+      return;
+    }
+
     const lenis = new Lenis({
+      wrapper,
+      content,
       lerp: 0.11,
       smoothWheel: true,
       wheelMultiplier: 0.8,
