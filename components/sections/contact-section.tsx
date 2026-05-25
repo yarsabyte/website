@@ -62,11 +62,11 @@ export function ContactSection() {
   return (
     <section
       id="contact"
-      className="relative min-h-screen overflow-hidden bg-background px-6 py-24 lg:min-h-[calc(100vh-1.5rem)] lg:px-16 lg:py-9"
+      className="relative min-h-screen overflow-hidden bg-background px-6 py-24 lg:min-h-[calc(100vh-1.5rem)] lg:px-16 lg:pb-9 lg:pt-28"
     >
       <div className="grid items-start gap-8 lg:grid-cols-[14rem_1fr_14rem]">
         <div aria-hidden="true" />
-        <h2 className="font-tunnels-bold text-[clamp(4rem,8.5vw,9rem)] uppercase leading-none tracking-normal text-accent">
+        <h2 className="whitespace-nowrap font-tunnels-bold text-[clamp(4rem,7.4vw,8.5rem)] uppercase leading-none tracking-normal text-accent">
           Let&apos;s Talk
         </h2>
         <div className="hidden w-20 lg:block" aria-hidden="true" />

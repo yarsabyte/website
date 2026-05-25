@@ -8,7 +8,7 @@ export function AboutSection() {
   return (
     <section
       id="about"
-      className="relative min-h-screen overflow-hidden border-b border-foreground/10 bg-background px-6 py-24 lg:min-h-[calc(100vh-1.5rem)] lg:px-16 lg:py-9"
+      className="relative min-h-screen overflow-hidden border-b border-foreground/10 bg-background px-6 py-24 lg:min-h-[calc(100vh-1.5rem)] lg:px-16 lg:pb-9 lg:pt-28"
     >
       <div className="grid min-h-[calc(100vh-12rem)] gap-12 lg:min-h-[calc(100vh-6rem)] lg:grid-cols-[8rem_22rem_1fr_6rem] lg:gap-8">
         <div aria-hidden="true" />
