@@ -15,11 +15,13 @@ export function PageLoader({ children }: PageLoaderProps) {
   const [isExiting, setIsExiting] = useState(false);
 
   useEffect(() => {
-    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
 
     if (prefersReducedMotion) {
-      setIsLoading(false);
-      return;
+      const reducedMotionTimer = window.setTimeout(() => setIsLoading(false), 0);
+      return () => window.clearTimeout(reducedMotionTimer);
     }
 
     let cancelled = false;
@@ -29,7 +31,7 @@ export function PageLoader({ children }: PageLoaderProps) {
     });
 
     const pageReady = new Promise<void>((resolve) => {
-      if (document.readyState === "complete") {
+      if (document.readyState !== "loading") {
         resolve();
         return;
       }

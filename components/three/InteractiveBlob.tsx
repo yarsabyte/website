@@ -7,8 +7,8 @@ import {
   BackSide,
   Color,
   DoubleSide,
-  ShaderMaterial,
   type Group,
+  type ShaderMaterial,
 } from "three";
 
 import { blobFragmentShader, blobVertexShader } from "@/components/three/blob-shaders";
@@ -26,47 +26,35 @@ export function InteractiveBlob() {
   const pointer = usePagePointer();
   const reduceMotion = useReducedMotion();
 
-  const material = useMemo(() => {
-    return new ShaderMaterial({
-      vertexShader: blobVertexShader,
-      fragmentShader: blobFragmentShader,
-      uniforms: {
-        uTime: { value: 0 },
-        uDistort: { value: BLOB_CONFIG.distortAmount },
-        uCoreColor: { value: hexToVec3(BLOB_CONFIG.coreColor) },
-        uRimColor: { value: hexToVec3(BLOB_CONFIG.rimColor) },
-        uGridColor: { value: hexToVec3(BLOB_CONFIG.gridColor) },
-        uGridScale: { value: BLOB_CONFIG.gridScale },
-        uGridStrength: { value: BLOB_CONFIG.gridStrength },
-        uRimStrength: { value: BLOB_CONFIG.rimStrength },
-        uOpacity: { value: BLOB_CONFIG.opacity },
-      },
-      transparent: true,
-      depthWrite: false,
-      side: DoubleSide,
-    });
+  const materialRef = useRef<ShaderMaterial>(null);
+  const rimMaterialRef = useRef<ShaderMaterial>(null);
+
+  const surfaceUniforms = useMemo(() => {
+    return {
+      uTime: { value: 0 },
+      uDistort: { value: BLOB_CONFIG.distortAmount },
+      uCoreColor: { value: hexToVec3(BLOB_CONFIG.coreColor) },
+      uRimColor: { value: hexToVec3(BLOB_CONFIG.rimColor) },
+      uGridColor: { value: hexToVec3(BLOB_CONFIG.gridColor) },
+      uGridScale: { value: BLOB_CONFIG.gridScale },
+      uGridStrength: { value: BLOB_CONFIG.gridStrength },
+      uRimStrength: { value: BLOB_CONFIG.rimStrength },
+      uOpacity: { value: BLOB_CONFIG.opacity },
+    };
   }, []);
 
-  const rimMaterial = useMemo(() => {
-    return new ShaderMaterial({
-      vertexShader: blobVertexShader,
-      fragmentShader: blobFragmentShader,
-      uniforms: {
-        uTime: { value: 0 },
-        uDistort: { value: BLOB_CONFIG.distortAmount * 1.04 },
-        uCoreColor: { value: hexToVec3(BLOB_CONFIG.rimGlowCore) },
-        uRimColor: { value: hexToVec3(BLOB_CONFIG.rimGlowColor) },
-        uGridColor: { value: hexToVec3("#000000") },
-        uGridScale: { value: 0 },
-        uGridStrength: { value: 0 },
-        uRimStrength: { value: 1.1 },
-        uOpacity: { value: 0.18 },
-      },
-      transparent: true,
-      depthWrite: false,
-      blending: AdditiveBlending,
-      side: BackSide,
-    });
+  const rimUniforms = useMemo(() => {
+    return {
+      uTime: { value: 0 },
+      uDistort: { value: BLOB_CONFIG.distortAmount * 1.04 },
+      uCoreColor: { value: hexToVec3(BLOB_CONFIG.rimGlowCore) },
+      uRimColor: { value: hexToVec3(BLOB_CONFIG.rimGlowColor) },
+      uGridColor: { value: hexToVec3("#000000") },
+      uGridScale: { value: 0 },
+      uGridStrength: { value: 0 },
+      uRimStrength: { value: 1.1 },
+      uOpacity: { value: 0.16 },
+    };
   }, []);
 
   useFrame((_, delta) => {
@@ -76,8 +64,12 @@ export function InteractiveBlob() {
     }
 
     const t = performance.now() * 0.001;
-    material.uniforms.uTime.value = t;
-    rimMaterial.uniforms.uTime.value = t;
+    if (materialRef.current) {
+      materialRef.current.uniforms.uTime.value = t;
+    }
+    if (rimMaterialRef.current) {
+      rimMaterialRef.current.uniforms.uTime.value = t;
+    }
 
     if (reduceMotion) {
       group.rotation.y += BLOB_CONFIG.idleRotationSpeed * 0.25 * delta;
@@ -105,12 +97,31 @@ export function InteractiveBlob() {
   });
 
   return (
-    <group ref={groupRef} scale={BLOB_CONFIG.scale}>
-      <mesh material={material}>
-        <icosahedronGeometry args={[1, BLOB_CONFIG.geometryDetail]} />
+    <group ref={groupRef} scale={BLOB_CONFIG.scale} rotation={[0.12, -0.34, -0.08]}>
+      <mesh>
+        <sphereGeometry args={[1, 96, 64]} />
+        <shaderMaterial
+          ref={materialRef}
+          vertexShader={blobVertexShader}
+          fragmentShader={blobFragmentShader}
+          uniforms={surfaceUniforms}
+          transparent
+          depthWrite={false}
+          side={DoubleSide}
+        />
       </mesh>
-      <mesh material={rimMaterial} scale={1.02}>
-        <icosahedronGeometry args={[1, Math.max(3, BLOB_CONFIG.geometryDetail - 1)]} />
+      <mesh scale={1.045}>
+        <sphereGeometry args={[1, 72, 48]} />
+        <shaderMaterial
+          ref={rimMaterialRef}
+          vertexShader={blobVertexShader}
+          fragmentShader={blobFragmentShader}
+          uniforms={rimUniforms}
+          transparent
+          depthWrite={false}
+          blending={AdditiveBlending}
+          side={BackSide}
+        />
       </mesh>
     </group>
   );

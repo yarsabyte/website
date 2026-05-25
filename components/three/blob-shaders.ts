@@ -3,6 +3,7 @@ uniform float uTime;
 uniform float uDistort;
 
 varying vec3 vNormal;
+varying vec3 vLocalPos;
 varying vec3 vWorldPos;
 varying vec3 vViewDir;
 
@@ -93,6 +94,7 @@ void main() {
   vec3 displaced = pos + normal * displacement;
   vec4 world = modelMatrix * vec4(displaced, 1.0);
 
+  vLocalPos = displaced;
   vWorldPos = world.xyz;
   vNormal = normalize(normalMatrix * normal);
   vViewDir = normalize(cameraPosition - world.xyz);
@@ -112,47 +114,101 @@ uniform float uRimStrength;
 uniform float uOpacity;
 
 varying vec3 vNormal;
+varying vec3 vLocalPos;
 varying vec3 vWorldPos;
 varying vec3 vViewDir;
 
-float hexDist(vec2 p) {
-  p = abs(p);
-  float d = dot(p, normalize(vec2(1.0, 1.732050808)));
-  return max(d, p.x);
+vec2 hash22(vec2 p) {
+  p = vec2(dot(p, vec2(127.1, 311.7)), dot(p, vec2(269.5, 183.3)));
+  return fract(sin(p) * 43758.5453123);
 }
 
-float hexGrid(vec2 uv, float scale) {
-  vec2 r = vec2(1.0, 1.732050808);
-  vec2 h = r * 0.5;
-  vec2 a = mod(uv * scale, r) - h;
-  vec2 b = mod(uv * scale - h, r) - h;
-  float da = hexDist(a);
-  float db = hexDist(b);
-  float d = min(da, db);
-  return 1.0 - smoothstep(0.018, 0.055, d);
+float cellBorder(vec2 uv, float scale) {
+  vec2 p = uv * scale;
+  vec2 i = floor(p);
+  vec2 f = fract(p);
+  vec2 nearestOffset = vec2(0.0);
+  vec2 nearestCell = vec2(0.0);
+  float nearestDist = 8.0;
+
+  for (int y = -1; y <= 1; y++) {
+    for (int x = -1; x <= 1; x++) {
+      vec2 cell = vec2(float(x), float(y));
+      vec2 jitter = hash22(i + cell);
+      vec2 seed = cell + 0.38 + 0.42 * jitter;
+      vec2 offset = seed - f;
+      float dist = dot(offset, offset);
+
+      if (dist < nearestDist) {
+        nearestDist = dist;
+        nearestOffset = offset;
+        nearestCell = cell;
+      }
+    }
+  }
+
+  float borderDist = 8.0;
+
+  for (int y = -2; y <= 2; y++) {
+    for (int x = -2; x <= 2; x++) {
+      vec2 cell = nearestCell + vec2(float(x), float(y));
+      vec2 jitter = hash22(i + cell);
+      vec2 seed = cell + 0.38 + 0.42 * jitter;
+      vec2 offset = seed - f;
+      vec2 diff = offset - nearestOffset;
+
+      if (dot(diff, diff) > 0.0001) {
+        borderDist = min(borderDist, dot(0.5 * (nearestOffset + offset), normalize(diff)));
+      }
+    }
+  }
+
+  float line = 1.0 - smoothstep(0.009, 0.026, borderDist);
+  float glow = 1.0 - smoothstep(0.026, 0.085, borderDist);
+  return clamp(line + glow * 0.26, 0.0, 1.0);
+}
+
+float cellularTexture(vec3 p, vec3 n, float scale) {
+  vec3 weights = pow(abs(n), vec3(2.25));
+  weights /= max(weights.x + weights.y + weights.z, 0.0001);
+
+  vec3 drift = vec3(
+    sin(uTime * 0.16) * 0.035,
+    cos(uTime * 0.13) * 0.035,
+    sin(uTime * 0.11 + 1.4) * 0.035
+  );
+
+  float xy = cellBorder(p.xy + drift.xy, scale);
+  float yz = cellBorder(p.yz + drift.yz + vec2(0.17, -0.08), scale * 1.04);
+  float zx = cellBorder(p.zx + drift.zx + vec2(-0.11, 0.15), scale * 0.96);
+
+  return xy * weights.z + yz * weights.x + zx * weights.y;
 }
 
 void main() {
   vec3 n = normalize(vNormal);
   vec3 v = normalize(vViewDir);
 
-  float fresnel = pow(1.0 - max(dot(n, v), 0.0), 2.6);
-  float softRim = pow(fresnel, 1.35) * uRimStrength;
+  float facing = max(dot(n, v), 0.0);
+  float fresnel = pow(1.0 - facing, 2.05);
+  float softRim = pow(fresnel, 1.22) * uRimStrength;
+  float depthShade = smoothstep(-0.72, 0.8, vWorldPos.z);
 
-  vec2 gridUv = vWorldPos.xy * 0.92 + vWorldPos.yz * 0.18;
-  float grid = hexGrid(gridUv, uGridScale);
-  grid += hexGrid(gridUv * 1.07 + 0.2, uGridScale * 0.94) * 0.35;
-  grid = clamp(grid, 0.0, 1.0);
+  vec3 cellPos = normalize(vLocalPos) + vLocalPos * 0.1;
+  float grid = cellularTexture(cellPos, n, uGridScale);
+  float fineGrid = cellularTexture(cellPos * 1.73 + 0.37, n, uGridScale * 0.62) * 0.2;
+  grid = clamp(grid + fineGrid, 0.0, 1.0);
 
   float gridLine = grid * uGridStrength;
 
-  vec3 midTone = mix(uCoreColor, uRimColor, 0.35);
-  vec3 base = mix(uCoreColor, midTone, fresnel * 0.55);
-  vec3 color = base;
-  color += uRimColor * softRim * 0.85;
-  color += uGridColor * gridLine * 0.9;
+  vec3 innerTone = uCoreColor * mix(0.44, 1.05, depthShade);
+  vec3 glassTone = mix(innerTone, uRimColor, fresnel * 0.52 + grid * 0.08);
+  vec3 color = glassTone;
+  color += uRimColor * softRim * 0.62;
+  color += uGridColor * gridLine * (0.54 + fresnel * 0.42);
+  color += uRimColor * pow(max(dot(n, normalize(vec3(-0.4, 0.35, 0.85))), 0.0), 8.0) * 0.16;
 
-  float alpha = uOpacity * (0.72 + fresnel * 0.38);
+  float alpha = uOpacity * (0.48 + fresnel * 0.42 + gridLine * 0.14);
   gl_FragColor = vec4(color, alpha);
 }
 `;
