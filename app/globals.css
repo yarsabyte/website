@@ -21,8 +21,8 @@
   --accent: #D62F49;
   --navy: #1D2145;
   --menu-bg: #EEEDEA;
-  --blue: #007EFF;
-  --sky: #62B0FF;
+  --blue: #D62F49;
+  --sky: #D62F49;
   --hero-bg: #1D2145;
   --border-soft: color-mix(in srgb, var(--foreground) 12%, transparent);
 }
@@ -65,6 +65,11 @@ body {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   text-rendering: geometricPrecision;
+  scrollbar-width: none;
+}
+
+body::-webkit-scrollbar {
+  display: none;
 }
 
 .site-frame {
@@ -205,6 +210,49 @@ h3 {
 
   .text-balance {
     text-wrap: balance;
+  }
+
+  .accent-sweep-link {
+    position: relative;
+    isolation: isolate;
+    display: flex;
+    min-height: 5.25rem;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    overflow: hidden;
+    border: 1px solid color-mix(in srgb, var(--foreground) 14%, transparent);
+    padding: 1.15rem 1.25rem;
+    color: var(--foreground);
+    text-transform: uppercase;
+    transition:
+      border-color 280ms ease,
+      color 280ms ease,
+      transform 280ms ease;
+  }
+
+  .accent-sweep-link::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: right center;
+    transition: transform 420ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .accent-sweep-link:hover {
+    border-color: var(--accent);
+    transform: translateX(-0.35rem);
+  }
+
+  .accent-sweep-link:hover::before {
+    transform: scaleX(1);
+  }
+
+  .accent-sweep-link:hover [class*="bg-accent"] {
+    background: var(--foreground);
   }
 }
 

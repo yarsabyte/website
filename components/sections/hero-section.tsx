@@ -98,16 +98,6 @@ export function HeroSection() {
         </div>
 
         <motion.p
-          className="absolute bottom-[22%] left-4 z-10 text-[0.62rem] font-semibold uppercase tracking-[0.32em] text-foreground/55 sm:left-8 lg:left-[6%]"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.7, duration: 0.6 }}
-          aria-hidden="true"
-        >
-          [ Scroll ]
-        </motion.p>
-
-        <motion.p
           className="relative z-10 mt-auto hidden max-w-md self-end text-right text-[0.58rem] font-medium uppercase leading-[1.9] tracking-[0.18em] text-foreground/45 lg:block lg:text-[0.62rem]"
           variants={fade}
           initial="hidden"

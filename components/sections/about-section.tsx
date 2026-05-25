@@ -1,102 +1,70 @@
 "use client";
 
-import { CheckCircle2 } from "lucide-react";
-import { useRef } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useGSAP } from "@gsap/react";
+import Link from "next/link";
+import Image from "next/image";
 
-import { aboutIntro, aboutPillars } from "@/data/about";
-import { Container } from "@/components/ui/container";
-import { GradientText } from "@/components/ui/gradient-text";
-import { Reveal } from "@/components/ui/reveal";
-import { SectionHeading } from "@/components/ui/section-heading";
-
-gsap.registerPlugin(ScrollTrigger, useGSAP);
+import { aboutIntro } from "@/data/about";
 
 export function AboutSection() {
-  const containerRef = useRef<HTMLElement>(null);
-  const glowRef = useRef<HTMLDivElement>(null);
-
-  useGSAP(
-    () => {
-      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-        return;
-      }
-
-      gsap.fromTo(
-        glowRef.current,
-        { y: -60 },
-        {
-          y: 60,
-          scrollTrigger: {
-            trigger: containerRef.current,
-            start: "top bottom",
-            end: "bottom top",
-            scrub: 1,
-          },
-        }
-      );
-    },
-    { scope: containerRef }
-  );
-
   return (
     <section
-      ref={containerRef}
       id="about"
-      className="section-spacing border-b border-foreground/10 bg-background/20 relative overflow-hidden"
+      className="relative min-h-screen overflow-hidden border-b border-foreground/10 bg-background px-6 py-24 lg:min-h-[calc(100vh-1.5rem)] lg:px-16 lg:py-9"
     >
-      {/* Subtle background glow */}
-      <div 
-        ref={glowRef}
-        className="absolute -left-48 top-1/4 size-96 rounded-full bg-accent/3 blur-[120px] pointer-events-none" 
-        aria-hidden="true"
-      />
-
-      <Container>
-        <div className="grid gap-10 lg:grid-cols-[1fr_0.68fr] lg:items-end">
-          <Reveal>
-            <SectionHeading
-              eyebrow={aboutIntro.eyebrow}
-              title={
-                <>
-                  A modern digital partner for Nepali businesses ready to{" "}
-                  <GradientText>look professional online.</GradientText>
-                </>
-              }
-              description={aboutIntro.description}
-            />
-          </Reveal>
-
-          <Reveal delay={0.08}>
-            <div className="studio-card group relative overflow-hidden rounded-[2rem] p-7 transition-all duration-500 hover:-translate-y-1.5 hover:shadow-[0_20px_50px_rgba(98,176,255,0.04)]">
-              {/* Internal glow overlay */}
-              <div className="absolute -right-8 -top-8 size-24 rounded-full bg-sky/5 blur-2xl transition-opacity duration-500 group-hover:bg-sky/8" />
-
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-sky">
-                What we combine
-              </p>
-              <p className="mt-4 text-xl font-bold leading-snug text-foreground/90 transition-colors duration-300 group-hover:text-foreground">
-                Design, development, content, and setup support under one practical
-                studio workflow.
-              </p>
-            </div>
-          </Reveal>
+      <div className="grid min-h-[calc(100vh-12rem)] gap-12 lg:min-h-[calc(100vh-6rem)] lg:grid-cols-[8rem_22rem_1fr_6rem] lg:gap-8">
+        <div className="flex items-start">
+          <Image
+            src="/logo.svg"
+            alt=""
+            width={80}
+            height={80}
+            className="hidden size-20 lg:block"
+          />
         </div>
 
-        <div className="mt-16 grid gap-6 md:grid-cols-3">
-          {aboutPillars.map((pillar, index) => (
-            <Reveal key={pillar} delay={index * 0.08}>
-              <div className="studio-card group flex min-h-44 gap-4 rounded-[2rem] p-6 transition-all duration-500 hover:-translate-y-1 hover:border-sky/20 hover:shadow-[0_15px_40px_rgba(98,176,255,0.03)]">
-                <CheckCircle2 className="mt-1 size-5 shrink-0 text-sky shadow-[0_0_10px_rgba(98,176,255,0.15)] transition-transform duration-500 group-hover:scale-110" aria-hidden="true" />
-                <p className="text-sm leading-7 text-foreground/60 transition-colors duration-300 group-hover:text-foreground/80">{pillar}</p>
-              </div>
-            </Reveal>
-          ))}
+        <div className="flex items-start gap-3 pt-1">
+          <span className="mt-1.5 grid size-4 place-items-center rounded-full border border-foreground/20">
+            <span className="size-1.5 rounded-full bg-accent" />
+          </span>
+          <p className="text-sm font-semibold uppercase tracking-[0.14em] text-foreground/90">
+            {aboutIntro.eyebrow}
+          </p>
         </div>
-      </Container>
+
+        <div className="grid gap-10 lg:grid-cols-[20rem_1fr]">
+          <p className="max-w-xs text-xl font-semibold uppercase leading-tight text-foreground sm:text-2xl lg:text-[1.35rem]">
+            Sajilo Studio builds practical digital presence for local businesses,
+            creators, and teams ready to look credible online.
+          </p>
+
+          <div>
+            <h2 className="max-w-5xl text-[clamp(3.2rem,7.2vw,7rem)] font-normal uppercase leading-[0.98] tracking-normal text-foreground">
+              Delivering thoughtful design, development, and launch support with
+              digital systems that move brands forward.
+            </h2>
+          </div>
+        </div>
+
+        <div aria-hidden="true" />
+      </div>
+
+      <nav
+        className="mt-16 flex flex-wrap gap-12 pl-0 text-sm font-semibold uppercase tracking-[0.14em] text-foreground lg:ml-[calc(8rem+22rem+4rem)] lg:mt-0"
+        aria-label="About section links"
+      >
+        <Link
+          href="#about"
+          className="border-b border-foreground pb-3 transition hover:border-accent hover:text-accent"
+        >
+          About us
+        </Link>
+        <Link
+          href="#services"
+          className="border-b border-foreground pb-3 transition hover:border-accent hover:text-accent"
+        >
+          Services
+        </Link>
+      </nav>
     </section>
   );
 }
-

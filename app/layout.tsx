@@ -3,7 +3,6 @@ import { Inter } from "next/font/google";
 
 import { PageLoader } from "@/components/page-loader";
 import { SmoothScrollProvider } from "@/components/smooth-scroll-provider";
-import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 
 import "./globals.css";
@@ -39,10 +38,9 @@ export default function RootLayout({
         <div className="site-frame">
           <SmoothScrollProvider>
             <PageLoader>
-              <SiteHeader />
-              {children}
-              <SiteFooter />
-            </PageLoader>
+            <SiteHeader />
+            {children}
+          </PageLoader>
           </SmoothScrollProvider>
         </div>
       </body>
