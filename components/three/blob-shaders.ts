@@ -88,8 +88,7 @@ void main() {
 
   float n1 = snoise(pos * 1.15 + vec3(t * 0.4, t * 0.25, 0.0));
   float n2 = snoise(pos * 2.35 + vec3(0.0, t * 0.35, t * 0.2)) * 0.52;
-  float n3 = snoise(pos * 4.1 + vec3(t * 0.15)) * 0.24;
-  float displacement = (n1 + n2 + n3) * uDistort;
+  float displacement = (n1 + n2) * uDistort;
 
   vec3 displaced = pos + normal * displacement;
   vec4 world = modelMatrix * vec4(displaced, 1.0);
@@ -127,9 +126,8 @@ float cellBorder(vec2 uv, float scale) {
   vec2 p = uv * scale;
   vec2 i = floor(p);
   vec2 f = fract(p);
-  vec2 nearestOffset = vec2(0.0);
-  vec2 nearestCell = vec2(0.0);
   float nearestDist = 8.0;
+  float secondDist = 8.0;
 
   for (int y = -1; y <= 1; y++) {
     for (int x = -1; x <= 1; x++) {
@@ -140,31 +138,17 @@ float cellBorder(vec2 uv, float scale) {
       float dist = dot(offset, offset);
 
       if (dist < nearestDist) {
+        secondDist = nearestDist;
         nearestDist = dist;
-        nearestOffset = offset;
-        nearestCell = cell;
+      } else if (dist < secondDist) {
+        secondDist = dist;
       }
     }
   }
 
-  float borderDist = 8.0;
-
-  for (int y = -2; y <= 2; y++) {
-    for (int x = -2; x <= 2; x++) {
-      vec2 cell = nearestCell + vec2(float(x), float(y));
-      vec2 jitter = hash22(i + cell);
-      vec2 seed = cell + 0.38 + 0.42 * jitter;
-      vec2 offset = seed - f;
-      vec2 diff = offset - nearestOffset;
-
-      if (dot(diff, diff) > 0.0001) {
-        borderDist = min(borderDist, dot(0.5 * (nearestOffset + offset), normalize(diff)));
-      }
-    }
-  }
-
-  float line = 1.0 - smoothstep(0.009, 0.026, borderDist);
-  float glow = 1.0 - smoothstep(0.026, 0.085, borderDist);
+  float borderDist = secondDist - nearestDist;
+  float line = 1.0 - smoothstep(0.035, 0.09, borderDist);
+  float glow = 1.0 - smoothstep(0.09, 0.2, borderDist);
   return clamp(line + glow * 0.26, 0.0, 1.0);
 }
 
@@ -196,8 +180,8 @@ void main() {
 
   vec3 cellPos = normalize(vLocalPos) + vLocalPos * 0.1;
   float grid = cellularTexture(cellPos, n, uGridScale);
-  float fineGrid = cellularTexture(cellPos * 1.73 + 0.37, n, uGridScale * 0.62) * 0.2;
-  grid = clamp(grid + fineGrid, 0.0, 1.0);
+  float fineVein = sin((cellPos.x + cellPos.y * 0.74 + cellPos.z * 0.38 + uTime * 0.025) * 22.0);
+  grid = clamp(grid + smoothstep(0.82, 1.0, fineVein) * 0.08, 0.0, 1.0);
 
   float gridLine = grid * uGridStrength;
 

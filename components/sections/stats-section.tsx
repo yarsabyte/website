@@ -1,11 +1,12 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { useInView } from "framer-motion";
 
 import { stats } from "@/data/stats";
 import { Container } from "@/components/ui/container";
 import { Reveal } from "@/components/ui/reveal";
+import { useReducedMotion } from "@/hooks/useReducedMotion";
 
 function parseStatValue(val: string) {
   const match = val.match(/^(\d+)(%?)$/);
@@ -25,34 +26,42 @@ function parseStatValue(val: string) {
 
 function StatCounter({ value }: { value: string }) {
   const { isNumeric, numericValue, suffix } = parseStatValue(value);
-  const [count, setCount] = useState(0);
   const ref = useRef<HTMLSpanElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-10%" });
+  const reduceMotion = useReducedMotion();
 
   useEffect(() => {
-    if (!isNumeric || !isInView) return;
+    const node = ref.current;
+    if (!node || !isNumeric || !isInView) return;
+
+    if (reduceMotion) {
+      node.textContent = `${numericValue}${suffix}`;
+      return;
+    }
 
     const start = 0;
     const end = numericValue;
-    const duration = 2000; // 2 seconds
+    const duration = 1400;
     const startTime = performance.now();
+    let frame = 0;
 
     const animate = (now: number) => {
       const elapsed = now - startTime;
       const progress = Math.min(elapsed / duration, 1);
-      // Ease out cubic
       const easeProgress = 1 - Math.pow(1 - progress, 3);
       const current = Math.floor(easeProgress * (end - start) + start);
 
-      setCount(current);
+      node.textContent = `${current}${suffix}`;
 
       if (progress < 1) {
-        requestAnimationFrame(animate);
+        frame = requestAnimationFrame(animate);
       }
     };
 
-    requestAnimationFrame(animate);
-  }, [isInView, isNumeric, numericValue]);
+    frame = requestAnimationFrame(animate);
+
+    return () => cancelAnimationFrame(frame);
+  }, [isInView, isNumeric, numericValue, reduceMotion, suffix]);
 
   if (!isNumeric) {
     return <span className="gradient-text">{value}</span>;
@@ -60,8 +69,7 @@ function StatCounter({ value }: { value: string }) {
 
   return (
     <span ref={ref} className="gradient-text">
-      {count}
-      {suffix}
+      0{suffix}
     </span>
   );
 }
@@ -94,4 +102,3 @@ export function StatsSection() {
     </section>
   );
 }
-

@@ -67,6 +67,11 @@ body {
   text-rendering: geometricPrecision;
 }
 
+main > section:not(:first-child) {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 56rem;
+}
+
 ::selection {
   background: var(--accent);
   color: var(--foreground);

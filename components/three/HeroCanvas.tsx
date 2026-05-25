@@ -13,10 +13,10 @@ export function HeroCanvas() {
       camera={{ position: [0, 0, 6.8], fov: 36 }}
       gl={{
         alpha: true,
-        antialias: true,
+        antialias: false,
         powerPreference: "high-performance",
       }}
-      dpr={[1, 1.5]}
+      dpr={[1, 1.15]}
       frameloop="always"
     >
       <Suspense fallback={null}>

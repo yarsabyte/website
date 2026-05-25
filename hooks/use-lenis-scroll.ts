@@ -3,12 +3,24 @@
 import Lenis from "lenis";
 import { useEffect } from "react";
 
+import { useReducedMotion } from "@/hooks/useReducedMotion";
+
 export function useLenisScroll() {
+  const reduceMotion = useReducedMotion();
+
   useEffect(() => {
+    if (
+      reduceMotion ||
+      window.matchMedia("(pointer: coarse)").matches ||
+      window.matchMedia("(max-width: 767px)").matches
+    ) {
+      return;
+    }
+
     const lenis = new Lenis({
-      lerp: 0.08,
+      lerp: 0.11,
       smoothWheel: true,
-      wheelMultiplier: 0.85,
+      wheelMultiplier: 0.8,
     });
 
     let frame = 0;
@@ -24,5 +36,5 @@ export function useLenisScroll() {
       cancelAnimationFrame(frame);
       lenis.destroy();
     };
-  }, []);
+  }, [reduceMotion]);
 }

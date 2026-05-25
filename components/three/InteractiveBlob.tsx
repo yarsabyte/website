@@ -57,13 +57,13 @@ export function InteractiveBlob() {
     };
   }, []);
 
-  useFrame((_, delta) => {
+  useFrame(({ clock }, delta) => {
     const group = groupRef.current;
     if (!group) {
       return;
     }
 
-    const t = performance.now() * 0.001;
+    const t = clock.elapsedTime;
     if (materialRef.current) {
       materialRef.current.uniforms.uTime.value = t;
     }
@@ -77,7 +77,7 @@ export function InteractiveBlob() {
     }
 
     const { x, y } = pointer.current;
-    const targetRotY = x * BLOB_CONFIG.cursorRotationInfluence;
+    const targetRotY = -x * BLOB_CONFIG.cursorRotationInfluence;
     const targetRotX = y * BLOB_CONFIG.cursorRotationInfluence * 0.42;
 
     group.rotation.y = damp(
@@ -99,7 +99,7 @@ export function InteractiveBlob() {
   return (
     <group ref={groupRef} scale={BLOB_CONFIG.scale} rotation={[0.12, -0.34, -0.08]}>
       <mesh>
-        <sphereGeometry args={[1, 96, 64]} />
+        <sphereGeometry args={[1, 64, 42]} />
         <shaderMaterial
           ref={materialRef}
           vertexShader={blobVertexShader}
@@ -111,7 +111,7 @@ export function InteractiveBlob() {
         />
       </mesh>
       <mesh scale={1.045}>
-        <sphereGeometry args={[1, 72, 48]} />
+        <sphereGeometry args={[1, 48, 32]} />
         <shaderMaterial
           ref={rimMaterialRef}
           vertexShader={blobVertexShader}
