@@ -29,7 +29,7 @@ export function AboutSection() {
           </p>
 
           <div>
-            <h2 className="max-w-5xl text-[clamp(3.2rem,7.2vw,7rem)] font-normal uppercase leading-[0.98] tracking-normal text-foreground">
+            <h2 className="max-w-5xl text-[clamp(2.75rem,12vw,7rem)] font-normal uppercase leading-[0.98] tracking-normal text-foreground">
               Delivering thoughtful design, development, and launch support with
               digital systems that move brands forward.
             </h2>

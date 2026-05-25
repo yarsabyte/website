@@ -64,7 +64,7 @@ export function PageLoader({ children }: PageLoaderProps) {
       <div
         className={
           shouldShowContent
-            ? "visible translate-y-0 scale-100 opacity-100 transition-[opacity,transform] duration-[1100ms] ease-[cubic-bezier(0.16,1,0.3,1)]"
+            ? "visible opacity-100 transition-opacity duration-[1100ms] ease-[cubic-bezier(0.16,1,0.3,1)]"
             : "invisible translate-y-8 scale-[0.985] opacity-0"
         }
         aria-hidden={!shouldShowContent}

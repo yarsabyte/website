@@ -22,9 +22,12 @@ const fade = {
 const heroDisplay =
   "font-tunnels-bold text-[clamp(3.5rem,15.2vw,14.65rem)] uppercase leading-[0.8] tracking-[-0.02em]";
 
+const mobileHeroDisplay =
+  "font-tunnels-bold text-[clamp(3.55rem,15vw,4.6rem)] uppercase leading-[0.86]";
+
 export function HeroSection() {
   return (
-    <section className="relative min-h-screen overflow-hidden bg-[#14183a] pt-[4.5rem]">
+    <section className="relative min-h-[100svh] overflow-hidden bg-[#14183a] pt-24 sm:min-h-screen sm:pt-[4.5rem]">
       <div
         className="pointer-events-none absolute inset-0 bg-[#14183a]"
         aria-hidden="true"
@@ -40,10 +43,42 @@ export function HeroSection() {
       <HeroGrain />
       <HeroCanvasShell />
 
-      <div className="studio-container relative z-10 flex min-h-[calc(100vh-4.5rem)] flex-col pb-24">
-        <div className="relative z-20 ml-auto w-full lg:max-w-[88%]">
+      <div className="studio-container relative z-10 flex min-h-[calc(100svh-6rem)] flex-col pb-28 sm:min-h-[calc(100vh-4.5rem)] sm:pb-24">
+        <div className="relative z-20 flex flex-1 flex-col pt-[48vh] sm:block sm:pt-0 lg:ml-auto lg:w-full lg:max-w-[88%]">
           <motion.h1
-            className="pointer-events-none relative z-20 pt-6 text-right lg:pt-10"
+            className="pointer-events-none relative z-20 block sm:hidden"
+            aria-label="Creative Web Studio"
+            initial="hidden"
+            animate="visible"
+            variants={{
+              hidden: {},
+              visible: { transition: { staggerChildren: 0.08 } },
+            }}
+          >
+            <motion.span
+              className={`block text-center text-[#EEEEF2] ${mobileHeroDisplay}`}
+              variants={fade}
+            >
+              Creative
+            </motion.span>
+            <span className="flex items-baseline justify-between gap-3">
+              <motion.span
+                className={`inline-block text-accent ${mobileHeroDisplay}`}
+                variants={fade}
+              >
+                Web
+              </motion.span>
+              <motion.span
+                className={`inline-block text-[#EEEEF2] ${mobileHeroDisplay}`}
+                variants={fade}
+              >
+                Studio
+              </motion.span>
+            </span>
+          </motion.h1>
+
+          <motion.h1
+            className="pointer-events-none relative z-20 hidden pt-6 text-right sm:block lg:pt-10"
             aria-label="Sajilo Studio"
             initial="hidden"
             animate="visible"
@@ -67,7 +102,7 @@ export function HeroSection() {
           </motion.h1>
 
           <motion.div
-            className="pointer-events-auto relative z-10 mt-10 flex justify-end sm:mt-12 lg:mt-14"
+            className="pointer-events-auto relative z-10 mt-10 flex justify-start sm:mt-12 sm:justify-end lg:mt-14"
             variants={fade}
             initial="hidden"
             animate="visible"
@@ -75,22 +110,22 @@ export function HeroSection() {
           >
             <Link
               href={heroLatestProject.href}
-              className="group flex w-fit max-w-full items-center gap-4 border border-foreground/14 bg-[#14183a] px-5 py-3 transition hover:border-foreground/25"
+              className="group flex min-h-20 w-full max-w-full items-center justify-between gap-4 rounded-md border border-foreground/14 bg-[#14183a] px-8 py-4 transition hover:border-foreground/25 sm:min-h-0 sm:w-fit sm:justify-start sm:rounded-none sm:px-5 sm:py-3"
             >
-              <span className="shrink-0 text-[0.62rem] font-semibold uppercase tracking-[0.28em] text-foreground/50">
+              <span className="shrink-0 text-[0.82rem] font-semibold uppercase tracking-[0.08em] text-foreground sm:text-[0.62rem] sm:tracking-[0.28em] sm:text-foreground/50">
                 {heroLatestProject.label}
               </span>
               <span
-                className="h-px w-16 shrink-0 bg-foreground/28 transition group-hover:w-20 group-hover:bg-foreground/40 sm:w-28 lg:w-40"
+                className="h-px w-7 shrink-0 bg-foreground/28 transition group-hover:w-10 group-hover:bg-foreground/40 sm:w-28 lg:w-40"
                 aria-hidden="true"
               />
               <span
-                className="hidden text-foreground/50 sm:inline"
+                className="text-foreground/50 sm:inline"
                 aria-hidden="true"
               >
-                →
+                -&gt;
               </span>
-              <span className="truncate text-xs font-bold uppercase tracking-[0.12em] text-foreground sm:text-sm">
+              <span className="hidden truncate text-xs font-bold uppercase tracking-[0.12em] text-foreground sm:inline sm:text-sm">
                 {heroLatestProject.title}
               </span>
             </Link>
@@ -110,13 +145,13 @@ export function HeroSection() {
 
       <motion.a
         href="#contact"
-        className="fixed bottom-6 right-6 z-40 grid size-12 place-items-center rounded-full bg-accent text-foreground shadow-none transition hover:scale-105 lg:bottom-8 lg:right-8 lg:size-14"
+        className="fixed bottom-4 right-5 z-40 grid size-[4.75rem] place-items-center rounded-full bg-accent text-foreground shadow-none transition hover:scale-105 sm:bottom-6 sm:right-6 sm:size-12 lg:bottom-8 lg:right-8 lg:size-14"
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ delay: 0.5, duration: 0.4 }}
         aria-label="Start a project"
       >
-        <Pencil className="size-5 lg:size-6" />
+        <Pencil className="size-7 sm:size-5 lg:size-6" />
       </motion.a>
     </section>
   );

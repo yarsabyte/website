@@ -66,7 +66,7 @@ export function ContactSection() {
     >
       <div className="grid items-start gap-8 lg:grid-cols-[14rem_1fr_14rem]">
         <div aria-hidden="true" />
-        <h2 className="whitespace-nowrap font-tunnels-bold text-[clamp(4rem,7.4vw,8.5rem)] uppercase leading-none tracking-normal text-accent">
+        <h2 className="whitespace-nowrap font-tunnels-bold text-[clamp(3.35rem,15vw,8.5rem)] uppercase leading-none tracking-normal text-accent">
           Let&apos;s Talk
         </h2>
         <div className="hidden w-20 lg:block" aria-hidden="true" />
@@ -87,7 +87,7 @@ export function ContactSection() {
       <div className="grid gap-14 lg:grid-cols-[0.72fr_0.9fr_0.9fr] lg:gap-20">
         <div className="flex flex-col gap-20">
           <div>
-            <p className="flex items-center gap-4 font-tunnels-bold text-[clamp(4.5rem,8vw,8.5rem)] uppercase leading-none text-foreground">
+            <p className="flex items-center gap-4 font-tunnels-bold text-[clamp(3.8rem,15vw,8.5rem)] uppercase leading-none text-foreground">
               Studio
               <AccentDot />
             </p>
@@ -142,14 +142,14 @@ export function ContactSection() {
           <div className="space-y-14 lg:pt-36">
             <Link
               href="#services"
-              className="flex items-center justify-end gap-4 font-tunnels-bold text-[clamp(4.5rem,7vw,8rem)] uppercase leading-none text-foreground transition hover:text-accent"
+              className="flex items-center justify-start gap-4 font-tunnels-bold text-[clamp(3.8rem,15vw,8rem)] uppercase leading-none text-foreground transition hover:text-accent lg:justify-end"
             >
               Services
               <AccentDot />
             </Link>
             <Link
               href="#work"
-              className="flex items-center justify-start gap-4 font-tunnels-bold text-[clamp(4.5rem,7vw,8rem)] uppercase leading-none text-foreground transition hover:text-accent"
+              className="flex items-center justify-start gap-4 font-tunnels-bold text-[clamp(3.8rem,15vw,8rem)] uppercase leading-none text-foreground transition hover:text-accent"
             >
               Work
               <AccentDot />
