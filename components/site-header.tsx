@@ -76,7 +76,7 @@ export function SiteHeader() {
 
   return (
     <>
-      <header className="pointer-events-none fixed inset-x-0 top-0 z-[90]">
+      <header className="pointer-events-none fixed inset-x-0 top-0 z-[90] lg:left-3 lg:right-3 lg:top-3">
         <Container className="grid h-[4.5rem] grid-cols-[1fr_auto_1fr] items-center gap-3">
           <Link
             href="/"

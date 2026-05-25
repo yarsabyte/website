@@ -67,9 +67,50 @@ body {
   text-rendering: geometricPrecision;
 }
 
+.site-frame {
+  min-height: 100vh;
+  background: var(--background);
+}
+
 main > section:not(:first-child) {
   content-visibility: auto;
   contain-intrinsic-size: auto 56rem;
+}
+
+@media (min-width: 1024px) {
+  html,
+  body {
+    background: var(--menu-bg);
+  }
+
+  body {
+    padding: 0.75rem;
+  }
+
+  body::before {
+    content: "";
+    pointer-events: none;
+    position: fixed;
+    inset: 0;
+    z-index: 999;
+    border: 0.75rem solid var(--menu-bg);
+    border-radius: 1.45rem;
+  }
+
+  .site-frame {
+    min-height: calc(100vh - 1.5rem);
+    overflow: clip;
+    border-radius: 1.45rem;
+    box-shadow: 0 24px 70px color-mix(in srgb, #0b0d24 16%, transparent);
+  }
+
+  .site-frame main > section:first-child {
+    min-height: calc(100vh - 1.5rem);
+  }
+
+  .site-frame main > section:first-child > .studio-container {
+    min-height: calc(100vh - 6rem);
+  }
 }
 
 ::selection {
