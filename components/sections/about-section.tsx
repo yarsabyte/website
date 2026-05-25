@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 
 import { aboutIntro } from "@/data/about";
 
@@ -12,15 +11,7 @@ export function AboutSection() {
       className="relative min-h-screen overflow-hidden border-b border-foreground/10 bg-background px-6 py-24 lg:min-h-[calc(100vh-1.5rem)] lg:px-16 lg:py-9"
     >
       <div className="grid min-h-[calc(100vh-12rem)] gap-12 lg:min-h-[calc(100vh-6rem)] lg:grid-cols-[8rem_22rem_1fr_6rem] lg:gap-8">
-        <div className="flex items-start">
-          <Image
-            src="/logo.svg"
-            alt=""
-            width={80}
-            height={80}
-            className="hidden size-20 lg:block"
-          />
-        </div>
+        <div aria-hidden="true" />
 
         <div className="flex items-start gap-3 pt-1">
           <span className="mt-1.5 grid size-4 place-items-center rounded-full border border-foreground/20">

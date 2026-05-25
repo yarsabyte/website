@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
@@ -65,19 +64,11 @@ export function ContactSection() {
       id="contact"
       className="relative min-h-screen overflow-hidden bg-background px-6 py-24 lg:min-h-[calc(100vh-1.5rem)] lg:px-16 lg:py-9"
     >
-      <div className="flex items-start justify-between">
-        <Image
-          src="/logo.svg"
-          alt=""
-          width={80}
-          height={80}
-          className="size-16 lg:size-20"
-        />
-
+      <div className="grid items-start gap-8 lg:grid-cols-[14rem_1fr_14rem]">
+        <div aria-hidden="true" />
         <h2 className="font-tunnels-bold text-[clamp(4rem,8.5vw,9rem)] uppercase leading-none tracking-normal text-accent">
           Let&apos;s Talk
         </h2>
-
         <div className="hidden w-20 lg:block" aria-hidden="true" />
       </div>
 
@@ -85,6 +76,12 @@ export function ContactSection() {
         <span className="size-3 rounded-full border border-foreground/80" />
         <span className="h-px flex-1 bg-foreground/70" />
         <span className="size-3 rounded-full border border-foreground/80" />
+      </div>
+
+      <div className="mb-14 grid gap-3 md:grid-cols-2 xl:grid-cols-4">
+        {contactOptions.map((option) => (
+          <ContactOption key={option.label} {...option} />
+        ))}
       </div>
 
       <div className="grid gap-14 lg:grid-cols-[0.72fr_0.9fr_0.9fr] lg:gap-20">
@@ -139,11 +136,6 @@ export function ContactSection() {
             <li>Launch Support</li>
           </ul>
 
-          <div className="mt-12 grid gap-3">
-            {contactOptions.map((option) => (
-              <ContactOption key={option.label} {...option} />
-            ))}
-          </div>
         </div>
 
         <div className="flex flex-col justify-between gap-16">

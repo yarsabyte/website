@@ -1,12 +1,16 @@
 "use client";
 
-import { Suspense } from "react";
+import { Suspense, useEffect } from "react";
 import { Canvas } from "@react-three/fiber";
 
 import { CanvasLoader } from "@/components/three/CanvasLoader";
 import { InteractiveBlob } from "@/components/three/InteractiveBlob";
+import { suppressThreeClockWarning } from "@/lib/suppress-three-clock-warning";
 
 export function HeroCanvas() {
+  useEffect(() => {
+    suppressThreeClockWarning();
+  }, []);
   return (
     <Canvas
       className="h-full w-full touch-none"
