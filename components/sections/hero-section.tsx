@@ -24,9 +24,17 @@ const heroDisplay =
 
 export function HeroSection() {
   return (
-    <section className="relative min-h-screen overflow-hidden bg-[#1D2145] pt-[4.5rem]">
+    <section className="relative min-h-screen overflow-hidden bg-[#14183a] pt-[4.5rem]">
       <div
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_24%_44%,rgba(0,126,255,0.16),transparent_48%)]"
+        className="pointer-events-none absolute inset-0 bg-[#14183a]"
+        aria-hidden="true"
+      />
+      <div
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_22%_46%,#2a2d52_0%,#222546_28%,transparent_58%)]"
+        aria-hidden="true"
+      />
+      <div
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_55%_48%_at_20%_48%,rgba(58,56,88,0.35)_0%,rgba(36,35,62,0.12)_40%,transparent_72%)]"
         aria-hidden="true"
       />
       <HeroGrain />
@@ -67,7 +75,7 @@ export function HeroSection() {
           >
             <Link
               href={heroLatestProject.href}
-              className="group flex w-fit max-w-full items-center gap-4 border border-foreground/14 bg-[#1D2145] px-5 py-3 transition hover:border-foreground/25"
+              className="group flex w-fit max-w-full items-center gap-4 border border-foreground/14 bg-[#14183a] px-5 py-3 transition hover:border-foreground/25"
             >
               <span className="shrink-0 text-[0.62rem] font-semibold uppercase tracking-[0.28em] text-foreground/50">
                 {heroLatestProject.label}

@@ -4,37 +4,45 @@
  */
 export const BLOB_CONFIG = {
   /** Overall mesh scale inside the canvas */
-  scale: 1.72,
-  /** Base fill color of the distorted sphere */
-  color: "#080e28",
-  /** Hex / wireframe line color */
-  wireframeColor: "#62B0FF",
-  /** Surface opacity (0–1) */
-  opacity: 0.92,
-  /** MeshDistortMaterial distort amount */
-  distortionStrength: 0.38,
-  /** MeshDistortMaterial animation speed */
-  distortionSpeed: 1.2,
-  /** Icosahedron subdivision (higher = smoother, heavier) */
-  geometryDetail: 32,
-  /** Wireframe layer opacity — pattern intensity */
-  patternIntensity: 0.48,
-  /** Idle Y rotation per frame */
-  rotationSpeed: 0.0025,
-  /** How much the cursor tilts the blob (radians) */
-  cursorRotationInfluence: 0.45,
-  /** How much the cursor shifts blob position */
-  cursorPositionInfluence: 0.22,
-  /** Inner point-light color */
-  glowColor: "#007EFF",
-  /** Inner point-light strength */
-  glowIntensity: 2.4,
+  scale: 1.65,
+  /** Icosahedron subdivision (4–6 is a good balance) */
+  geometryDetail: 5,
+  /** Vertex noise displacement strength */
+  distortAmount: 0.2,
+  /** Core fill — match hero background navy */
+  coreColor: "#14183a",
+  /** Fresnel rim — muted navy-violet, not blue */
+  rimColor: "#3a3858",
+  /** Hex grid lines — soft desaturated lavender-gray */
+  gridColor: "#6e6c88",
+  /** Back-face halo for depth */
+  rimGlowColor: "#2e2c48",
+  rimGlowCore: "#1c1d3f",
+  /** Hex cell density */
+  gridScale: 9.5,
+  /** Hex line brightness */
+  gridStrength: 0.34,
+  /** Fresnel rim intensity */
+  rimStrength: 0.72,
+  /** Surface opacity */
+  opacity: 0.88,
+  /** How much page cursor tilts the blob (radians) */
+  cursorRotationInfluence: 0.62,
+  /** Rotation smoothing (higher = snappier) */
+  rotationSmoothing: 3.2,
+  /** Subtle idle Y spin (rad/s) when not moving mouse much */
+  idleRotationSpeed: 0.06,
 } as const;
 
 export function lerp(start: number, end: number, amount: number): number {
   return start + (end - start) * amount;
 }
 
-export function damp(current: number, target: number, smoothness: number, delta: number): number {
+export function damp(
+  current: number,
+  target: number,
+  smoothness: number,
+  delta: number,
+): number {
   return lerp(current, target, 1 - Math.exp(-smoothness * delta));
 }
