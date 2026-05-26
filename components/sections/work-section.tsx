@@ -13,7 +13,7 @@ export function WorkSection() {
   return (
     <section
       id="work"
-      className="relative min-h-screen overflow-hidden bg-background px-6 py-24 lg:min-h-[calc(100vh-1.5rem)] lg:px-16 lg:pb-0 lg:pt-12"
+      className="relative min-h-screen overflow-hidden bg-transparent px-6 py-24 lg:min-h-[calc(100vh-1.5rem)] lg:px-16 lg:pb-0 lg:pt-12"
     >
       <div className="mx-auto flex min-h-[calc(100vh-9rem)] w-full max-w-[90rem] flex-col lg:min-h-[calc(100vh-5rem)]">
         <div className="hidden min-h-[36vh] lg:block" aria-hidden="true" />

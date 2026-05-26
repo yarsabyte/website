@@ -97,10 +97,10 @@ export function SiteHeader() {
               About us
             </Link>
             <Link
-              href="#services"
+              href="#work"
               className="border-b border-foreground pb-2.5 transition hover:border-accent hover:text-accent"
             >
-              Services
+              Work
             </Link>
           </nav>
 

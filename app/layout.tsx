@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 
 import { PageLoader } from "@/components/page-loader";
+import { ScrollHexBackground } from "@/components/scroll-hex-background";
 import { SmoothScrollProvider } from "@/components/smooth-scroll-provider";
 import { SiteHeader } from "@/components/site-header";
 
@@ -37,6 +38,7 @@ export default function RootLayout({
       <body className="min-h-full font-sans text-foreground">
         <PageLoader>
           <div className="site-frame">
+            <ScrollHexBackground />
             <div className="site-frame-content">
               <SmoothScrollProvider>
                 <SiteHeader />

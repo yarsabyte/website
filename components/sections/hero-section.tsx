@@ -27,19 +27,7 @@ const mobileHeroDisplay =
 
 export function HeroSection() {
   return (
-    <section className="relative min-h-[100svh] overflow-hidden bg-background pt-24 sm:min-h-screen sm:pt-[4.5rem]">
-      <div
-        className="pointer-events-none absolute inset-0 bg-background"
-        aria-hidden="true"
-      />
-      <div
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_22%_46%,rgba(238,238,242,0.045)_0%,rgba(238,238,242,0.02)_28%,transparent_58%)]"
-        aria-hidden="true"
-      />
-      <div
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_55%_48%_at_20%_48%,rgba(238,238,242,0.035)_0%,rgba(238,238,242,0.01)_40%,transparent_72%)]"
-        aria-hidden="true"
-      />
+    <section className="relative min-h-[100svh] overflow-hidden bg-transparent pt-24 sm:min-h-screen sm:pt-[4.5rem]">
       <HeroGrain />
       <HeroCanvasShell />
 

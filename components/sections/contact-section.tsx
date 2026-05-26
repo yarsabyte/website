@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
-import { services } from "@/data/services";
 import { socialLinks } from "@/data/socials";
 
 const contactOptions = [
@@ -62,7 +61,7 @@ export function ContactSection() {
   return (
     <section
       id="contact"
-      className="relative min-h-screen overflow-hidden bg-background px-6 py-24 lg:min-h-[calc(100vh-1.5rem)] lg:px-16 lg:pb-9 lg:pt-28"
+      className="relative min-h-screen overflow-hidden bg-transparent px-6 py-24 lg:min-h-[calc(100vh-1.5rem)] lg:px-16 lg:pb-9 lg:pt-28"
     >
       <div className="grid items-start gap-8 lg:grid-cols-[14rem_1fr_14rem]">
         <div aria-hidden="true" />
@@ -129,22 +128,19 @@ export function ContactSection() {
         </div>
 
         <div>
-          <ul className="space-y-3 text-lg font-semibold uppercase leading-tight text-foreground/92">
-            {services.slice(0, 6).map((service) => (
-              <li key={service.title}>{service.title}</li>
-            ))}
-            <li>Launch Support</li>
-          </ul>
-
+          <p className="max-w-sm text-lg font-semibold uppercase leading-8 text-foreground/92">
+            Focused digital work for teams who need a clean launch, a sharper
+            presence, and visuals that feel intentional.
+          </p>
         </div>
 
         <div className="flex flex-col justify-between gap-16">
           <div className="space-y-14 lg:pt-36">
             <Link
-              href="#services"
+              href="#about"
               className="flex items-center justify-start gap-4 font-tunnels-bold text-[clamp(3.8rem,15vw,8rem)] uppercase leading-none text-foreground transition hover:text-accent lg:justify-end"
             >
-              Services
+              About
               <AccentDot />
             </Link>
             <Link
