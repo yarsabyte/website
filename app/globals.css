@@ -16,7 +16,7 @@
 }
 
 :root {
-  --background: #14183a;
+  --background: #1D2145;
   --foreground: #EEEEF2;
   --accent: #D62F49;
   --navy: #1D2145;
@@ -100,6 +100,7 @@ main > section:not(:first-child) {
   .site-frame {
     height: calc(100vh - 1.5rem);
     min-height: 0;
+    background: var(--background);
     overflow-x: hidden;
     overflow-y: auto;
     border-radius: 1.45rem;

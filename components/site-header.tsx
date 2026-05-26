@@ -2,12 +2,10 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { AnimatePresence, motion } from "framer-motion";
 import { useCallback, useEffect, useRef, useState } from "react";
 
 import { FullscreenMenu } from "@/components/fullscreen-menu";
 import { MenuIcon } from "@/components/menu-icon";
-import { heroTaglines } from "@/data/hero";
 import { Container } from "@/components/ui/container";
 
 type MenuOrigin = { x: number; y: number };
@@ -15,7 +13,6 @@ type MenuOrigin = { x: number; y: number };
 export function SiteHeader() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [menuOrigin, setMenuOrigin] = useState<MenuOrigin | null>(null);
-  const [taglineIndex, setTaglineIndex] = useState(0);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
 
   const updateMenuOrigin = useCallback(() => {
@@ -59,14 +56,6 @@ export function SiteHeader() {
     return () => window.removeEventListener("resize", updateMenuOrigin);
   }, [isMenuOpen, updateMenuOrigin]);
 
-  useEffect(() => {
-    const interval = window.setInterval(() => {
-      setTaglineIndex((current) => (current + 1) % heroTaglines.length);
-    }, 3200);
-
-    return () => window.clearInterval(interval);
-  }, []);
-
   const toggleMenu = () => {
     if (!isMenuOpen) {
       updateMenuOrigin();
@@ -97,27 +86,23 @@ export function SiteHeader() {
             </span>
           </Link>
 
-          <p className="flex min-w-0 flex-col items-center justify-start gap-2 text-center text-[0.68rem] font-medium uppercase tracking-[0.16em] text-foreground sm:flex-row sm:justify-center sm:gap-2.5 sm:text-[0.58rem] sm:tracking-[0.22em] sm:text-foreground/80 lg:text-[0.62rem]">
-            <span className="rounded-md bg-foreground px-4 py-2 text-[0.68rem] font-black leading-none tracking-[0.08em] text-[#14183a] sm:bg-transparent sm:p-0 sm:text-[0.58rem] sm:font-medium sm:tracking-[0.22em] sm:text-foreground/80 lg:text-[0.62rem]">
-              We
-            </span>
-            <span
-              className="hidden size-1.5 shrink-0 rounded-full bg-accent sm:inline-block"
-              aria-hidden="true"
-            />
-            <AnimatePresence mode="wait">
-              <motion.span
-                key={heroTaglines[taglineIndex]}
-                initial={{ opacity: 0, y: 6 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -6 }}
-                transition={{ duration: 0.3 }}
-                className="inline-block max-w-[13rem] truncate sm:max-w-[11rem] lg:max-w-none"
-              >
-                {heroTaglines[taglineIndex]}
-              </motion.span>
-            </AnimatePresence>
-          </p>
+          <nav
+            className="pointer-events-auto hidden min-w-0 items-center justify-center gap-16 text-[0.64rem] font-semibold uppercase tracking-[0.16em] text-foreground/90 sm:flex"
+            aria-label="Primary navigation"
+          >
+            <Link
+              href="#about"
+              className="border-b border-foreground pb-2.5 transition hover:border-accent hover:text-accent"
+            >
+              About us
+            </Link>
+            <Link
+              href="#services"
+              className="border-b border-foreground pb-2.5 transition hover:border-accent hover:text-accent"
+            >
+              Services
+            </Link>
+          </nav>
 
           <button
             ref={menuButtonRef}
