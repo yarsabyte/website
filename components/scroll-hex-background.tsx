@@ -17,18 +17,30 @@ export function ScrollHexBackground() {
     let idleTimer = 0;
     let animationFrame = 0;
     let latestScroll = frame.scrollTop || window.scrollY;
+    let lastScroll = latestScroll;
+    let lastTime = performance.now();
+    let shouldRevealPattern = false;
+
+    const HARD_WHEEL_DELTA = 120;
+    const HARD_SCROLL_VELOCITY = 1.25;
+    const VISIBLE_OPACITY = "0.24";
 
     const setPatternState = () => {
-      const offset = latestScroll * 1.45;
+      const offset = latestScroll * 1.15;
 
       frame.style.setProperty("--hex-offset-y", `${offset}px`);
       frame.style.setProperty("--hex-offset-x", `${offset * 0.34}px`);
-      frame.style.setProperty("--hex-opacity", "0.55");
+
+      if (!shouldRevealPattern) {
+        return;
+      }
+
+      frame.style.setProperty("--hex-opacity", VISIBLE_OPACITY);
 
       window.clearTimeout(idleTimer);
       idleTimer = window.setTimeout(() => {
         frame.style.setProperty("--hex-opacity", "0");
-      }, 560);
+      }, 360);
     };
 
     const schedulePatternState = () => {
@@ -43,12 +55,22 @@ export function ScrollHexBackground() {
     };
 
     const onScroll = () => {
+      const now = performance.now();
       latestScroll = frame.scrollTop || window.scrollY;
+      const distance = Math.abs(latestScroll - lastScroll);
+      const elapsed = Math.max(now - lastTime, 16);
+
+      shouldRevealPattern = distance / elapsed > HARD_SCROLL_VELOCITY;
+      lastScroll = latestScroll;
+      lastTime = now;
+
       schedulePatternState();
     };
 
-    const onScrollInput = () => {
+    const onScrollInput = (event: WheelEvent | TouchEvent) => {
       latestScroll = frame.scrollTop || window.scrollY;
+      shouldRevealPattern =
+        "deltaY" in event && Math.abs(event.deltaY) > HARD_WHEEL_DELTA;
       schedulePatternState();
     };
 
