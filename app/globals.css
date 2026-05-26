@@ -1,14 +1,14 @@
 @import "tailwindcss";
 
 :root {
-  --background: #1E1E1E;
+  --background: #222121;
   --foreground: #FDFBF7;
   --accent: #7BA05B;
-  --navy: #1E1E1E;
+  --navy: #222121;
   --menu-bg: #FDFBF7;
   --blue: #6F9255;
   --sky: #9DB783;
-  --hero-bg: #1E1E1E;
+  --hero-bg: #222121;
   --brand-font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
     Arial, sans-serif;
   --border-soft: color-mix(in srgb, var(--foreground) 12%, transparent);
@@ -253,8 +253,8 @@ h3 {
     background:
       linear-gradient(
         130deg,
-        rgba(30, 30, 30, 0.94),
-        rgba(30, 30, 30, 0.58) 42%,
+        rgba(34, 33, 33, 0.94),
+        rgba(34, 33, 33, 0.58) 42%,
         rgba(123, 160, 91, 0.46)
       ),
       radial-gradient(

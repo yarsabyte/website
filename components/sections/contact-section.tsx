@@ -1,58 +1,64 @@
+import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
+import { services } from "@/data/services";
 import { socialLinks } from "@/data/socials";
+import { cn } from "@/lib/utils";
 
-const contactOptions = [
-  {
-    label: "Website",
-    detail: "Design and development for a polished web presence.",
-    href: "mailto:hello@sajilostudio.com?subject=Website%20Project",
-  },
-  {
-    label: "Branding",
-    detail: "Identity, visuals, and launch-ready brand direction.",
-    href: "mailto:hello@sajilostudio.com?subject=Branding%20Project",
-  },
-  {
-    label: "Content",
-    detail: "Posters, short-form videos, and campaign assets.",
-    href: "mailto:hello@sajilostudio.com?subject=Content%20Project",
-  },
-  {
-    label: "Launch",
-    detail: "A full digital setup from web to business profiles.",
-    href: "mailto:hello@sajilostudio.com?subject=Digital%20Launch",
-  },
-];
+const serviceLinks = services.map((service) => ({
+  label: service.title
+    .replace("Website Design & Development", "Website Design")
+    .replace("Poster & Graphic Design", "Poster Design")
+    .replace("Branding & Digital Identity", "Brand Identity")
+    .replace("Digital Setup", "Launch Setup")
+    .toUpperCase(),
+  href: `mailto:hello@sajilostudio.com?subject=${encodeURIComponent(
+    service.title,
+  )}`,
+}));
 
-function AccentDot() {
+function SectionRule({ className }: { className?: string }) {
+  return (
+    <div
+      className={cn("flex items-center gap-0 text-foreground/72", className)}
+      aria-hidden="true"
+    >
+      <span className="size-2.5 rounded-full border border-current" />
+      <span className="h-px flex-1 bg-current" />
+      <span className="size-2.5 rounded-full border border-current" />
+    </div>
+  );
+}
+
+function AccentMark() {
   return (
     <span
-      className="inline-block size-4 shrink-0 bg-accent [clip-path:polygon(25%_6%,75%_6%,100%_50%,75%_94%,25%_94%,0_50%)]"
+      className="ml-[0.08em] inline-block size-[0.16em] min-h-3 min-w-3 translate-y-[0.12em] bg-foreground transition duration-300 [clip-path:polygon(25%_6%,75%_6%,100%_50%,75%_94%,25%_94%,0_50%)] group-hover:bg-accent"
       aria-hidden="true"
     />
   );
 }
 
-function ContactOption({
-  label,
-  detail,
+function FooterWord({
+  children,
   href,
+  className,
 }: {
-  label: string;
-  detail: string;
+  children: string;
   href: string;
+  className?: string;
 }) {
   return (
-    <a href={href} className="accent-sweep-link group">
-      <span className="relative z-10 flex items-center gap-3">
-        <AccentDot />
-        <span>{label}</span>
-      </span>
-      <span className="relative z-10 max-w-xs text-sm leading-6 text-foreground/54 transition group-hover:text-foreground/82">
-        {detail}
-      </span>
+    <a
+      href={href}
+      className={cn(
+        "group inline-flex items-baseline font-helvetica-bold uppercase leading-[0.86] tracking-normal text-foreground transition hover:text-accent focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent",
+        className,
+      )}
+    >
+      {children}
+      <AccentMark />
     </a>
   );
 }
@@ -61,111 +67,154 @@ export function ContactSection() {
   return (
     <section
       id="contact"
-      className="relative min-h-screen overflow-hidden bg-transparent px-6 py-24 lg:min-h-[calc(100vh-1.5rem)] lg:px-16 lg:pb-9 lg:pt-28"
+      className="min-h-[90svh] bg-background px-5 py-8 text-foreground sm:px-8 lg:px-20 lg:py-10"
     >
-      <div className="grid items-start gap-8 lg:grid-cols-[14rem_1fr_14rem]">
-        <div aria-hidden="true" />
-        <h2 className="whitespace-nowrap font-helvetica-bold text-[clamp(3.35rem,15vw,8.5rem)] uppercase leading-none tracking-normal text-accent">
-          Let&apos;s Talk
-        </h2>
-        <div className="hidden w-20 lg:block" aria-hidden="true" />
-      </div>
+      <div className="relative mx-auto flex min-h-[calc(90svh-5rem)] max-w-[118rem] flex-col">
+        <div className="grid shrink-0 grid-cols-[auto_1fr_auto] items-start gap-4">
+          <Link
+            href="/"
+            className="grid size-12 place-items-center rounded-full bg-accent transition hover:scale-105 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent sm:size-16"
+            aria-label="Sajilo Studio home"
+          >
+            <Image
+              src="/logo.svg"
+              alt=""
+              width={64}
+              height={64}
+              className="size-full"
+              priority
+            />
+          </Link>
 
-      <div className="my-14 flex items-center gap-2 text-foreground/80">
-        <span className="size-3 rounded-full border border-foreground/80" />
-        <span className="h-px flex-1 bg-foreground/70" />
-        <span className="size-3 rounded-full border border-foreground/80" />
-      </div>
+          <a
+            href="mailto:hello@sajilostudio.com?subject=Let%27s%20Talk"
+            className="group justify-self-center text-center font-helvetica-bold text-[clamp(3.2rem,8.4vw,7.6rem)] uppercase leading-[0.82] tracking-normal transition hover:text-accent focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
+          >
+            Let&apos;s Talk
+            <AccentMark />
+          </a>
 
-      <div className="mb-14 grid gap-3 md:grid-cols-2 xl:grid-cols-4">
-        {contactOptions.map((option) => (
-          <ContactOption key={option.label} {...option} />
-        ))}
-      </div>
+          <div
+            className="hidden w-16 justify-self-end pt-3 text-foreground/85 lg:block"
+            aria-hidden="true"
+          >
+            <svg viewBox="0 0 48 56" className="h-14 w-12" fill="none">
+              <line x1="14" y1="12" x2="14" y2="50" stroke="currentColor" />
+              <polygon
+                points="14,5 19,8 19,14 14,17 9,14 9,8"
+                stroke="currentColor"
+                fill="none"
+              />
+              <line x1="28" y1="18" x2="28" y2="42" stroke="currentColor" />
+              <line x1="40" y1="12" x2="40" y2="50" stroke="currentColor" />
+              <polygon
+                points="40,45 45,48 45,54 40,57 35,54 35,48"
+                stroke="currentColor"
+                fill="none"
+              />
+            </svg>
+          </div>
+        </div>
 
-      <div className="grid gap-14 lg:grid-cols-[0.72fr_0.9fr_0.9fr] lg:gap-20">
-        <div className="flex flex-col gap-20">
-          <div>
-            <p className="flex items-center gap-4 font-helvetica-bold text-[clamp(3.8rem,15vw,8.5rem)] uppercase leading-none text-foreground">
+        <SectionRule className="mt-6 shrink-0 sm:mt-8" />
+
+        <div className="grid flex-1 gap-8 py-10 lg:grid-cols-[0.38fr_0.24fr_0.38fr] lg:items-center lg:gap-10 lg:py-8">
+          <div className="flex flex-col justify-center gap-8 lg:self-stretch">
+            <FooterWord
+              href="/"
+              className="text-[clamp(3.6rem,6.4vw,7.4rem)]"
+            >
               Studio
-              <AccentDot />
-            </p>
-            <p className="mt-12 max-w-xs text-lg font-medium uppercase leading-7 text-foreground/86">
+            </FooterWord>
+            <a
+              href="mailto:hello@sajilostudio.com"
+              className="max-w-xs text-sm font-semibold uppercase leading-6 text-foreground/84 transition hover:text-accent sm:text-base"
+            >
               Kathmandu, Nepal
               <br />
-              Remote-first digital studio
-            </p>
+              hello@sajilostudio.com
+            </a>
           </div>
 
+          <nav
+            className="grid min-w-64 content-center gap-2 text-sm font-semibold uppercase leading-tight text-foreground/90 sm:text-base lg:pt-10"
+            aria-label="Footer services"
+          >
+            {serviceLinks.map((service) => (
+              <a
+                key={service.label}
+                href={service.href}
+                className="whitespace-nowrap transition hover:text-accent focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
+              >
+                {service.label}
+              </a>
+            ))}
+          </nav>
+
+          <div className="flex flex-col items-start gap-6 lg:items-end lg:self-stretch lg:pt-24">
+            <FooterWord
+              href="mailto:hello@sajilostudio.com?subject=Services"
+              className="text-[clamp(3.6rem,6.4vw,7.4rem)] lg:text-right"
+            >
+              Services
+            </FooterWord>
+            <SectionRule className="w-full lg:mt-auto" />
+          </div>
+        </div>
+
+        <div className="grid shrink-0 gap-7 lg:grid-cols-[0.38fr_0.24fr_0.38fr] lg:items-end lg:gap-10">
           <form
-            className="max-w-lg"
             action="mailto:hello@sajilostudio.com"
             method="post"
+            className="max-w-xl"
           >
             <label
-              htmlFor="newsletter"
-              className="text-sm font-semibold uppercase tracking-[0.14em] text-foreground/90"
+              htmlFor="footer-email"
+              className="text-xs font-semibold uppercase tracking-[0.16em] text-foreground/90"
             >
               Newsletter
             </label>
-            <div className="mt-9 flex items-end gap-6 border-b border-foreground/80 pb-5">
+            <div className="mt-6 flex items-end gap-6 border-b border-foreground/78 pb-3">
               <input
-                id="newsletter"
+                id="footer-email"
                 name="email"
                 type="email"
                 placeholder="Your Email"
-                className="min-w-0 flex-1 bg-transparent text-lg text-foreground placeholder:text-foreground/86 focus:outline-none"
+                className="min-w-0 flex-1 bg-transparent text-base text-foreground placeholder:text-foreground/86 focus:outline-none sm:text-lg"
               />
               <button
                 type="submit"
                 aria-label="Submit email"
-                className="grid size-10 place-items-center text-foreground transition hover:text-accent focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
+                className="grid size-9 place-items-center text-foreground transition hover:text-accent focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
               >
-                <ArrowRight className="size-8" />
+                <ArrowRight className="size-7" />
               </button>
             </div>
           </form>
-        </div>
 
-        <div>
-          <p className="max-w-sm text-lg font-semibold uppercase leading-8 text-foreground/92">
-            Focused digital work for teams who need a clean launch, a sharper
-            presence, and visuals that feel intentional.
-          </p>
-        </div>
-
-        <div className="flex flex-col justify-between gap-16">
-          <div className="space-y-14 lg:pt-36">
-            <Link
-              href="#about"
-              className="flex items-center justify-start gap-4 font-helvetica-bold text-[clamp(3.8rem,15vw,8rem)] uppercase leading-none text-foreground transition hover:text-accent lg:justify-end"
-            >
-              About
-              <AccentDot />
-            </Link>
-            <Link
-              href="#work"
-              className="flex items-center justify-start gap-4 font-helvetica-bold text-[clamp(3.8rem,15vw,8rem)] uppercase leading-none text-foreground transition hover:text-accent"
-            >
+          <div className="grid gap-5">
+            <FooterWord href="#work" className="text-[clamp(3.6rem,6.4vw,7.4rem)]">
               Work
-              <AccentDot />
-            </Link>
+            </FooterWord>
+            <p className="text-sm text-foreground/86">
+              &copy;2026 Sajilo Studio
+            </p>
           </div>
 
-          <div className="flex flex-col gap-6 text-sm text-foreground/86 sm:flex-row sm:items-center sm:justify-between">
-            <p>&copy;2026 Sajilo Studio</p>
-            <div className="flex flex-wrap gap-6">
-              {socialLinks.map((link) => (
-                <a
-                  key={link.label}
-                  href={link.href}
-                  className="transition hover:text-accent"
-                >
-                  {link.label}
-                </a>
-              ))}
-            </div>
-          </div>
+          <nav
+            className="flex flex-wrap gap-x-7 gap-y-3 text-sm text-foreground/86 lg:justify-end sm:text-base"
+            aria-label="Social links"
+          >
+            {socialLinks.map((link) => (
+              <a
+                key={link.label}
+                href={link.href}
+                className="transition hover:text-accent focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
+              >
+                {link.label}
+              </a>
+            ))}
+          </nav>
         </div>
       </div>
     </section>

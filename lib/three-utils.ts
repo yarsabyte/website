@@ -8,7 +8,7 @@ export const BLOB_CONFIG = {
   /** Vertex noise displacement strength */
   distortAmount: 0.16,
   /** Core fill; keep the glass body dark against the hero charcoal */
-  coreColor: "#1E1E1E",
+  coreColor: "#222121",
   /** Fresnel rim; muted sage edge glow */
   rimColor: "#7BA05B",
   /** Organic cell lines */

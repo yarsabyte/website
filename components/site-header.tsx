@@ -113,7 +113,7 @@ export function SiteHeader() {
             onClick={toggleMenu}
             className="pointer-events-auto grid size-14 place-items-center justify-self-end text-foreground transition hover:opacity-80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent sm:size-14"
           >
-            <MenuIcon open={isMenuOpen} stroke={isMenuOpen ? "#1E1E1E" : "currentColor"} />
+            <MenuIcon open={isMenuOpen} stroke={isMenuOpen ? "#222121" : "currentColor"} />
           </button>
         </Container>
       </header>
