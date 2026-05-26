@@ -9,6 +9,7 @@
   --blue: #6F9255;
   --sky: #9DB783;
   --hero-bg: #252524;
+  --display-font: "Archivo Black", "Arial Black", Arial, sans-serif;
   --brand-font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
     Arial, sans-serif;
   --border-soft: color-mix(in srgb, var(--foreground) 12%, transparent);
@@ -28,8 +29,8 @@
   --color-surface: var(--navy);
   --color-surface-soft: var(--background);
   --font-sans: var(--brand-font);
-  --font-display: var(--brand-font);
-  --font-helvetica: var(--brand-font);
+  --font-display: var(--display-font);
+  --font-helvetica: var(--display-font);
 }
 
 html {
@@ -176,8 +177,8 @@ a {
 h1,
 h2,
 h3 {
-  font-family: var(--brand-font);
-  font-weight: 700;
+  font-family: var(--display-font);
+  font-weight: 400;
   font-style: normal;
   font-synthesis: none;
 }
@@ -232,8 +233,8 @@ h3 {
   }
 
   .font-display {
-    font-family: var(--brand-font);
-    font-weight: 700;
+    font-family: var(--display-font);
+    font-weight: 400;
     font-style: normal;
     font-synthesis: none;
     font-stretch: normal;
@@ -241,8 +242,8 @@ h3 {
   }
 
   .font-helvetica-bold {
-    font-family: var(--brand-font);
-    font-weight: 700;
+    font-family: var(--display-font);
+    font-weight: 400;
     font-style: normal;
     font-synthesis: none;
     font-stretch: normal;
@@ -250,8 +251,8 @@ h3 {
 
   .font-tunnels,
   .font-tunnels-bold {
-    font-family: var(--brand-font);
-    font-weight: 700;
+    font-family: var(--display-font);
+    font-weight: 400;
     font-style: normal;
     font-synthesis: none;
     font-stretch: normal;

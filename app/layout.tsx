@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Archivo_Black } from "next/font/google";
 
 import { PageLoader } from "@/components/page-loader";
 import { ScrollHexBackground } from "@/components/scroll-hex-background";
@@ -6,6 +7,15 @@ import { SmoothScrollProvider } from "@/components/smooth-scroll-provider";
 import { SiteHeader } from "@/components/site-header";
 
 import "./globals.css";
+
+const archivoBlack = Archivo_Black({
+  weight: "400",
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--next-display-font",
+  fallback: ["Arial Black", "Arial", "sans-serif"],
+  adjustFontFallback: false,
+});
 
 export const metadata: Metadata = {
   title: "Sajilo Studio — Digital Studio in Nepal",
@@ -28,7 +38,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="h-full antialiased">
+    <html lang="en" className={`h-full antialiased ${archivoBlack.variable}`}>
       <body className="min-h-full font-sans text-foreground">
         <PageLoader>
           <div className="site-frame">

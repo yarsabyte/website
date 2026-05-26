@@ -67,25 +67,14 @@ export function ContactSection() {
   return (
     <section
       id="contact"
-      className="min-h-[90svh] bg-background px-5 py-8 text-foreground sm:px-8 lg:px-20 lg:py-10"
+      className="min-h-[98svh] bg-background px-5 py-8 text-foreground sm:px-8 lg:px-20 lg:py-10"
     >
       <div className="relative mx-auto flex min-h-[calc(90svh-5rem)] max-w-[118rem] flex-col">
         <div className="grid shrink-0 grid-cols-[auto_1fr_auto] items-start gap-4">
-          <Link
-            href="/"
-            className="grid size-12 place-items-center rounded-full bg-accent transition hover:scale-105 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent sm:size-16"
-            aria-label="Sajilo Studio home"
-          >
-            <Image
-              src="/logo.svg"
-              alt=""
-              width={64}
-              height={64}
-              className="size-full"
-              priority
-            />
-          </Link>
-
+          <div
+            className="hidden w-16 justify-self-end pt-3 text-foreground/85 lg:block"
+            aria-hidden="true"
+          ></div>
           <a
             href="mailto:hello@sajilostudio.com?subject=Let%27s%20Talk"
             className="group justify-self-center text-center font-helvetica-bold text-[clamp(3.2rem,8.4vw,7.6rem)] uppercase leading-[0.82] tracking-normal transition hover:text-accent focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
@@ -102,7 +91,6 @@ export function ContactSection() {
           </div>
         </div>
 
-        <SectionRule className="mt-6 shrink-0 sm:mt-8" />
 
         <div className="grid flex-1 gap-8 py-10 lg:grid-cols-[0.38fr_0.24fr_0.38fr] lg:items-center lg:gap-10 lg:py-8">
           <div className="flex flex-col justify-center gap-8 lg:self-stretch">
