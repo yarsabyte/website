@@ -7,15 +7,15 @@ export const BLOB_CONFIG = {
   scale: 1.6,
   /** Vertex noise displacement strength */
   distortAmount: 0.16,
-  /** Core fill; keep the glass body dark against the hero navy */
-  coreColor: "#121a42",
-  /** Fresnel rim; blue-violet edge glow */
-  rimColor: "#3d50a4",
+  /** Core fill; keep the glass body dark against the hero charcoal */
+  coreColor: "#1E1E1E",
+  /** Fresnel rim; muted sage edge glow */
+  rimColor: "#7BA05B",
   /** Organic cell lines */
-  gridColor: "#7785d4",
+  gridColor: "#9DB783",
   /** Back-face halo for depth */
-  rimGlowColor: "#4c63ca",
-  rimGlowCore: "#172052",
+  rimGlowColor: "#7BA05B",
+  rimGlowCore: "#25301F",
   /** Cell density */
   gridScale: 8.2,
   /** Cell line brightness */

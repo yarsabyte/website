@@ -26,7 +26,7 @@ export function TestimonialsSection() {
         {/* Transparency Alert Banner to build high trust */}
         <Reveal delay={0.08}>
           <div className="mt-8 flex flex-col sm:flex-row items-start gap-4 rounded-3xl border border-sky/12 bg-sky/[0.03] p-5 max-w-3xl">
-            <div className="grid size-10 shrink-0 place-items-center rounded-xl bg-sky/10 text-sky shadow-[0_0_15px_rgba(98,176,255,0.1)]">
+            <div className="grid size-10 shrink-0 place-items-center rounded-xl bg-sky/10 text-sky shadow-[0_0_15px_rgba(123,160,91,0.14)]">
               <ShieldCheck className="size-5" />
             </div>
             <div className="space-y-1">
@@ -51,7 +51,7 @@ export function TestimonialsSection() {
 
             return (
               <Reveal key={item.author} delay={index * 0.12}>
-                <figure className="studio-card group relative min-h-76 overflow-hidden rounded-[2rem] p-8 transition-all duration-500 hover:-translate-y-1.5 hover:shadow-[0_20px_50px_rgba(214,47,73,0.04)]">
+                <figure className="studio-card group relative min-h-76 overflow-hidden rounded-[2rem] p-8 transition-all duration-500 hover:-translate-y-1.5 hover:shadow-[0_20px_50px_rgba(123,160,91,0.08)]">
                   {/* Floating Quotation Mark Icon */}
                   <Quote 
                     className="absolute right-6 bottom-6 size-24 text-foreground/[0.02] transition-colors duration-500 group-hover:text-foreground/[0.04]" 
@@ -86,4 +86,3 @@ export function TestimonialsSection() {
     </section>
   );
 }
-

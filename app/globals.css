@@ -1,14 +1,16 @@
 @import "tailwindcss";
 
 :root {
-  --background: #1D2145;
-  --foreground: #EEEEF2;
-  --accent: #D62F49;
-  --navy: #1D2145;
-  --menu-bg: #EEEDEA;
-  --blue: #D62F49;
-  --sky: #D62F49;
-  --hero-bg: #1D2145;
+  --background: #1E1E1E;
+  --foreground: #FDFBF7;
+  --accent: #7BA05B;
+  --navy: #1E1E1E;
+  --menu-bg: #FDFBF7;
+  --blue: #6F9255;
+  --sky: #9DB783;
+  --hero-bg: #1E1E1E;
+  --brand-font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+    Arial, sans-serif;
   --border-soft: color-mix(in srgb, var(--foreground) 12%, transparent);
   --hex-opacity: 0;
   --hex-offset-x: 0px;
@@ -25,10 +27,9 @@
   --color-sky: var(--sky);
   --color-surface: var(--navy);
   --color-surface-soft: var(--background);
-  --font-sans: var(--font-inter), "Inter", -apple-system, BlinkMacSystemFont,
-    "Segoe UI", Roboto, "Helvetica Neue", Helvetica, Arial, sans-serif;
-  --font-display: Helvetica, "Helvetica Neue", Arial, sans-serif;
-  --font-helvetica: Helvetica, "Helvetica Neue", Arial, sans-serif;
+  --font-sans: var(--brand-font);
+  --font-display: var(--brand-font);
+  --font-helvetica: var(--brand-font);
 }
 
 html {
@@ -46,8 +47,7 @@ body {
   min-height: 100vh;
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-sans), "Inter", -apple-system, BlinkMacSystemFont,
-    "Segoe UI", Roboto, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: var(--brand-font);
   font-synthesis-weight: none;
   overflow-x: hidden;
   -moz-osx-font-smoothing: grayscale;
@@ -79,7 +79,7 @@ body::-webkit-scrollbar {
   inset: 0;
   z-index: 0;
   opacity: var(--hex-opacity);
-  background-image: url("data:image/svg+xml,%3Csvg width='26' height='30' viewBox='0 0 26 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23EEEEF2' stroke-opacity='0.22' stroke-width='0.7'%3E%3Cpath d='M13 .5 25.1 7.5v15L13 29.5.9 22.5v-15L13 .5Z'/%3E%3Cpath d='M25.1 7.5 38.1 .5M25.1 22.5l13 7M.9 7.5-12.1.5M.9 22.5l-13 7'/%3E%3C/g%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg width='26' height='30' viewBox='0 0 26 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23FDFBF7' stroke-opacity='0.2' stroke-width='0.7'%3E%3Cpath d='M13 .5 25.1 7.5v15L13 29.5.9 22.5v-15L13 .5Z'/%3E%3Cpath d='M25.1 7.5 38.1 .5M25.1 22.5l13 7M.9 7.5-12.1.5M.9 22.5l-13 7'/%3E%3C/g%3E%3C/svg%3E");
   background-position:
     calc(var(--hex-offset-x) + 0px) calc(var(--hex-offset-y) + 0px);
   background-size: 26px 30px;
@@ -110,7 +110,7 @@ main > section:not(:first-child) {
     overflow-x: hidden;
     overflow-y: auto;
     border-radius: 1.45rem;
-    box-shadow: 0 24px 70px color-mix(in srgb, #0b0d24 16%, transparent);
+    box-shadow: 0 24px 70px color-mix(in srgb, #000 18%, transparent);
     scrollbar-width: none;
     overscroll-behavior: contain;
   }
@@ -150,7 +150,7 @@ a {
 h1,
 h2,
 h3 {
-  font-family: var(--font-helvetica), Helvetica, "Helvetica Neue", Arial, sans-serif;
+  font-family: var(--brand-font);
   font-weight: 700;
   font-style: normal;
   font-synthesis: none;
@@ -175,7 +175,7 @@ h3 {
   }
 
   .studio-card {
-    background: var(--navy);
+    background: color-mix(in srgb, var(--background) 92%, var(--accent) 8%);
     border: 1px solid var(--border-soft);
   }
 
@@ -206,7 +206,7 @@ h3 {
   }
 
   .font-display {
-    font-family: var(--font-display), Helvetica, "Helvetica Neue", Arial, sans-serif;
+    font-family: var(--brand-font);
     font-weight: 700;
     font-style: normal;
     font-synthesis: none;
@@ -215,7 +215,7 @@ h3 {
   }
 
   .font-helvetica-bold {
-    font-family: var(--font-helvetica), Helvetica, "Helvetica Neue", Arial, sans-serif;
+    font-family: var(--brand-font);
     font-weight: 700;
     font-style: normal;
     font-synthesis: none;
@@ -224,7 +224,7 @@ h3 {
 
   .font-tunnels,
   .font-tunnels-bold {
-    font-family: var(--font-helvetica), Helvetica, "Helvetica Neue", Arial, sans-serif;
+    font-family: var(--brand-font);
     font-weight: 700;
     font-style: normal;
     font-synthesis: none;
@@ -233,6 +233,40 @@ h3 {
 
   .text-balance {
     text-wrap: balance;
+  }
+
+  .hero-glow {
+    background:
+      radial-gradient(
+        circle,
+        color-mix(in srgb, var(--accent) 28%, transparent) 0%,
+        color-mix(in srgb, var(--accent) 10%, transparent) 42%,
+        transparent 70%
+      );
+  }
+
+  .brand-preview-surface {
+    background: color-mix(in srgb, var(--background) 86%, var(--accent) 14%);
+  }
+
+  .brand-preview-gradient {
+    background:
+      linear-gradient(
+        130deg,
+        rgba(30, 30, 30, 0.94),
+        rgba(30, 30, 30, 0.58) 42%,
+        rgba(123, 160, 91, 0.46)
+      ),
+      radial-gradient(
+        circle at 73% 32%,
+        rgba(253, 251, 247, 0.52),
+        transparent 10rem
+      ),
+      radial-gradient(
+        circle at 18% 72%,
+        rgba(123, 160, 91, 0.72),
+        transparent 9rem
+      );
   }
 
   .accent-sweep-link {

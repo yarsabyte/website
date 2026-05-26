@@ -19,7 +19,7 @@ export const menuBottomWaveVariants: Variants = {
   },
 };
 
-/** Static navy footer with wavy top edge (revealed after menu expands) */
+/** Static dark footer with wavy top edge (revealed after menu expands) */
 export function MenuBottomWave() {
   return (
     <motion.div
@@ -30,12 +30,12 @@ export function MenuBottomWave() {
       <svg
         viewBox="0 0 1440 120"
         preserveAspectRatio="none"
-        className="block w-full shrink-0 text-[#1D2145]"
+        className="block w-full shrink-0 text-background"
         style={{ height: "clamp(3.5rem, 10vw, 6rem)" }}
       >
         <path d={WAVE_PATH} fill="currentColor" />
       </svg>
-      <div className="min-h-[32vh] w-full bg-[#1D2145] sm:min-h-[36vh]" />
+      <div className="min-h-[32vh] w-full bg-background sm:min-h-[36vh]" />
     </motion.div>
   );
 }

@@ -44,7 +44,7 @@ export function HeroSection() {
             }}
           >
             <motion.span
-              className={`block text-center text-[#EEEEF2] ${mobileHeroDisplay}`}
+              className={`block text-center text-foreground ${mobileHeroDisplay}`}
               variants={fade}
             >
               Creative
@@ -57,7 +57,7 @@ export function HeroSection() {
                 Web
               </motion.span>
               <motion.span
-                className={`inline-block text-[#EEEEF2] ${mobileHeroDisplay}`}
+                className={`inline-block text-foreground ${mobileHeroDisplay}`}
                 variants={fade}
               >
                 Studio
@@ -82,7 +82,7 @@ export function HeroSection() {
               Sajilo
             </motion.span>
             <motion.span
-              className={`relative z-20 block text-[#EEEEF2] ${heroDisplay}`}
+              className={`relative z-20 block text-foreground ${heroDisplay}`}
               variants={fade}
             >
               Studio

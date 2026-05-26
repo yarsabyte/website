@@ -99,7 +99,7 @@ export function FullscreenMenu({ open, onClose, origin }: FullscreenMenuProps) {
           style={reduceMotion ? undefined : { willChange: "clip-path" }}
         >
           <motion.div
-            className="relative flex h-full w-full flex-col bg-[#EEEDEA]"
+            className="relative flex h-full w-full flex-col bg-menu-bg"
             variants={menuRootVariants}
             initial="hidden"
             animate="visible"
@@ -107,7 +107,7 @@ export function FullscreenMenu({ open, onClose, origin }: FullscreenMenuProps) {
           >
             {!reduceMotion ? <MenuBottomWave /> : (
               <div
-                className="pointer-events-none absolute inset-x-0 bottom-0 top-[58vh] z-[1] bg-[#1D2145]"
+                className="pointer-events-none absolute inset-x-0 bottom-0 top-[58vh] z-[1] bg-background"
                 aria-hidden="true"
               />
             )}
@@ -136,7 +136,7 @@ export function FullscreenMenu({ open, onClose, origin }: FullscreenMenuProps) {
                       <a
                         href={link.href}
                         onClick={onClose}
-                        className="font-helvetica-bold group inline-flex items-baseline gap-3 text-[clamp(2.6rem,7.5vw,5.75rem)] leading-[0.92] text-[#1D2145] transition hover:opacity-75"
+                        className="font-helvetica-bold group inline-flex items-baseline gap-3 text-[clamp(2.6rem,7.5vw,5.75rem)] leading-[0.92] text-background transition hover:text-accent"
                       >
                         {link.label}
                         <MenuHexDot />
@@ -153,7 +153,7 @@ export function FullscreenMenu({ open, onClose, origin }: FullscreenMenuProps) {
                     <li key={link.label}>
                       <a
                         href={link.href}
-                        className="text-[0.68rem] font-semibold uppercase tracking-[0.22em] text-[#1D2145]/70 transition hover:text-[#1D2145]"
+                        className="text-[0.68rem] font-semibold uppercase tracking-[0.22em] text-background/70 transition hover:text-background"
                       >
                         {link.label}
                       </a>

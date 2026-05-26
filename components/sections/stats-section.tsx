@@ -81,7 +81,7 @@ export function StatsSection() {
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
           {stats.map((item, index) => (
             <Reveal key={item.label} delay={index * 0.08}>
-              <div className="studio-card group relative min-h-48 overflow-hidden rounded-[2rem] p-7 transition-all duration-500 hover:-translate-y-1.5 hover:shadow-[0_20px_50px_rgba(98,176,255,0.06)]">
+              <div className="studio-card group relative min-h-48 overflow-hidden rounded-[2rem] p-7 transition-all duration-500 hover:-translate-y-1.5 hover:shadow-[0_20px_50px_rgba(123,160,91,0.08)]">
                 {/* Decorative background glow on hover */}
                 <div className="absolute -right-12 -top-12 size-32 rounded-full bg-sky/5 blur-3xl transition-opacity duration-500 group-hover:bg-sky/10" />
 

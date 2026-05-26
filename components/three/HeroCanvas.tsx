@@ -24,8 +24,8 @@ export function HeroCanvas() {
       frameloop="always"
     >
       <Suspense fallback={null}>
-        <ambientLight intensity={0.14} color="#2a2840" />
-        <directionalLight position={[2, 3, 5]} intensity={0.22} color="#4a4868" />
+        <ambientLight intensity={0.14} color="#FDFBF7" />
+        <directionalLight position={[2, 3, 5]} intensity={0.22} color="#7BA05B" />
         <InteractiveBlob />
       </Suspense>
     </Canvas>

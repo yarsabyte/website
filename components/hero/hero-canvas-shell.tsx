@@ -21,7 +21,7 @@ export function HeroCanvasShell() {
       aria-hidden="true"
     >
       <div
-        className="absolute left-1/2 top-[52%] h-[86%] w-[86%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(58,60,105,0.4)_0%,rgba(40,42,79,0.16)_42%,transparent_70%)] blur-2xl sm:left-[42%] sm:top-[48%] sm:h-[95%] sm:w-[95%]"
+        className="hero-glow absolute left-1/2 top-[52%] h-[86%] w-[86%] -translate-x-1/2 -translate-y-1/2 rounded-full blur-2xl sm:left-[42%] sm:top-[48%] sm:h-[95%] sm:w-[95%]"
         aria-hidden="true"
       />
       <HeroCanvas />
