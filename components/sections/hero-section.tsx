@@ -22,18 +22,18 @@ const heroDisplay =
   "font-helvetica-bold text-[clamp(3.5rem,15.2vw,14.65rem)] uppercase leading-[0.8] tracking-normal";
 
 const mobileHeroDisplay =
-  "font-helvetica-bold text-[clamp(3.55rem,15vw,4.6rem)] uppercase leading-[0.86] tracking-normal";
+  "font-helvetica-bold text-[clamp(2.85rem,12vw,3.75rem)] uppercase leading-[0.86] tracking-normal";
 
 export function HeroSection() {
   return (
-    <section className="relative min-h-[100svh] overflow-hidden bg-transparent pt-24 sm:min-h-screen sm:pt-[4.5rem]">
+    <section className="relative min-h-[100svh] overflow-hidden bg-transparent pt-20 sm:min-h-screen sm:pt-[4.5rem]">
       <HeroCanvasShell />
 
-      <div className="studio-container relative z-10 flex min-h-[calc(100svh-6rem)] flex-col pb-28 sm:min-h-[calc(100vh-4.5rem)] sm:pb-24">
-        <div className="relative z-20 flex flex-1 flex-col pt-[48vh] sm:block sm:pt-0 lg:ml-auto lg:w-full lg:max-w-[88%]">
+      <div className="studio-container relative z-10 flex min-h-[calc(100svh-5rem)] flex-col pb-24 sm:min-h-[calc(100vh-4.5rem)] sm:pb-24">
+        <div className="relative z-20 flex flex-1 flex-col pt-[30vh] sm:block sm:pt-0 lg:ml-auto lg:w-full lg:max-w-[88%]">
           <motion.h1
             className="pointer-events-none relative z-20 block sm:hidden"
-            aria-label="Creative Web Studio"
+            aria-label="Sajilo Studio"
             initial="hidden"
             animate="visible"
             variants={{
@@ -42,25 +42,17 @@ export function HeroSection() {
             }}
           >
             <motion.span
-              className={`block text-center text-foreground ${mobileHeroDisplay}`}
+              className={`block text-right text-accent ${mobileHeroDisplay}`}
               variants={fade}
             >
-              Creative
+              Sajilo
             </motion.span>
-            <span className="flex items-baseline justify-between gap-3">
-              <motion.span
-                className={`inline-block text-accent ${mobileHeroDisplay}`}
-                variants={fade}
-              >
-                Web
-              </motion.span>
-              <motion.span
-                className={`inline-block text-foreground ${mobileHeroDisplay}`}
-                variants={fade}
-              >
-                Studio
-              </motion.span>
-            </span>
+            <motion.span
+              className={`block text-right text-foreground ${mobileHeroDisplay}`}
+              variants={fade}
+            >
+              Studio
+            </motion.span>
           </motion.h1>
 
           <motion.h1
@@ -96,7 +88,7 @@ export function HeroSection() {
           >
             <Link
               href={heroLatestProject.href}
-              className="group flex min-h-20 w-full max-w-full items-center justify-between gap-4 rounded-md border border-foreground/14 bg-background px-8 py-4 transition hover:border-foreground/25 sm:min-h-0 sm:w-fit sm:justify-start sm:rounded-none sm:px-5 sm:py-3"
+              className="group flex min-h-16 w-full max-w-full items-center justify-between gap-3 rounded-md border border-foreground/14 bg-background px-5 py-4 transition hover:border-foreground/25 sm:min-h-0 sm:w-fit sm:justify-start sm:rounded-none sm:px-5 sm:py-3"
             >
               <span className="shrink-0 text-[0.82rem] font-semibold uppercase tracking-[0.08em] text-foreground sm:text-[0.62rem] sm:tracking-[0.28em] sm:text-foreground/50">
                 {heroLatestProject.label}
@@ -131,13 +123,13 @@ export function HeroSection() {
 
       <motion.a
         href="#contact"
-        className="fixed bottom-4 right-5 z-40 grid size-[4.75rem] place-items-center rounded-full bg-accent text-foreground shadow-none transition hover:scale-105 sm:bottom-6 sm:right-6 sm:size-12 lg:bottom-8 lg:right-8 lg:size-14"
+        className="fixed bottom-4 right-4 z-40 grid size-14 place-items-center rounded-full bg-accent text-foreground shadow-none transition hover:scale-105 sm:bottom-6 sm:right-6 sm:size-12 lg:bottom-8 lg:right-8 lg:size-14"
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ delay: 0.5, duration: 0.4 }}
         aria-label="Start a project"
       >
-        <Pencil className="size-7 sm:size-5 lg:size-6" />
+        <Pencil className="size-5 lg:size-6" />
       </motion.a>
     </section>
   );

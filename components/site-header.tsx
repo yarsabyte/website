@@ -66,10 +66,10 @@ export function SiteHeader() {
   return (
     <>
       <header className="pointer-events-none fixed inset-x-0 top-0 z-[90] lg:left-3 lg:right-3 lg:top-3">
-        <Container className="grid h-24 grid-cols-[auto_minmax(0,1fr)_auto] items-start gap-3 pt-5 sm:h-[4.5rem] sm:items-center sm:pt-0">
+        <Container className="flex h-20 items-center justify-between gap-4 pt-4 sm:h-[4.5rem] sm:pt-0">
           <Link
             href="/"
-            className="pointer-events-auto flex min-w-0 items-center gap-3 justify-self-start"
+            className="pointer-events-auto flex min-w-0 items-center gap-3"
             aria-label="Sajilo Studio home"
             onClick={() => setIsMenuOpen(false)}
           >
@@ -78,31 +78,13 @@ export function SiteHeader() {
               alt=""
               width={36}
               height={36}
-              className="size-14 shrink-0 sm:size-9"
+              className="size-11 shrink-0 sm:size-9"
               priority
             />
-            <span className="hidden truncate text-xs font-semibold uppercase tracking-[0.22em] text-foreground sm:block">
+            <span className="truncate text-[0.68rem] font-semibold uppercase tracking-[0.24em] text-foreground sm:text-xs sm:tracking-[0.22em]">
               Sajilo Studio
             </span>
           </Link>
-
-          <nav
-            className="pointer-events-auto hidden min-w-0 items-center justify-center gap-16 text-[0.64rem] font-semibold uppercase tracking-[0.16em] text-foreground/90 sm:flex"
-            aria-label="Primary navigation"
-          >
-            <Link
-              href="#about"
-              className="border-b border-foreground pb-2.5 transition hover:border-accent hover:text-accent"
-            >
-              About us
-            </Link>
-            <Link
-              href="#work"
-              className="border-b border-foreground pb-2.5 transition hover:border-accent hover:text-accent"
-            >
-              Work
-            </Link>
-          </nav>
 
           <button
             ref={menuButtonRef}
@@ -111,7 +93,7 @@ export function SiteHeader() {
             aria-controls="site-menu"
             aria-expanded={isMenuOpen}
             onClick={toggleMenu}
-            className="pointer-events-auto grid size-14 place-items-center justify-self-end text-foreground transition hover:opacity-80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent sm:size-14"
+            className="pointer-events-auto grid size-12 shrink-0 place-items-center text-foreground transition hover:opacity-80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent sm:size-14"
           >
             <MenuIcon open={isMenuOpen} stroke={isMenuOpen ? "#252524" : "currentColor"} />
           </button>
