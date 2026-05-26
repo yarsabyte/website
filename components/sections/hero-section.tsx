@@ -20,10 +20,10 @@ const fade = {
 };
 
 const heroDisplay =
-  "font-tunnels-bold text-[clamp(3.5rem,15.2vw,14.65rem)] uppercase leading-[0.8] tracking-[-0.02em]";
+  "font-helvetica-bold text-[clamp(3.5rem,15.2vw,14.65rem)] uppercase leading-[0.8] tracking-normal";
 
 const mobileHeroDisplay =
-  "font-tunnels-bold text-[clamp(3.55rem,15vw,4.6rem)] uppercase leading-[0.86]";
+  "font-helvetica-bold text-[clamp(3.55rem,15vw,4.6rem)] uppercase leading-[0.86] tracking-normal";
 
 export function HeroSection() {
   return (

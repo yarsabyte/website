@@ -67,7 +67,7 @@ export function LoadingScreen({ isExiting }: LoadingScreenProps) {
           style={{ transitionDelay: "0.6s" }}
         >
           <span className="font-light">Loading </span>
-          <span className="font-tunnels-bold">Sajilo Studio</span>
+          <span className="font-helvetica-bold">Sajilo Studio</span>
         </p>
       </div>
     </div>
