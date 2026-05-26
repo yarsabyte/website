@@ -98,21 +98,7 @@ export function ContactSection() {
             className="hidden w-16 justify-self-end pt-3 text-foreground/85 lg:block"
             aria-hidden="true"
           >
-            <svg viewBox="0 0 48 56" className="h-14 w-12" fill="none">
-              <line x1="14" y1="12" x2="14" y2="50" stroke="currentColor" />
-              <polygon
-                points="14,5 19,8 19,14 14,17 9,14 9,8"
-                stroke="currentColor"
-                fill="none"
-              />
-              <line x1="28" y1="18" x2="28" y2="42" stroke="currentColor" />
-              <line x1="40" y1="12" x2="40" y2="50" stroke="currentColor" />
-              <polygon
-                points="40,45 45,48 45,54 40,57 35,54 35,48"
-                stroke="currentColor"
-                fill="none"
-              />
-            </svg>
+            
           </div>
         </div>
 

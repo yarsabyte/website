@@ -1,14 +1,14 @@
 @import "tailwindcss";
 
 :root {
-  --background: #222121;
+  --background: #252524;
   --foreground: #FDFBF7;
   --accent: #7BA05B;
-  --navy: #222121;
+  --navy: #252524;
   --menu-bg: #FDFBF7;
   --blue: #6F9255;
   --sky: #9DB783;
-  --hero-bg: #222121;
+  --hero-bg: #252524;
   --brand-font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
     Arial, sans-serif;
   --border-soft: color-mix(in srgb, var(--foreground) 12%, transparent);
@@ -35,6 +35,7 @@
 html {
   scroll-behavior: auto;
   background: var(--background);
+  font-family: var(--brand-font);
 }
 
 html.lenis,
@@ -56,6 +57,14 @@ body {
   scrollbar-width: none;
 }
 
+body,
+button,
+input,
+textarea,
+select {
+  font-family: var(--brand-font);
+}
+
 body::-webkit-scrollbar {
   display: none;
 }
@@ -67,10 +76,26 @@ body::-webkit-scrollbar {
   background: var(--background);
 }
 
+.site-frame::before {
+  content: "";
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  min-height: 100%;
+  opacity: 0.09;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 128 128' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.45'/%3E%3C/svg%3E");
+  background-size: 96px 96px;
+}
+
 .site-frame-content {
   position: relative;
   z-index: 1;
   min-height: 100vh;
+}
+
+.site-frame main > section {
+  background: transparent;
 }
 
 .scroll-hex-background {
@@ -85,11 +110,6 @@ body::-webkit-scrollbar {
   background-size: 26px 30px;
   transition: opacity 140ms ease;
   will-change: opacity, background-position;
-}
-
-main > section:not(:first-child) {
-  content-visibility: auto;
-  contain-intrinsic-size: auto 56rem;
 }
 
 @media (min-width: 1024px) {
@@ -113,6 +133,12 @@ main > section:not(:first-child) {
     box-shadow: 0 24px 70px color-mix(in srgb, #000 18%, transparent);
     scrollbar-width: none;
     overscroll-behavior: contain;
+  }
+
+  .site-frame::before {
+    position: fixed;
+    inset: 0.75rem;
+    border-radius: 1.45rem;
   }
 
   .scroll-hex-background {
@@ -253,8 +279,8 @@ h3 {
     background:
       linear-gradient(
         130deg,
-        rgba(34, 33, 33, 0.94),
-        rgba(34, 33, 33, 0.58) 42%,
+        rgba(37, 37, 36, 0.94),
+        rgba(37, 37, 36, 0.58) 42%,
         rgba(123, 160, 91, 0.46)
       ),
       radial-gradient(

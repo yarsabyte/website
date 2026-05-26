@@ -19,7 +19,7 @@ export function LoadingScreen({ isExiting }: LoadingScreenProps) {
   return (
     <div
       className={cn(
-        "fixed inset-0 z-[1000] flex flex-col items-center justify-center bg-background transition-[opacity,visibility] duration-700 ease-[cubic-bezier(0.76,0,0.24,1)]",
+        "fixed inset-0 z-[1000] flex flex-col items-center justify-center bg-background transition-[opacity,visibility] duration-700 ease-in-out",
         isExiting ? "pointer-events-none opacity-0 invisible" : "opacity-100 visible",
       )}
       aria-hidden={isExiting}
@@ -52,7 +52,7 @@ export function LoadingScreen({ isExiting }: LoadingScreenProps) {
                 style={{
                   strokeDasharray: 1,
                   strokeDashoffset: drawn ? 0 : 1,
-                  transition: `stroke-dashoffset 1.15s cubic-bezier(0.76, 0, 0.24, 1) ${index * 0.07}s`,
+                  transition: `stroke-dashoffset 1.15s ease-in-out ${index * 0.07}s`,
                 }}
               />
             ))}

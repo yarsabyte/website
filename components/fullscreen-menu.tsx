@@ -20,8 +20,8 @@ type FullscreenMenuProps = {
   origin: { x: number; y: number } | null;
 };
 
-const revealEase = [0.76, 0, 0.24, 1] as const;
-const contentEase = [0.22, 1, 0.36, 1] as const;
+const revealEase = [0.42, 0, 0.58, 1] as const;
+const contentEase = [0.42, 0, 0.58, 1] as const;
 
 const menuRootVariants: Variants = {
   hidden: {},
@@ -39,11 +39,11 @@ const revealVariants: Variants = {
   }),
   visible: (origin: { x: number; y: number }) => ({
     clipPath: `circle(150vmax at ${origin.x}px ${origin.y}px)`,
-    transition: { duration: 0.85, ease: revealEase },
+    transition: { duration: 0.9, ease: revealEase },
   }),
   exit: (origin: { x: number; y: number }) => ({
     clipPath: `circle(0px at ${origin.x}px ${origin.y}px)`,
-    transition: { duration: 0.72, ease: revealEase },
+    transition: { duration: 0.74, ease: revealEase },
   }),
 };
 
@@ -107,7 +107,7 @@ export function FullscreenMenu({ open, onClose, origin }: FullscreenMenuProps) {
           >
             {!reduceMotion ? <MenuBottomWave /> : (
               <div
-                className="pointer-events-none absolute inset-x-0 bottom-0 top-[58vh] z-[1] bg-background"
+                className="pointer-events-none absolute inset-x-0 bottom-0 top-[64vh] z-[1] bg-background"
                 aria-hidden="true"
               />
             )}
@@ -127,16 +127,16 @@ export function FullscreenMenu({ open, onClose, origin }: FullscreenMenuProps) {
               </div>
 
               <nav
-                className="flex flex-1 flex-col items-center justify-center px-6 pb-[36vh] sm:pb-[32vh]"
+                className="flex flex-1 flex-col items-center justify-center px-6 pb-[28vh] sm:pb-[24vh]"
                 aria-label="Primary navigation"
               >
-                <ul className="flex w-full max-w-5xl flex-col items-center gap-3 sm:flex-row sm:justify-center sm:gap-8 lg:gap-14">
+                <ul className="flex w-full max-w-[118rem] flex-col items-center gap-3 sm:flex-row sm:justify-center sm:gap-7 lg:gap-10 2xl:gap-14">
                   {menuLinks.map((link) => (
                     <motion.li key={link.href} variants={linkVariants}>
                       <a
                         href={link.href}
                         onClick={onClose}
-                        className="font-helvetica-bold group inline-flex items-baseline gap-3 text-[clamp(2.6rem,7.5vw,5.75rem)] leading-[0.92] text-background transition hover:text-accent"
+                        className="font-helvetica-bold group inline-flex items-baseline gap-3 text-[clamp(2.6rem,6.2vw,5.75rem)] leading-[0.92] text-background transition hover:text-accent"
                       >
                         {link.label}
                         <MenuHexDot />

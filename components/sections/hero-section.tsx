@@ -5,7 +5,6 @@ import { motion } from "framer-motion";
 import { Pencil } from "lucide-react";
 
 import { HeroCanvasShell } from "@/components/hero/hero-canvas-shell";
-import { HeroGrain } from "@/components/hero/hero-grain";
 import { heroLatestProject, heroMission } from "@/data/hero";
 
 const ease = [0.22, 1, 0.36, 1] as const;
@@ -28,7 +27,6 @@ const mobileHeroDisplay =
 export function HeroSection() {
   return (
     <section className="relative min-h-[100svh] overflow-hidden bg-transparent pt-24 sm:min-h-screen sm:pt-[4.5rem]">
-      <HeroGrain />
       <HeroCanvasShell />
 
       <div className="studio-container relative z-10 flex min-h-[calc(100svh-6rem)] flex-col pb-28 sm:min-h-[calc(100vh-4.5rem)] sm:pb-24">
