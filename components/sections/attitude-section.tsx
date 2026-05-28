@@ -22,10 +22,6 @@ export function AttitudeSection() {
 
   useGSAP(
     () => {
-      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-        return;
-      }
-
       const section = sectionRef.current;
       const track = trackRef.current;
       const scroller = document.querySelector<HTMLElement>(".site-frame");
@@ -34,14 +30,25 @@ export function AttitudeSection() {
         return;
       }
 
+      const reduceMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)",
+      ).matches;
+      const revealItems = gsap.utils.toArray<HTMLElement>(
+        "[data-attitude-reveal]",
+      );
+
+      if (reduceMotion) {
+        gsap.set(revealItems, { autoAlpha: 1, y: 0, scale: 1 });
+        return;
+      }
+
       const mm = gsap.matchMedia();
 
       mm.add("(min-width: 1024px)", () => {
-        const cards = gsap.utils.toArray<HTMLElement>("[data-attitude-card]");
         const scrollAmount = () =>
           Math.max(0, track.scrollWidth - scroller.clientWidth + 160);
 
-        gsap.set(cards, {
+        gsap.set(revealItems, {
           autoAlpha: 0,
           y: 96,
           scale: 0.97,
@@ -71,9 +78,9 @@ export function AttitudeSection() {
         });
 
         timeline
-          .to({}, { duration: 0.22 })
+          .to({}, { duration: 0.38 })
           .to(
-            cards,
+            revealItems,
             {
               autoAlpha: 1,
               y: 0,
@@ -82,16 +89,16 @@ export function AttitudeSection() {
               duration: 0.22,
               ease: "power2.out",
             },
-            0.18,
+            0.36,
           )
           .to(
             track,
             {
               x: () => -scrollAmount(),
               ease: "none",
-              duration: 0.72,
+              duration: 0.62,
             },
-            0.34,
+            0.58,
           );
 
         return () => {
@@ -125,7 +132,10 @@ export function AttitudeSection() {
       </div>
 
       <div className="relative z-10 mx-auto flex min-h-[34rem] w-full max-w-[98rem] flex-col justify-center lg:min-h-[calc(100vh-1.5rem)]">
-        <div className="mb-10 flex items-center gap-3 lg:absolute lg:left-0 lg:top-14 lg:mb-0">
+        <div
+          data-attitude-reveal
+          className="mb-10 flex items-center gap-3 lg:absolute lg:left-0 lg:top-14 lg:mb-0 lg:opacity-0"
+        >
           <span className="grid size-4 place-items-center rounded-full border border-foreground/20">
             <span className="size-1.5 rounded-full bg-accent" />
           </span>
@@ -142,13 +152,14 @@ export function AttitudeSection() {
             {attitudeCards.map((card, index) => (
               <article
                 key={card.title}
+                data-attitude-reveal
                 data-attitude-card
                 style={
                   {
                     "--card-offset": cardOffsets[index],
                   } as CSSProperties
                 }
-                className="relative min-h-[25rem] w-[min(82vw,25rem)] shrink-0 rounded-2xl border border-foreground/10 bg-[color-mix(in_srgb,var(--background)_86%,var(--foreground)_6%)] p-7 shadow-[0_24px_70px_rgba(0,0,0,0.16)] backdrop-blur sm:w-[27rem] lg:min-h-[30rem] lg:w-[38rem] lg:p-10 lg:[margin-top:var(--card-offset)]"
+                className="relative min-h-[25rem] w-[min(82vw,25rem)] shrink-0 rounded-2xl border border-foreground/10 bg-[color-mix(in_srgb,var(--background)_86%,var(--foreground)_6%)] p-7 opacity-100 shadow-[0_24px_70px_rgba(0,0,0,0.16)] backdrop-blur sm:w-[27rem] lg:min-h-[30rem] lg:w-[38rem] lg:opacity-0 lg:p-10 lg:[margin-top:var(--card-offset)]"
               >
                 <div className="flex items-center gap-3">
                   <span className="grid size-4 place-items-center rounded-full border border-foreground/20">

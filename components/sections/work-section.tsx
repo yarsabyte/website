@@ -70,20 +70,33 @@ export function WorkSection() {
                   href={project.href}
                   target="_blank"
                   rel="noreferrer"
-                  className="grid focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent sm:grid-cols-[0.46fr_0.54fr]"
+                  className="relative block focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
                 >
-                  <div className="relative min-h-[15rem] overflow-hidden bg-foreground/5 sm:min-h-[20rem]">
+                  <div
+                    className="pointer-events-none absolute inset-0 z-0 hidden overflow-hidden bg-foreground/5 transition-[clip-path,filter] duration-[850ms] ease-[cubic-bezier(0.22,1,0.36,1)] [clip-path:inset(0_52%_0_0)] group-hover:[clip-path:inset(0_0_0_0)] sm:block"
+                  >
                     <Image
                       src={project.thumbnail}
                       alt={`${project.title} landing page thumbnail`}
                       fill
-                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 45vw, 28vw"
-                      className="object-cover object-top transition duration-700 group-hover:scale-105"
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 48vw, 52vw"
+                      className="object-cover object-top transition duration-[850ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-105"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-background/82 via-background/10 to-transparent sm:bg-gradient-to-r" />
+                    <div className="absolute inset-0 bg-gradient-to-r from-background/42 via-background/14 to-background/78 transition duration-[850ms] group-hover:from-background/20 group-hover:via-background/10 group-hover:to-background/46" />
                   </div>
 
-                  <div className="relative flex min-h-[18rem] flex-col justify-between p-6 sm:p-8">
+                  <div className="relative z-0 min-h-[15rem] overflow-hidden bg-foreground/5 sm:hidden">
+                    <Image
+                      src={project.thumbnail}
+                      alt={`${project.title} landing page thumbnail`}
+                      fill
+                      sizes="100vw"
+                      className="object-cover object-top transition duration-[850ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-background/82 via-background/10 to-transparent" />
+                  </div>
+
+                  <div className="relative z-10 flex min-h-[18rem] flex-col justify-between p-6 transition duration-[850ms] ease-[cubic-bezier(0.22,1,0.36,1)] sm:ml-[48%] sm:min-h-[21rem] sm:w-[52%] sm:bg-[color-mix(in_srgb,var(--background)_84%,var(--accent)_16%)] sm:p-8 group-hover:translate-x-1 group-hover:bg-transparent">
                     <div className="flex items-center justify-between gap-4 text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-foreground/68">
                       <span>{project.category}</span>
                       <span>{project.year}</span>
