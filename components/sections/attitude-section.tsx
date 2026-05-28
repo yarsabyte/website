@@ -14,6 +14,8 @@ const sectionStyle = {
   "--attitude-fill": "0%",
 } as CSSProperties;
 
+const cardOffsets = ["-5rem", "5.5rem", "-2.5rem", "4.5rem", "-4rem"];
+
 export function AttitudeSection() {
   const sectionRef = useRef<HTMLElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
@@ -35,17 +37,23 @@ export function AttitudeSection() {
       const mm = gsap.matchMedia();
 
       mm.add("(min-width: 1024px)", () => {
+        const cards = gsap.utils.toArray<HTMLElement>("[data-attitude-card]");
         const scrollAmount = () =>
           Math.max(0, track.scrollWidth - scroller.clientWidth + 160);
 
-        const animation = gsap.to(track, {
-          x: () => -scrollAmount(),
-          ease: "none",
+        gsap.set(cards, {
+          autoAlpha: 0,
+          y: 96,
+          scale: 0.97,
+        });
+
+        const timeline = gsap.timeline({
           scrollTrigger: {
             trigger: section,
             scroller,
             start: "top top",
-            end: () => `+=${Math.max(1200, scrollAmount() + window.innerHeight * 0.65)}`,
+            end: () =>
+              `+=${Math.max(1800, scrollAmount() + window.innerHeight * 1.25)}`,
             pin: true,
             scrub: 0.8,
             invalidateOnRefresh: true,
@@ -62,9 +70,33 @@ export function AttitudeSection() {
           },
         });
 
+        timeline
+          .to({}, { duration: 0.22 })
+          .to(
+            cards,
+            {
+              autoAlpha: 1,
+              y: 0,
+              scale: 1,
+              stagger: 0.08,
+              duration: 0.22,
+              ease: "power2.out",
+            },
+            0.18,
+          )
+          .to(
+            track,
+            {
+              x: () => -scrollAmount(),
+              ease: "none",
+              duration: 0.72,
+            },
+            0.34,
+          );
+
         return () => {
-          animation.scrollTrigger?.kill();
-          animation.kill();
+          timeline.scrollTrigger?.kill();
+          timeline.kill();
         };
       });
 
@@ -105,12 +137,18 @@ export function AttitudeSection() {
         <div className="-mx-5 overflow-x-auto px-5 pb-4 scrollbar-none lg:mx-0 lg:overflow-visible lg:px-0 lg:pb-0">
           <div
             ref={trackRef}
-            className="flex w-max gap-5 will-change-transform lg:gap-8"
+            className="flex w-max gap-5 will-change-transform lg:min-h-[42rem] lg:items-start lg:gap-8 lg:pt-28"
           >
             {attitudeCards.map((card, index) => (
               <article
                 key={card.title}
-                className="relative min-h-[25rem] w-[min(82vw,25rem)] shrink-0 rounded-2xl border border-foreground/10 bg-[color-mix(in_srgb,var(--background)_86%,var(--foreground)_6%)] p-7 shadow-[0_24px_70px_rgba(0,0,0,0.16)] backdrop-blur sm:w-[27rem] lg:min-h-[30rem] lg:w-[34rem] lg:p-10"
+                data-attitude-card
+                style={
+                  {
+                    "--card-offset": cardOffsets[index],
+                  } as CSSProperties
+                }
+                className="relative min-h-[25rem] w-[min(82vw,25rem)] shrink-0 rounded-2xl border border-foreground/10 bg-[color-mix(in_srgb,var(--background)_86%,var(--foreground)_6%)] p-7 shadow-[0_24px_70px_rgba(0,0,0,0.16)] backdrop-blur sm:w-[27rem] lg:min-h-[30rem] lg:w-[38rem] lg:p-10 lg:[margin-top:var(--card-offset)]"
               >
                 <div className="flex items-center gap-3">
                   <span className="grid size-4 place-items-center rounded-full border border-foreground/20">
@@ -121,7 +159,7 @@ export function AttitudeSection() {
                   </p>
                 </div>
 
-                <h3 className="font-display mt-8 text-[clamp(3.1rem,6vw,5.8rem)] uppercase leading-[0.86] text-foreground">
+                <h3 className="font-display mt-8 text-[clamp(2.65rem,4.6vw,4.75rem)] uppercase leading-[0.88] text-foreground">
                   {card.title}
                 </h3>
 
