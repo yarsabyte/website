@@ -44,7 +44,7 @@ export function WorkSection() {
               </p>
             </div>
 
-            <h2 className="mt-14 max-w-[35rem] text-[clamp(4.4rem,10vw,12rem)] font-normal uppercase leading-[0.9] tracking-normal text-foreground">
+            <h2 className="mt-14 max-w-[35rem] text-[clamp(4.4rem,9vw,11rem)] font-normal uppercase leading-[0.9] tracking-normal text-foreground">
               Recent
               <br />
               Work

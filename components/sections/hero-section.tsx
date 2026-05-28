@@ -93,10 +93,7 @@ export function HeroSection() {
               <span className="shrink-0 text-[0.82rem] font-semibold uppercase tracking-[0.08em] text-foreground sm:text-[0.62rem] sm:tracking-[0.28em] sm:text-foreground/50">
                 {heroLatestProject.label}
               </span>
-              <span
-                className="h-px w-7 shrink-0 bg-foreground/28 transition group-hover:w-10 group-hover:bg-foreground/40 sm:w-28 lg:w-40"
-                aria-hidden="true"
-              />
+              
               <span
                 className="text-foreground/50 sm:inline"
                 aria-hidden="true"
