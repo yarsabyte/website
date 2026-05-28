@@ -1,58 +1,34 @@
 export const projects = [
   {
-    title: "Consultancy Website Concept",
-    label: "Concept Project",
+    title: "Avenue Butwal Education Consultancy",
+    label: "Live Project",
     category: "Education Consultancy",
-    year: "Sample Direction",
-    tags: ["Web Design", "Branding", "Launch"],
-    accent: "from-sky via-blue to-accent",
-    visual: "consultancy",
+    year: "2026",
+    tags: ["Website", "Consultancy", "Admissions"],
+    href: "https://www.avenuebutwal.edu.np",
+    thumbnail: "/work/avenuebutwal.png",
     summary:
-      "A premium website direction for education and abroad-study consultancies that need trust, clarity, and inquiry flow.",
+      "A trust-forward consultancy website with destination pathways, counseling calls to action, and a clear student inquiry flow.",
     outcome:
-      "Service pages, success-story blocks, inquiry CTA, and a clean admissions-focused structure.",
+      "Landing page, navigation structure, conversion CTAs, and admissions-focused content blocks.",
   },
   {
-    title: "Restaurant Social Media Kit",
-    label: "Sample Direction",
-    category: "Cafe & Restaurant",
-    year: "Sample Direction",
-    tags: ["Posters", "Video", "Branding"],
-    accent: "from-accent via-blue to-sky",
-    visual: "restaurant",
+    title: "Arvind Pandey Portfolio",
+    label: "Client Portfolio",
+    category: "Personal Brand",
+    year: "2026",
+    tags: ["Portfolio", "Personal Website", "Blog"],
+    href: "https://www.arvindpandey.com.np/",
+    thumbnail: "/work/arvindpandey.png",
     summary:
-      "Poster and reel design direction for cafes and restaurants launching offers, menus, events, or seasonal campaigns.",
-    outcome: "Campaign posters, reel covers, food promo cuts, and reusable social templates.",
-  },
-  {
-    title: "Personal Portfolio Website",
-    label: "Concept Project",
-    category: "Student & Creator",
-    year: "Sample Direction",
-    tags: ["Portfolio", "Web Design", "Branding"],
-    accent: "from-blue via-sky to-accent",
-    visual: "portfolio",
-    summary:
-      "Portfolio direction for students, freelancers, and creators who need a sharper way to present skills and work.",
-    outcome: "Profile sections, project cards, CV-style details, and a contact-first layout.",
-  },
-  {
-    title: "Local Business Launch Kit",
-    label: "Sample Direction",
-    category: "Business Launch",
-    year: "Sample Direction",
-    tags: ["Web Design", "Posters", "Branding"],
-    accent: "from-navy via-blue to-sky",
-    visual: "launch",
-    summary:
-      "A practical launch package for local businesses that need website, posters, Google Business setup, and brand consistency.",
-    outcome: "Digital setup, launch graphics, profile polish, and a simple website foundation.",
+      "A clean personal portfolio for an IT lecturer and tech consultant, built around identity, articles, and direct contact.",
+    outcome: "Profile-first landing page, article entry points, contact actions, and a polished personal-brand presence.",
   },
 ];
 
 export const projectsIntro = {
   eyebrow: "Work",
-  title: "Sample directions for the kind of premium presence we build.",
+  title: "Recent websites shaped for real people and businesses.",
   description:
-    "These are concept projects, not client claims. They show the strategy, style, and production quality Sajilo Studio can shape for real Nepali businesses.",
+    "A small look at live work from Sajilo Studio, from inquiry-focused consultancy pages to personal portfolio systems.",
 };
