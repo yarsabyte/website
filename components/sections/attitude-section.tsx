@@ -47,11 +47,15 @@ export function AttitudeSection() {
       mm.add("(min-width: 1024px)", () => {
         const scrollAmount = () =>
           Math.max(0, track.scrollWidth - scroller.clientWidth + 160);
+        const introOffset = () => Math.min(scroller.clientWidth * 0.58, 760);
 
         gsap.set(revealItems, {
           autoAlpha: 0,
-          y: 96,
+          y: 86,
           scale: 0.97,
+        });
+        gsap.set(track, {
+          x: () => introOffset(),
         });
 
         const timeline = gsap.timeline({
@@ -60,7 +64,7 @@ export function AttitudeSection() {
             scroller,
             start: "top top",
             end: () =>
-              `+=${Math.max(1800, scrollAmount() + window.innerHeight * 1.25)}`,
+              `+=${Math.max(2200, scrollAmount() + window.innerHeight * 1.15)}`,
             pin: true,
             scrub: 0.8,
             invalidateOnRefresh: true,
@@ -78,27 +82,36 @@ export function AttitudeSection() {
         });
 
         timeline
-          .to({}, { duration: 0.38 })
+          .to({}, { duration: 0.12 })
           .to(
             revealItems,
             {
               autoAlpha: 1,
               y: 0,
               scale: 1,
-              stagger: 0.08,
-              duration: 0.22,
+              stagger: 0.055,
+              duration: 0.2,
               ease: "power2.out",
             },
-            0.36,
+            0.1,
+          )
+          .to(
+            track,
+            {
+              x: 0,
+              ease: "power2.out",
+              duration: 0.22,
+            },
+            0.1,
           )
           .to(
             track,
             {
               x: () => -scrollAmount(),
               ease: "none",
-              duration: 0.62,
+              duration: 0.68,
             },
-            0.58,
+            0.32,
           );
 
         return () => {
