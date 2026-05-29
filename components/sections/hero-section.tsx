@@ -33,7 +33,7 @@ export function HeroSection() {
         <div className="relative z-20 flex flex-1 flex-col justify-end pb-6 pt-[44vh] sm:block sm:pb-0 sm:pt-0 lg:ml-auto lg:w-full lg:max-w-[88%]">
           <motion.h1
             className="pointer-events-none relative z-20 block sm:hidden"
-            aria-label="Sajilo Studio"
+            aria-label="Yarsa Byte"
             initial="hidden"
             animate="visible"
             variants={{
@@ -45,19 +45,19 @@ export function HeroSection() {
               className={`block text-left text-accent ${mobileHeroDisplay}`}
               variants={fade}
             >
-              Sajilo
+              Yarsa
             </motion.span>
             <motion.span
               className={`block text-left text-foreground ${mobileHeroDisplay}`}
               variants={fade}
             >
-              Studio
+              Byte
             </motion.span>
           </motion.h1>
 
           <motion.h1
             className="pointer-events-none relative z-20 hidden pt-6 text-right sm:block lg:pt-10"
-            aria-label="Sajilo Studio"
+            aria-label="Yarsa Byte"
             initial="hidden"
             animate="visible"
             variants={{
@@ -69,13 +69,13 @@ export function HeroSection() {
               className={`relative z-20 block text-accent ${heroDisplay}`}
               variants={fade}
             >
-              Sajilo
+              Yarsa
             </motion.span>
             <motion.span
               className={`relative z-20 block text-foreground ${heroDisplay}`}
               variants={fade}
             >
-              Studio
+              Byte
             </motion.span>
           </motion.h1>
 

@@ -43,10 +43,10 @@ export function WorkSection() {
               </p>
             </div>
 
-            <h2 className="mt-14 max-w-[35rem] text-[clamp(4.4rem,9vw,11rem)] font-normal uppercase leading-[0.9] tracking-normal text-foreground">
+            <h2 className="mt-14 max-w-[35rem] text-[clamp(4.4rem,7vw,11rem)] font-normal uppercase leading-[0.9] tracking-normal text-foreground">
               Recent
               <br />
-              Work
+              Works
               <span className="ml-4 inline-block size-3 translate-y-[-0.3em] rounded-sm bg-accent sm:size-4" />
             </h2>
             <p className="mt-8 max-w-md text-base leading-7 text-foreground/68">

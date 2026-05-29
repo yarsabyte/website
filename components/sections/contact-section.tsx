@@ -11,7 +11,7 @@ const serviceLinks = services.map((service) => ({
     .replace("Branding & Digital Identity", "Brand Identity")
     .replace("Digital Setup", "Launch Setup")
     .toUpperCase(),
-  href: `mailto:hello@sajilostudio.com?subject=${encodeURIComponent(
+  href: `mailto:yarsabyte@gmail.com?subject=${encodeURIComponent(
     service.title,
   )}`,
 }));
@@ -74,7 +74,7 @@ export function ContactSection() {
             aria-hidden="true"
           ></div>
           <a
-            href="mailto:hello@sajilostudio.com?subject=Let%27s%20Talk"
+            href="mailto:yarsabyte@gmail.com?subject=Let%27s%20Talk"
             className="group justify-self-center text-center font-helvetica-bold text-[clamp(3.2rem,8.4vw,7.6rem)] uppercase leading-[0.82] tracking-normal transition hover:text-accent focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
           >
             Let&apos;s Talk
@@ -99,12 +99,12 @@ export function ContactSection() {
               Studio
             </FooterWord>
             <a
-              href="mailto:hello@sajilostudio.com"
+              href="mailto:yarsabyte@gmail.com"
               className="max-w-xs text-sm font-semibold uppercase leading-6 text-foreground/84 transition hover:text-accent sm:text-base"
             >
-              Kathmandu, Nepal
+              Butwal, Nepal
               <br />
-              hello@sajilostudio.com
+	      yarsabyte@gmail.com
             </a>
           </div>
 
@@ -125,7 +125,7 @@ export function ContactSection() {
 
           <div className="flex flex-col items-start gap-6 lg:items-end lg:self-stretch lg:pt-24">
             <FooterWord
-              href="mailto:hello@sajilostudio.com?subject=Services"
+              href="mailto:yarsabyte@gmail.com?subject=Services"
               className="text-[clamp(3.6rem,6.4vw,7.4rem)] lg:text-right"
             >
               Services
@@ -136,7 +136,7 @@ export function ContactSection() {
 
         <div className="grid shrink-0 gap-7 lg:grid-cols-[0.38fr_0.24fr_0.38fr] lg:items-end lg:gap-10">
           <form
-            action="mailto:hello@sajilostudio.com"
+            action="mailto:yarsabyte@gmail.com"
             method="post"
             className="max-w-xl"
           >
@@ -169,7 +169,7 @@ export function ContactSection() {
               Work
             </FooterWord>
             <p className="text-sm text-foreground/86">
-              &copy;2026 Sajilo Studio
+              &copy;2026 Yarsa Byte
             </p>
           </div>
 

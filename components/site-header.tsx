@@ -70,7 +70,7 @@ export function SiteHeader() {
           <Link
             href="/"
             className="pointer-events-auto flex min-w-0 items-center gap-3"
-            aria-label="Sajilo Studio home"
+            aria-label="Yarsa Byte home"
             onClick={() => setIsMenuOpen(false)}
           >
             <Image
@@ -82,7 +82,7 @@ export function SiteHeader() {
               priority
             />
             <span className="truncate text-[0.68rem] font-semibold uppercase tracking-[0.24em] text-foreground sm:text-xs sm:tracking-[0.22em]">
-              Sajilo Studio
+              Yarsa Byte
             </span>
           </Link>
 
