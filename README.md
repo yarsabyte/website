@@ -1,36 +1,73 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Yarsa-byte
 
-## Getting Started
+A modern portfolio/website built with Next.js (app router), React and TypeScript featuring 3D content and rich animations.
 
-First, run the development server:
+## Key features
+- Next.js 16 (app directory) + React 19 + TypeScript
+- 3D scenes powered by three.js and @react-three/fiber
+- Interactive spline content via @splinetool/react-spline
+- Smooth scrolling (lenis) and timeline animations (gsap, framer-motion)
+- Tailwind CSS for styling
+
+## Tech stack
+- next 16.2.6
+- react 19.2.4
+- typescript, tailwindcss
+- three, @react-three/fiber, @react-three/drei
+- gsap, framer-motion, lenis
+
+## Getting started
+Prerequisites: Node.js (18+ recommended) and a package manager (npm, pnpm or yarn).
+
+Install dependencies:
+
+```bash
+# with npm
+npm install
+
+# or with pnpm (recommended if you have pnpm-lock.yaml)
+pnpm install
+```
+
+Run development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Available scripts (from package.json):
+- dev: next dev
+- build: next build
+- start: next start
+- lint: eslint
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Open http://localhost:3000 in your browser.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Project structure (high level)
+- app/           — Next.js app directory (pages, layouts, global styles)
+- components/    — Reusable UI and animation components
+- hooks/         — Custom React hooks
+- public/ or app/static — static assets and icons
+- styles/ or app/globals.css — Tailwind/global CSS
 
-## Learn More
+## Notes
+- This project uses the experimental app/ directory and TypeScript. Edit `app/page.tsx` to update the main page.
+- There is a pnpm lockfile (pnpm-lock.yaml). Using pnpm will provide reproducible installs.
 
-To learn more about Next.js, take a look at the following resources:
+## Deployment
+Deploy easily to Vercel (recommended) or any Node hosting that supports Next.js. Build with:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+npm run build
+npm run start
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Contributing
+Feel free to open issues or PRs. For local development, run the dev server and follow existing code style (TypeScript + Tailwind).
 
-## Deploy on Vercel
+## License
+Check for a LICENSE file in the repo. If none exists, add one (e.g., MIT) if you want to open-source this project.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+If you want, update this README with a short project description, author contact, or deployment badges and I can apply the changes.
