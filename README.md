@@ -1,73 +1,118 @@
 # Yarsa-byte
 
-A modern portfolio/website built with Next.js (app router), React and TypeScript featuring 3D content and rich animations.
+A modern personal portfolio and demo site built with Next.js (app router), React and TypeScript showcasing 3D visuals and smooth interactions.
 
-## Key features
+## Highlights
 - Next.js 16 (app directory) + React 19 + TypeScript
-- 3D scenes powered by three.js and @react-three/fiber
-- Interactive spline content via @splinetool/react-spline
-- Smooth scrolling (lenis) and timeline animations (gsap, framer-motion)
-- Tailwind CSS for styling
+- 3D scenes with three.js and @react-three/fiber
+- Interactive Spline content via @splinetool/react-spline
+- Smooth scrolling and timelines with lenis and gsap
+- Tailwind CSS for utility-first styling
 
-## Tech stack
-- next 16.2.6
-- react 19.2.4
-- typescript, tailwindcss
+## Tech stack (selected)
+- next: 16.2.6
+- react / react-dom: 19.2.4
+- typescript, tailwindcss, postcss
 - three, @react-three/fiber, @react-three/drei
 - gsap, framer-motion, lenis
 
-## Getting started
-Prerequisites: Node.js (18+ recommended) and a package manager (npm, pnpm or yarn).
+## Requirements
+- Node.js 18 or newer recommended
+- pnpm (recommended) or npm/yarn. This repo contains pnpm-lock.yaml so pnpm gives reproducible installs.
 
-Install dependencies:
+## Quickstart
+1. Install dependencies (pnpm recommended):
 
 ```bash
-# with npm
-npm install
-
-# or with pnpm (recommended if you have pnpm-lock.yaml)
 pnpm install
+# or npm install
 ```
 
-Run development server:
+2. Run development server:
 
 ```bash
-npm run dev
+pnpm run dev
+# or npm run dev
 ```
 
-Available scripts (from package.json):
+3. Open http://localhost:3000
+
+## Scripts
 - dev: next dev
 - build: next build
 - start: next start
 - lint: eslint
 
-Open http://localhost:3000 in your browser.
+Run scripts with pnpm (pnpm run dev), or npm (npm run dev).
 
-## Project structure (high level)
-- app/           — Next.js app directory (pages, layouts, global styles)
-- components/    — Reusable UI and animation components
-- hooks/         — Custom React hooks
-- public/ or app/static — static assets and icons
-- styles/ or app/globals.css — Tailwind/global CSS
+## Project layout (detailed)
 
-## Notes
-- This project uses the experimental app/ directory and TypeScript. Edit `app/page.tsx` to update the main page.
-- There is a pnpm lockfile (pnpm-lock.yaml). Using pnpm will provide reproducible installs.
+This section lists top-level folders and important files to help contributors locate code quickly.
 
-## Deployment
-Deploy easily to Vercel (recommended) or any Node hosting that supports Next.js. Build with:
+- app/ — Next.js app directory (routes, layouts, global styles)
+  - app/layout.tsx — Root layout (shared providers, metadata)
+  - app/page.tsx — Home page
+  - app/head.tsx / app/meta — Document head / metadata
+  - app/(routes)/* — Additional route folders and nested routes
+  - app/globals.css — Global CSS + Tailwind entry
 
-```bash
-npm run build
-npm run start
-```
+- components/ — Reusable UI and animation components
+  - components/ui/ — Small primitives (Button, Icon, Link)
+  - components/layout/ — Header, Footer, Navigation
+  - components/three/ — react-three/fiber scene components and helpers
+  - components/spline/ — Spline embed wrappers
+
+- hooks/ — Custom React hooks
+  - hooks/use-lenis-scroll.ts — smooth scroll integration
+  - hooks/usePagePointer.ts — pointer tracking helpers
+  - hooks/useReducedMotion.ts — respects user reduced-motion preferences
+
+- data/ — Serialized content used by pages (hero, projects, copy)
+  - data/hero.ts, data/projects.ts — central content for pages
+
+- public/ — Static assets served directly (images, favicons, svgs, models)
+  - public/work/, public/icons/, public/*.svg
+
+- styles/ and tailwind config
+  - tailwind.config.js, postcss.config.mjs — Tailwind/PostCSS setup
+  - app/globals.css — includes @tailwind base/components/utilities
+
+- config & tooling files
+  - next.config.ts — Next.js configuration
+  - tsconfig.json — TypeScript configuration
+  - package.json, pnpm-lock.yaml / package-lock.json — dependencies & scripts
+  - eslint.config.mjs — lint rules
+
+- misc
+  - scripts/ — project scripts or dev helpers (if present)
+  - .github/ or CI configs — deployment and workflow files
+
+Guidance:
+- Place 3D scene components under components/three and keep scene-specific assets in public/ or data/.
+- Prefer small, focused components with clear folder names; add types in TypeScript files.
+- Respect reduced-motion hooks when adding timeline animations (gsap/framer-motion).
+
+(If you want, these entries can be expanded to show exact file examples and conventions used in this repo.)
+
+## Development notes
+- App uses the app/ router and TypeScript. Edit `app/page.tsx` and components under `components/`.
+- There are several custom hooks (hooks/) for smooth scrolling and pointer interactions. Respect reduced-motion settings when adding animations.
+
+## Building & Deployment
+- Build: `pnpm run build` (or `npm run build`)
+- Start production server: `pnpm run start`
+
+Recommended: deploy to Vercel for zero-config Next.js hosting.
 
 ## Contributing
-Feel free to open issues or PRs. For local development, run the dev server and follow existing code style (TypeScript + Tailwind).
+PRs and issues welcome. Keep changes small, add TypeScript types, and run linting before opening a PR.
 
 ## License
-Check for a LICENSE file in the repo. If none exists, add one (e.g., MIT) if you want to open-source this project.
+If you plan to publish this repository, add a LICENSE file (e.g., MIT).
+
+## Author
+Anupam Baral
 
 ---
 
-If you want, update this README with a short project description, author contact, or deployment badges and I can apply the changes.
+If you'd like, provide an author email, demo URL or deployment badge and the README can be updated to include them.
