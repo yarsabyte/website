@@ -132,12 +132,12 @@ export function AttitudeSection() {
       style={sectionStyle}
       className="relative overflow-hidden bg-background px-5 py-20 text-foreground lg:min-h-[calc(100vh-1.5rem)] lg:px-16 lg:py-0"
     >
-      <div className="pointer-events-none absolute inset-0 flex items-center overflow-hidden" aria-hidden="true">
+      <div className="pointer-events-none absolute inset-0 flex items-center justify-center overflow-hidden" aria-hidden="true">
         <h2 className="font-display select-none whitespace-nowrap text-[clamp(5.4rem,17vw,20rem)] uppercase leading-none text-foreground/[0.055]">
           attitude
         </h2>
         <h2
-          className="font-display absolute select-none whitespace-nowrap text-[clamp(5.4rem,17vw,20rem)] uppercase leading-none text-accent"
+          className="font-display absolute left-1/2 -translate-x-1/2 select-none whitespace-nowrap text-[clamp(5.4rem,17vw,20rem)] uppercase leading-none text-accent"
           style={{ clipPath: "inset(0 0 0 calc(100% - var(--attitude-fill)))" }}
         >
           attitude
