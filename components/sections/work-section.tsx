@@ -12,7 +12,7 @@ export function WorkSection() {
   return (
     <section
       id="work"
-      className="relative min-h-screen overflow-hidden bg-transparent px-6 py-24 lg:min-h-[calc(100vh-1.5rem)] lg:px-16 lg:pb-16 lg:pt-12"
+      className="relative min-h-screen overflow-hidden bg-transparent px-6 py-24 lg:min-h-[calc(100vh-1.5rem)] lg:px-16 lg:py-16"
     >
       <div className="mx-auto flex min-h-[calc(100vh-9rem)] w-full max-w-[90rem] flex-col lg:min-h-[calc(100vh-5rem)]">
         <div className="hidden min-h-[36vh] lg:block" aria-hidden="true" />
@@ -96,7 +96,7 @@ export function WorkSection() {
                     <div className="absolute inset-0 bg-gradient-to-t from-background/82 via-background/10 to-transparent" />
                   </div>
 
-                  <div className="relative z-10 flex min-h-[18rem] flex-col justify-between p-6 transition duration-[850ms] ease-[cubic-bezier(0.22,1,0.36,1)] sm:ml-[48%] sm:min-h-[21rem] sm:w-[52%] sm:bg-[color-mix(in_srgb,var(--background)_84%,var(--accent)_16%)] sm:p-8 group-hover:translate-x-1 group-hover:bg-transparent">
+                  <div className="relative z-10 flex min-h-[18rem] flex-col justify-between p-6 transition duration-[850ms] ease-[cubic-bezier(0.22,1,0.36,1)] sm:ml-[48%] sm:min-h-[21rem] sm:w-[52%] sm:bg-[color-mix(in_srgb,var(--background)_84%,var(--accent)_16%)] sm:p-8 group-hover:translate-x-1 group-hover:bg-transparent group-hover:opacity-0">
                     <div className="flex items-center justify-between gap-4 text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-foreground/68">
                       <span>{project.category}</span>
                       <span>{project.year}</span>
