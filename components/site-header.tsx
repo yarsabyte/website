@@ -74,11 +74,11 @@ export function SiteHeader() {
             onClick={() => setIsMenuOpen(false)}
           >
             <Image
-              src="/logo.svg"
+              src="/logo-icon.png"
               alt=""
-              width={36}
-              height={36}
-              className="size-11 shrink-0 sm:size-9"
+              width={64}
+              height={64}
+              className="size-11 shrink-0 rounded bg-white object-contain p-1 sm:size-9"
               priority
             />
             <span className="truncate text-[0.68rem] font-semibold uppercase tracking-[0.24em] text-foreground sm:text-xs sm:tracking-[0.22em]">

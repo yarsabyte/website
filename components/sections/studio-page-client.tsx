@@ -78,11 +78,11 @@ function StudioOrbital() {
       />
       <div className="absolute inset-[22%] grid place-items-center rounded-full border border-foreground/10 bg-foreground/[0.045] backdrop-blur">
         <Image
-          src="/logo.svg"
+          src="/logo-icon.png"
           alt=""
-          width={132}
-          height={132}
-          className="h-24 w-24 object-contain"
+          width={160}
+          height={160}
+          className="h-28 w-28 rounded bg-white object-contain p-2"
           priority
         />
       </div>

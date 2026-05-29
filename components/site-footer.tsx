@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
 
 import { navLinks } from "@/data/nav";
@@ -18,9 +19,13 @@ export function SiteFooter() {
               className="inline-flex items-center gap-3"
               aria-label="Yarsa Byte home"
             >
-              <span className="grid size-10 place-items-center rounded-full bg-accent text-sm font-black text-foreground">
-                YB
-              </span>
+              <Image
+                src="/logo-icon.png"
+                alt=""
+                width={56}
+                height={56}
+                className="size-10 rounded bg-white object-contain p-1"
+              />
               <span className="text-sm font-semibold uppercase tracking-[0.18em] text-foreground">
                 Yarsa Byte
               </span>
