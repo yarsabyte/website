@@ -23,7 +23,7 @@ export function AboutSection() {
 
         <div className="grid gap-10 lg:grid-cols-[18rem_1fr]">
           <p className="max-w-xs text-xl font-semibold uppercase leading-tight text-foreground sm:text-2xl lg:text-[1.28rem]">
-            Portfoo builds practical digital presence for local businesses,
+            Yarsa Byte builds practical digital presence for local businesses,
             creators, and teams ready to look credible online.
           </p>
 

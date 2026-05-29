@@ -16,17 +16,17 @@ export function SiteFooter() {
             <Link
               href="/"
               className="inline-flex items-center gap-3"
-              aria-label="Portfoo home"
+              aria-label="Yarsa Byte home"
             >
               <span className="grid size-10 place-items-center rounded-full bg-accent text-sm font-black text-foreground">
                 YB
               </span>
               <span className="text-sm font-semibold uppercase tracking-[0.18em] text-foreground">
-                Portfoo
+                Yarsa Byte
               </span>
             </Link>
             <p className="mt-6 max-w-md text-base leading-7 text-foreground/58">
-              Portfoo is a simple, reliable digital partner for Nepali
+              Yarsa Byte is a simple, reliable digital partner for Nepali
               businesses that need websites, portfolios, posters, videos, branding,
               and launch-ready online setup.
             </p>
@@ -104,7 +104,7 @@ export function SiteFooter() {
         </div>
 
         <div className="mt-16 flex flex-col gap-3 border-t border-foreground/10 pt-6 text-sm text-foreground/42 sm:flex-row sm:items-center sm:justify-between">
-          <p>Copyright © 2026 Portfoo. All rights reserved.</p>
+          <p>Copyright © 2026 Yarsa Byte. All rights reserved.</p>
           <p>Butwal, Nepal · Digital studio for modern businesses.</p>
         </div>
       </Container>

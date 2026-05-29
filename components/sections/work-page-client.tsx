@@ -51,7 +51,7 @@ export function WorkPageClient() {
         <Container className="relative z-10 flex min-h-[calc(100dvh-7rem)] flex-col pb-10">
           <div className="flex flex-wrap items-center justify-between gap-4">
             <p className="text-sm font-black uppercase tracking-[0.22em] text-accent">
-              Portfoo Work
+              Yarsa Byte Work
             </p>
             <button
               type="button"
@@ -150,7 +150,7 @@ export function WorkPageClient() {
                           <p className="text-xs font-black uppercase tracking-[0.2em] text-accent">
                             {activeProject.category} / {activeProject.year}
                           </p>
-                          <h2 className="mt-3 max-w-xl text-[clamp(2rem,3.8vw,4.25rem)] font-black uppercase leading-[0.88] text-foreground text-balance">
+                          <h2 className="mt-3 max-w-lg text-[clamp(1.6rem,2.8vw,3.1rem)] font-black uppercase leading-[0.92] text-foreground text-balance">
                             {activeProject.title}
                           </h2>
                         </div>

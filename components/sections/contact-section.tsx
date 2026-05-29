@@ -169,7 +169,7 @@ export function ContactSection() {
               Work
             </FooterWord>
             <p className="text-sm text-foreground/86">
-              &copy;2026 Portfoo
+              &copy;2026 Yarsa Byte
             </p>
           </div>
 

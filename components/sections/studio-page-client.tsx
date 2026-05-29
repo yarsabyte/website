@@ -125,7 +125,7 @@ export function StudioPageClient() {
         >
           <div className="flex h-full items-center gap-8 whitespace-nowrap text-xl font-black uppercase">
             {Array.from({ length: 10 }).map((_, index) => (
-              <span key={index}>Portfoo Studio / Strategy / Motion / Launch</span>
+              <span key={index}>Yarsa Byte Studio / Strategy / Motion / Launch</span>
             ))}
           </div>
         </motion.div>

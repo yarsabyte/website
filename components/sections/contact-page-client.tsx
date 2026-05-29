@@ -231,7 +231,7 @@ export function ContactPageClient() {
             transition={{ duration: 0.5, ease }}
             className="text-sm font-black uppercase tracking-[0.22em] text-accent"
           >
-            Portfoo Contact
+            Yarsa Byte Contact
           </motion.p>
           <motion.h1
             initial={{ opacity: 0, y: 45 }}

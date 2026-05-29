@@ -118,7 +118,7 @@ export function FullscreenMenu({ open, onClose, origin }: FullscreenMenuProps) {
                     href="/"
                     onClick={onClose}
                     className="flex items-center gap-3"
-                    aria-label="Portfoo home"
+                    aria-label="Yarsa Byte home"
                   >
                   {/*<Image src="/logo.svg" alt="" width={36} height={36} className="size-9" />*/}
                   </Link>
