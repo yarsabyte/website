@@ -14,7 +14,7 @@ const sectionStyle = {
   "--attitude-fill": "0%",
 } as CSSProperties;
 
-const cardOffsets = ["-5rem", "5.5rem", "-2.5rem", "4.5rem", "-4rem"];
+const cardOffsets = ["-3rem", "3rem", "-1.5rem", "2.5rem", "-2rem"];
 
 export function AttitudeSection() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -45,17 +45,25 @@ export function AttitudeSection() {
       const mm = gsap.matchMedia();
 
       mm.add("(min-width: 1024px)", () => {
+        const introOffset = () => Math.min(scroller.clientWidth * 0.38, 520);
         const scrollAmount = () =>
-          Math.max(0, track.scrollWidth - scroller.clientWidth + 160);
-        const introOffset = () => Math.min(scroller.clientWidth * 0.58, 760);
+          Math.max(
+            0,
+            track.scrollWidth +
+              introOffset() -
+              Math.min(scroller.clientWidth, section.clientWidth) +
+              96,
+          );
 
         gsap.set(revealItems, {
           autoAlpha: 0,
-          y: 86,
-          scale: 0.97,
+          y: 56,
+          scale: 0.985,
         });
         gsap.set(track, {
           x: () => introOffset(),
+          force3D: true,
+          willChange: "transform",
         });
 
         const timeline = gsap.timeline({
@@ -64,10 +72,11 @@ export function AttitudeSection() {
             scroller,
             start: "top top",
             end: () =>
-              `+=${Math.max(2200, scrollAmount() + window.innerHeight * 1.15)}`,
+              `+=${Math.max(2800, scrollAmount() * 1.15 + window.innerHeight)}`,
             pin: true,
-            scrub: 0.8,
+            scrub: 1.15,
             invalidateOnRefresh: true,
+            anticipatePin: 1,
             onUpdate: (self) => {
               const fill = Math.sin(self.progress * Math.PI) * 100;
               section.style.setProperty("--attitude-fill", `${fill}%`);
@@ -82,39 +91,30 @@ export function AttitudeSection() {
         });
 
         timeline
-          .to({}, { duration: 0.12 })
           .to(
             revealItems,
             {
               autoAlpha: 1,
               y: 0,
               scale: 1,
-              stagger: 0.055,
-              duration: 0.2,
+              stagger: 0.045,
+              duration: 0.16,
               ease: "power2.out",
             },
-            0.1,
-          )
-          .to(
-            track,
-            {
-              x: 0,
-              ease: "power2.out",
-              duration: 0.22,
-            },
-            0.1,
+            0,
           )
           .to(
             track,
             {
               x: () => -scrollAmount(),
               ease: "none",
-              duration: 0.68,
+              duration: 1,
             },
-            0.32,
+            0,
           );
 
         return () => {
+          gsap.set(track, { clearProps: "willChange" });
           timeline.scrollTrigger?.kill();
           timeline.kill();
         };
@@ -133,12 +133,12 @@ export function AttitudeSection() {
       className="relative overflow-hidden bg-background px-5 py-20 text-foreground lg:min-h-[calc(100vh-1.5rem)] lg:px-16 lg:py-0"
     >
       <div className="pointer-events-none absolute inset-0 flex items-center overflow-hidden" aria-hidden="true">
-        <h2 className="font-display select-none whitespace-nowrap text-[clamp(7rem,21vw,28rem)] uppercase leading-none text-foreground/[0.055]">
+        <h2 className="font-display select-none whitespace-nowrap text-[clamp(5.4rem,17vw,20rem)] uppercase leading-none text-foreground/[0.055]">
           attitude
         </h2>
         <h2
-          className="font-display absolute select-none whitespace-nowrap text-[clamp(7rem,21vw,28rem)] uppercase leading-none text-accent"
-          style={{ clipPath: "inset(0 calc(100% - var(--attitude-fill)) 0 0)" }}
+          className="font-display absolute select-none whitespace-nowrap text-[clamp(5.4rem,17vw,20rem)] uppercase leading-none text-accent"
+          style={{ clipPath: "inset(0 0 0 calc(100% - var(--attitude-fill)))" }}
         >
           attitude
         </h2>
@@ -160,7 +160,7 @@ export function AttitudeSection() {
         <div className="-mx-5 overflow-x-auto px-5 pb-4 scrollbar-none lg:mx-0 lg:overflow-visible lg:px-0 lg:pb-0">
           <div
             ref={trackRef}
-            className="flex w-max gap-5 will-change-transform lg:min-h-[42rem] lg:items-start lg:gap-8 lg:pt-28"
+            className="flex w-max gap-5 will-change-transform [transform:translateZ(0)] lg:min-h-[38rem] lg:items-start lg:gap-8 lg:pt-24"
           >
             {attitudeCards.map((card, index) => (
               <article
@@ -172,7 +172,7 @@ export function AttitudeSection() {
                     "--card-offset": cardOffsets[index],
                   } as CSSProperties
                 }
-                className="relative min-h-[25rem] w-[min(82vw,25rem)] shrink-0 rounded-2xl border border-foreground/10 bg-[color-mix(in_srgb,var(--background)_86%,var(--foreground)_6%)] p-7 opacity-100 shadow-[0_24px_70px_rgba(0,0,0,0.16)] backdrop-blur sm:w-[27rem] lg:min-h-[30rem] lg:w-[38rem] lg:opacity-0 lg:p-10 lg:[margin-top:var(--card-offset)]"
+                className="relative min-h-[25rem] w-[min(82vw,25rem)] shrink-0 rounded-2xl border border-foreground/10 bg-[color-mix(in_srgb,var(--background)_86%,var(--foreground)_6%)] p-7 opacity-100 shadow-[0_24px_70px_rgba(0,0,0,0.16)] backdrop-blur sm:w-[27rem] lg:min-h-[27rem] lg:w-[34rem] lg:opacity-0 lg:p-9 lg:[margin-top:var(--card-offset)]"
               >
                 <div className="flex items-center gap-3">
                   <span className="grid size-4 place-items-center rounded-full border border-foreground/20">
@@ -183,11 +183,11 @@ export function AttitudeSection() {
                   </p>
                 </div>
 
-                <h3 className="font-display mt-8 text-[clamp(2.65rem,4.6vw,4.75rem)] uppercase leading-[0.88] text-foreground">
+                <h3 className="font-display mt-8 text-[clamp(2.65rem,3.8vw,4rem)] uppercase leading-[0.9] text-foreground">
                   {card.title}
                 </h3>
 
-                <p className="mt-16 max-w-md text-base font-semibold leading-7 text-foreground/62 lg:mt-20 lg:text-lg lg:leading-8">
+                <p className="mt-12 max-w-md text-base font-semibold leading-7 text-foreground/62 lg:mt-14 lg:text-[1.05rem] lg:leading-8">
                   {card.description}
                 </p>
 
