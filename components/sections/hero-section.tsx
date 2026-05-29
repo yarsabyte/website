@@ -45,7 +45,7 @@ export function HeroSection() {
               className={`block text-left text-accent ${mobileHeroDisplay}`}
               variants={fade}
             >
-              Port
+              Yarsa
             </motion.span>
             <motion.span
               className={`block text-left text-foreground ${mobileHeroDisplay}`}
@@ -69,7 +69,7 @@ export function HeroSection() {
               className={`relative z-20 block text-accent ${heroDisplay}`}
               variants={fade}
             >
-              Port
+              Yarsa
             </motion.span>
             <motion.span
               className={`relative z-20 block text-foreground ${heroDisplay}`}
