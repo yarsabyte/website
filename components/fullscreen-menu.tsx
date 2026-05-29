@@ -130,17 +130,17 @@ export function FullscreenMenu({ open, onClose, origin }: FullscreenMenuProps) {
                 className="flex flex-1 flex-col items-center justify-center px-6 pb-[28vh] sm:pb-[24vh]"
                 aria-label="Primary navigation"
               >
-                <ul className="flex w-full max-w-[118rem] flex-col items-center gap-3 sm:flex-row sm:justify-center sm:gap-7 lg:gap-10 2xl:gap-14">
+                <ul className="flex w-full max-w-[92rem] flex-col flex-wrap items-center justify-center gap-3 overflow-visible sm:flex-row sm:gap-x-6 sm:gap-y-5 lg:gap-x-9 2xl:gap-x-11">
                   {menuLinks.map((link) => (
                     <motion.li key={link.href} variants={linkVariants}>
-                      <a
+                      <Link
                         href={link.href}
                         onClick={onClose}
-                        className="font-helvetica-bold group inline-flex items-baseline gap-3 text-[clamp(2.6rem,6.2vw,5.75rem)] leading-[0.92] text-background transition hover:text-accent"
+                        className="font-helvetica-bold group inline-flex max-w-[min(92vw,32rem)] items-baseline gap-3 break-words text-[clamp(2.45rem,5.1vw,5.2rem)] leading-[0.92] text-background transition hover:text-accent sm:max-w-none"
                       >
                         {link.label}
                         <MenuHexDot />
-                      </a>
+                      </Link>
                     </motion.li>
                   ))}
                 </ul>

@@ -1,14 +1,14 @@
 @import "tailwindcss";
 
 :root {
-  --background: #252524;
-  --foreground: #FDFBF7;
-  --accent: #7BA05B;
-  --navy: #252524;
-  --menu-bg: #FDFBF7;
-  --blue: #6F9255;
-  --sky: #9DB783;
-  --hero-bg: #252524;
+  --background: #11130F;
+  --foreground: #FFF8EA;
+  --accent: #B6F35B;
+  --navy: #171A16;
+  --menu-bg: #FFF8EA;
+  --blue: #4D7CFE;
+  --sky: #32D7C2;
+  --hero-bg: #11130F;
   --display-font: "Archivo Black", "Arial Black", Arial, sans-serif;
   --brand-font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
     Arial, sans-serif;
@@ -280,20 +280,34 @@ h3 {
     background:
       linear-gradient(
         130deg,
-        rgba(37, 37, 36, 0.94),
-        rgba(37, 37, 36, 0.58) 42%,
-        rgba(123, 160, 91, 0.46)
+        rgba(17, 19, 15, 0.94),
+        rgba(17, 19, 15, 0.58) 42%,
+        rgba(77, 124, 254, 0.42)
       ),
       radial-gradient(
         circle at 73% 32%,
-        rgba(253, 251, 247, 0.52),
+        rgba(255, 248, 234, 0.5),
         transparent 10rem
       ),
       radial-gradient(
         circle at 18% 72%,
-        rgba(123, 160, 91, 0.72),
+        rgba(182, 243, 91, 0.62),
         transparent 9rem
       );
+  }
+
+  .service-grid-surface {
+    background-image:
+      linear-gradient(
+        color-mix(in srgb, var(--foreground) 8%, transparent) 1px,
+        transparent 1px
+      ),
+      linear-gradient(
+        90deg,
+        color-mix(in srgb, var(--foreground) 8%, transparent) 1px,
+        transparent 1px
+      );
+    background-size: 3.5rem 3.5rem;
   }
 
   .accent-sweep-link {
@@ -363,5 +377,15 @@ h3 {
 
   to {
     transform: rotate(360deg);
+  }
+}
+
+@keyframes serviceMarquee {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
   }
 }
