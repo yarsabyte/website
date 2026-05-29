@@ -2,6 +2,7 @@
 
 import Lenis from "lenis";
 import { useEffect } from "react";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 
@@ -32,6 +33,8 @@ export function useLenisScroll() {
       wheelMultiplier: 0.8,
     });
 
+    lenis.on("scroll", ScrollTrigger.update);
+
     let frame = 0;
 
     const raf = (time: number) => {
@@ -43,6 +46,7 @@ export function useLenisScroll() {
 
     return () => {
       cancelAnimationFrame(frame);
+      lenis.off("scroll", ScrollTrigger.update);
       lenis.destroy();
     };
   }, [reduceMotion]);
