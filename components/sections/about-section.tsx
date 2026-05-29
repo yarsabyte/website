@@ -37,24 +37,6 @@ export function AboutSection() {
 
         <div className="hidden lg:block" aria-hidden="true" />
       </div>
-
-      <nav
-        className="mt-16 flex flex-wrap gap-24 pl-0 text-sm font-semibold uppercase tracking-[0.14em] text-foreground lg:ml-[calc(6rem+16rem+5rem)] lg:mt-0"
-        aria-label="About section links"
-      >
-        <Link
-          href="#about"
-          className="border-b border-foreground pb-3 transition hover:border-accent hover:text-accent"
-        >
-          About us
-        </Link>
-        <Link
-          href="#work"
-          className="border-b border-foreground pb-3 transition hover:border-accent hover:text-accent"
-        >
-          Work
-        </Link>
-      </nav>
     </section>
   );
 }
