@@ -2,6 +2,7 @@ import { AboutSection } from "@/components/sections/about-section";
 import { AttitudeSection } from "@/components/sections/attitude-section";
 import { ContactSection } from "@/components/sections/contact-section";
 import { HeroSection } from "@/components/sections/hero-section";
+import { PartnershipSection } from "@/components/sections/partnership-section";
 import { WorkSection } from "@/components/sections/work-section";
 
 export default function Home() {
@@ -11,6 +12,7 @@ export default function Home() {
       <AboutSection />
       <WorkSection />
       <AttitudeSection />
+      <PartnershipSection />
       <ContactSection />
     </main>
   );

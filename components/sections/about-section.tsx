@@ -1,7 +1,5 @@
 "use client";
 
-import Link from "next/link";
-
 import { aboutIntro } from "@/data/about";
 
 export function AboutSection() {
