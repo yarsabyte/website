@@ -113,25 +113,7 @@ export function FullscreenMenu({ open, onClose, origin }: FullscreenMenuProps) {
             )}
 
             <div className="relative z-10 flex h-full flex-col">
-              <div className="studio-container flex h-[4.5rem] shrink-0 items-center">
-                <motion.div variants={linkVariants}>
-                  <Link
-                    href="/"
-                    onClick={onClose}
-                    className="flex items-center gap-3"
-                    aria-label="Yarsa Byte home"
-                  >
-                    <Image
-                      src="/logo-icon.png"
-                      alt=""
-                      width={56}
-                      height={56}
-                      className="size-10 rounded bg-white object-contain p-1"
-                      priority
-                    />
-                  </Link>
-                </motion.div>
-              </div>
+              
 
               <nav
                 className="flex flex-1 flex-col items-center justify-center px-6 pb-[28vh] sm:pb-[24vh]"
