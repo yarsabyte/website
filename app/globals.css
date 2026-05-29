@@ -258,6 +258,13 @@ h3 {
     font-stretch: normal;
   }
 
+  .transform-gpu {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+  }
+
+
+
   .text-balance {
     text-wrap: balance;
   }

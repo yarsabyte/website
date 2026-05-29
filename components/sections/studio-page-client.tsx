@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowDown, ArrowUpRight, Sparkles } from "lucide-react";
 import { motion, useReducedMotion, type Variants } from "framer-motion";
+import { useState, useEffect } from "react";
 
 import {
   studioCrew,
@@ -33,7 +34,7 @@ function SplitWords({ text }: { text: string }) {
       {text.split(" ").map((word, index) => (
         <motion.span
           key={`${word}-${index}`}
-          className="inline-block"
+          className="inline-block transform-gpu"
           initial={{ opacity: 0, y: "0.65em", rotateX: -55 }}
           animate={{ opacity: 1, y: 0, rotateX: 0 }}
           transition={{ duration: 0.68, delay: 0.08 + index * 0.045, ease }}
@@ -57,26 +58,43 @@ function HexGlyph({ className = "" }: { className?: string }) {
 
 function StudioOrbital() {
   const reduceMotion = useReducedMotion();
+  const [isVisible, setIsVisible] = useState(true);
+
+  // Pause animation when tab is hidden to save battery/CPU
+  useEffect(() => {
+    const handleVisibilityChange = () => {
+      if (document.hidden) {
+        setIsVisible(false);
+      } else {
+        setIsVisible(true);
+      }
+    };
+
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+    return () => {
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+    };
+  }, []);
 
   return (
     <motion.div
-      className="relative mx-auto aspect-square w-full max-w-[28rem]"
+      className="relative mx-auto aspect-square w-full max-w-[28rem] transform-gpu"
       initial={{ opacity: 0, scale: 0.86, rotate: -8 }}
       animate={{ opacity: 1, scale: 1, rotate: 0 }}
       transition={{ duration: 0.9, delay: 0.2, ease }}
       aria-hidden="true"
     >
       <motion.div
-        className="absolute inset-0 rounded-full border border-foreground/12"
-        animate={reduceMotion ? undefined : { rotate: 360 }}
-        transition={reduceMotion ? undefined : { duration: 26, repeat: Infinity, ease: "linear" }}
+        className={`absolute inset-0 rounded-full border border-foreground/12 ${!isVisible || reduceMotion ? 'animate-none' : ''}`}
+        animate={!isVisible || reduceMotion ? undefined : { rotate: 360 }}
+        transition={!isVisible || reduceMotion ? undefined : { duration: 26, repeat: Infinity, ease: "linear" }}
       />
       <motion.div
-        className="absolute inset-[10%] rounded-full border border-dashed border-accent/36"
-        animate={reduceMotion ? undefined : { rotate: -360 }}
-        transition={reduceMotion ? undefined : { duration: 18, repeat: Infinity, ease: "linear" }}
+        className={`absolute inset-[10%] rounded-full border border-dashed border-accent/36 ${!isVisible || reduceMotion ? 'animate-none' : ''}`}
+        animate={!isVisible || reduceMotion ? undefined : { rotate: -360 }}
+        transition={!isVisible || reduceMotion ? undefined : { duration: 18, repeat: Infinity, ease: "linear" }}
       />
-      <div className="absolute inset-[22%] grid place-items-center rounded-full border border-foreground/10 bg-foreground/[0.045] backdrop-blur">
+      <div className="absolute inset-[22%] grid place-items-center rounded-full border border-foreground/10 bg-foreground/[0.045]">
         <Image
           src="/logo-icon.png"
           alt=""
@@ -89,16 +107,16 @@ function StudioOrbital() {
       {["Design", "Build", "Motion", "Launch"].map((label, index) => (
         <motion.span
           key={label}
-          className="absolute grid h-16 w-28 place-items-center rounded-full border border-foreground/10 bg-background/86 text-xs font-black uppercase tracking-[0.16em] text-foreground shadow-[0_16px_50px_rgba(0,0,0,0.22)]"
+          className={`absolute grid h-16 w-28 place-items-center rounded-full border border-foreground/10 bg-background/86 text-xs font-black uppercase tracking-[0.16em] text-foreground shadow-[0_16px_50px_rgba(0,0,0,0.22)] ${!isVisible || reduceMotion ? 'animate-none' : ''}`}
           style={{
             left: index % 2 === 0 ? "0%" : "auto",
             right: index % 2 === 0 ? "auto" : "0%",
             top: index < 2 ? "11%" : "auto",
             bottom: index < 2 ? "auto" : "11%",
           }}
-          animate={reduceMotion ? undefined : { y: [0, -12, 0] }}
+          animate={!isVisible || reduceMotion ? undefined : { y: [0, -12, 0] }}
           transition={
-            reduceMotion
+            !isVisible || reduceMotion
               ? undefined
               : { duration: 3.5, delay: index * 0.25, repeat: Infinity, ease: "easeInOut" }
           }
@@ -119,12 +137,12 @@ export function StudioPageClient() {
         <div className="service-grid-surface absolute inset-0 opacity-25" aria-hidden="true" />
         <motion.div
           className="absolute left-[-10%] top-24 h-14 w-[140%] -rotate-2 border-y border-foreground/10 bg-accent text-background"
-          animate={reduceMotion ? undefined : { x: ["0%", "-10%"] }}
-          transition={reduceMotion ? undefined : { duration: 12, repeat: Infinity, ease: "linear" }}
+          animate={reduceMotion ? undefined : { x: ["0%", "-100%"] }}
+          transition={reduceMotion ? undefined : { duration: 20, repeat: Infinity, ease: "linear" }}
           aria-hidden="true"
         >
-          <div className="flex h-full items-center gap-8 whitespace-nowrap text-xl font-black uppercase">
-            {Array.from({ length: 10 }).map((_, index) => (
+          <div className="flex h-full items-center gap-6 whitespace-nowrap text-xl font-black uppercase">
+            {Array.from({ length: 20 }).map((_, index) => (
               <span key={index}>Yarsa Byte Studio / Strategy / Motion / Launch</span>
             ))}
           </div>
@@ -142,7 +160,7 @@ export function StudioPageClient() {
               and clean development for businesses that need to look trusted fast.
             </motion.p>
 
-            <h1 className="mt-8 max-w-[14ch] text-[clamp(3.2rem,10.8vw,10.5rem)] font-black uppercase leading-[0.84] text-foreground">
+            <h1 className="mt-8 max-w-[14ch] text-[clamp(3.6rem,10.8vw,10.5rem)] font-black uppercase leading-[0.84] text-foreground transform-gpu">
               <SplitWords text="Minds mettle magic" />
               <HexGlyph className="ml-[0.08em] size-[0.16em] min-h-4 min-w-4 translate-y-[-0.04em]" />
             </h1>
@@ -228,7 +246,7 @@ export function StudioPageClient() {
 
       <section className="relative overflow-hidden border-b border-foreground/10 py-10">
         <motion.div
-          className="flex w-max gap-8 whitespace-nowrap text-[clamp(2.5rem,7vw,8rem)] font-black uppercase leading-none text-foreground/14"
+          className="flex w-max gap-6 whitespace-nowrap text-[clamp(2.5rem,7vw,8rem)] font-black uppercase leading-none text-foreground/14"
           animate={reduceMotion ? undefined : { x: ["0%", "-50%"] }}
           transition={reduceMotion ? undefined : { duration: 18, repeat: Infinity, ease: "linear" }}
           aria-hidden="true"

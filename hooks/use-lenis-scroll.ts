@@ -1,10 +1,13 @@
 "use client";
 
 import Lenis from "lenis";
+import gsap from "gsap";
 import { useEffect } from "react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 import { useReducedMotion } from "@/hooks/useReducedMotion";
+
+gsap.registerPlugin(ScrollTrigger);
 
 export function useLenisScroll() {
   const reduceMotion = useReducedMotion();
@@ -35,19 +38,46 @@ export function useLenisScroll() {
 
     lenis.on("scroll", ScrollTrigger.update);
 
-    let frame = 0;
+    ScrollTrigger.scrollerProxy(wrapper, {
+      scrollTop(value) {
+        if (arguments.length && value !== undefined) {
+          lenis.scrollTo(value, { immediate: true });
+        }
 
-    const raf = (time: number) => {
-      lenis.raf(time);
-      frame = requestAnimationFrame(raf);
+        return lenis.scroll;
+      },
+      getBoundingClientRect() {
+        return {
+          top: 0,
+          left: 0,
+          width: wrapper.clientWidth,
+          height: wrapper.clientHeight,
+        };
+      },
+      pinType: wrapper.style.transform ? "transform" : "fixed",
+    });
+
+    ScrollTrigger.defaults({ scroller: wrapper });
+
+    const onTick = (time: number) => {
+      lenis.raf(time * 1000);
     };
 
-    frame = requestAnimationFrame(raf);
+    gsap.ticker.add(onTick);
+    gsap.ticker.lagSmoothing(0);
+
+    ScrollTrigger.refresh();
+    wrapper.dataset.lenisReady = "true";
+    window.dispatchEvent(new Event("lenis:ready"));
 
     return () => {
-      cancelAnimationFrame(frame);
+      delete wrapper.dataset.lenisReady;
+      gsap.ticker.remove(onTick);
       lenis.off("scroll", ScrollTrigger.update);
       lenis.destroy();
+      ScrollTrigger.scrollerProxy(wrapper, {});
+      ScrollTrigger.defaults({ scroller: undefined });
+      ScrollTrigger.refresh();
     };
   }, [reduceMotion]);
 }
