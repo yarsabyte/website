@@ -18,15 +18,15 @@ const archivoBlack = Archivo_Black({
 });
 
 export const metadata: Metadata = {
-  title: "Portfoo | IT company in Nepal",
+  title: "YarsaByte | Your Digital Presence Partner in Nepal",
   description:
-    "Portfoo helps Nepali businesses create websites, portfolios, posters, videos, reels, branding, and digital setups for a professional online presence.",
+    "YarsaByte helps Nepali businesses create websites, portfolios, posters, videos, reels, branding, and digital setups for a professional online presence.",
   metadataBase: new URL("https://yarsabyte.com"),
   openGraph: {
-    title: "Portfoo | IT company in Nepal",
+    title: "YarsaByte | Your Digital Presence Partner in Nepal",
     description:
-      "Portfoo helps Nepali businesses create websites, portfolios, posters, videos, reels, branding, and digital setups for a professional online presence.",
-    siteName: "Portfoo",
+      "YarsaByte helps Nepali businesses create websites, portfolios, posters, videos, reels, branding, and digital setups for a professional online presence.",
+    siteName: "YarsaByte",
     locale: "en_US",
     type: "website",
   },
