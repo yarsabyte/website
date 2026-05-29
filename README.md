@@ -1,36 +1,118 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Yarsa-byte
 
-## Getting Started
+A modern personal portfolio and demo site built with Next.js (app router), React and TypeScript showcasing 3D visuals and smooth interactions.
 
-First, run the development server:
+## Highlights
+- Next.js 16 (app directory) + React 19 + TypeScript
+- 3D scenes with three.js and @react-three/fiber
+- Interactive Spline content via @splinetool/react-spline
+- Smooth scrolling and timelines with lenis and gsap
+- Tailwind CSS for utility-first styling
+
+## Tech stack (selected)
+- next: 16.2.6
+- react / react-dom: 19.2.4
+- typescript, tailwindcss, postcss
+- three, @react-three/fiber, @react-three/drei
+- gsap, framer-motion, lenis
+
+## Requirements
+- Node.js 18 or newer recommended
+- pnpm (recommended) or npm/yarn. This repo contains pnpm-lock.yaml so pnpm gives reproducible installs.
+
+## Quickstart
+1. Install dependencies (pnpm recommended):
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+pnpm install
+# or npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Run development server:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+pnpm run dev
+# or npm run dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+3. Open http://localhost:3000
 
-## Learn More
+## Scripts
+- dev: next dev
+- build: next build
+- start: next start
+- lint: eslint
 
-To learn more about Next.js, take a look at the following resources:
+Run scripts with pnpm (pnpm run dev), or npm (npm run dev).
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Project layout (detailed)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+This section lists top-level folders and important files to help contributors locate code quickly.
 
-## Deploy on Vercel
+- app/ — Next.js app directory (routes, layouts, global styles)
+  - app/layout.tsx — Root layout (shared providers, metadata)
+  - app/page.tsx — Home page
+  - app/head.tsx / app/meta — Document head / metadata
+  - app/(routes)/* — Additional route folders and nested routes
+  - app/globals.css — Global CSS + Tailwind entry
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- components/ — Reusable UI and animation components
+  - components/ui/ — Small primitives (Button, Icon, Link)
+  - components/layout/ — Header, Footer, Navigation
+  - components/three/ — react-three/fiber scene components and helpers
+  - components/spline/ — Spline embed wrappers
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- hooks/ — Custom React hooks
+  - hooks/use-lenis-scroll.ts — smooth scroll integration
+  - hooks/usePagePointer.ts — pointer tracking helpers
+  - hooks/useReducedMotion.ts — respects user reduced-motion preferences
+
+- data/ — Serialized content used by pages (hero, projects, copy)
+  - data/hero.ts, data/projects.ts — central content for pages
+
+- public/ — Static assets served directly (images, favicons, svgs, models)
+  - public/work/, public/icons/, public/*.svg
+
+- styles/ and tailwind config
+  - tailwind.config.js, postcss.config.mjs — Tailwind/PostCSS setup
+  - app/globals.css — includes @tailwind base/components/utilities
+
+- config & tooling files
+  - next.config.ts — Next.js configuration
+  - tsconfig.json — TypeScript configuration
+  - package.json, pnpm-lock.yaml / package-lock.json — dependencies & scripts
+  - eslint.config.mjs — lint rules
+
+- misc
+  - scripts/ — project scripts or dev helpers (if present)
+  - .github/ or CI configs — deployment and workflow files
+
+Guidance:
+- Place 3D scene components under components/three and keep scene-specific assets in public/ or data/.
+- Prefer small, focused components with clear folder names; add types in TypeScript files.
+- Respect reduced-motion hooks when adding timeline animations (gsap/framer-motion).
+
+(If you want, these entries can be expanded to show exact file examples and conventions used in this repo.)
+
+## Development notes
+- App uses the app/ router and TypeScript. Edit `app/page.tsx` and components under `components/`.
+- There are several custom hooks (hooks/) for smooth scrolling and pointer interactions. Respect reduced-motion settings when adding animations.
+
+## Building & Deployment
+- Build: `pnpm run build` (or `npm run build`)
+- Start production server: `pnpm run start`
+
+Recommended: deploy to Vercel for zero-config Next.js hosting.
+
+## Contributing
+PRs and issues welcome. Keep changes small, add TypeScript types, and run linting before opening a PR.
+
+## License
+If you plan to publish this repository, add a LICENSE file (e.g., MIT).
+
+## Author
+Anupam Baral
+
+---
+
+If you'd like, provide an author email, demo URL or deployment badge and the README can be updated to include them.
