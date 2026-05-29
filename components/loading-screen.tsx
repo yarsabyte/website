@@ -25,7 +25,7 @@ export function LoadingScreen({ isExiting }: LoadingScreenProps) {
       aria-hidden={isExiting}
       aria-busy={!isExiting}
       role="status"
-      aria-label="Loading Yarsa Byte"
+      aria-label="Loading Portfoo"
     >
       <div className="flex flex-col items-center gap-10">
         <svg
@@ -67,7 +67,7 @@ export function LoadingScreen({ isExiting }: LoadingScreenProps) {
           style={{ transitionDelay: "0.6s" }}
         >
           <span className="font-light">Loading </span>
-          <span className="font-helvetica-bold">Yarsa Byte</span>
+          <span className="font-helvetica-bold">Portfoo</span>
         </p>
       </div>
     </div>

@@ -93,7 +93,7 @@ export function ContactSection() {
         <div className="grid flex-1 gap-8 py-10 lg:grid-cols-[0.38fr_0.24fr_0.38fr] lg:items-center lg:gap-10 lg:py-8">
           <div className="flex flex-col justify-center gap-8 lg:self-stretch">
             <FooterWord
-              href="/"
+              href="/studio"
               className="text-[clamp(3.6rem,6.4vw,7.4rem)]"
             >
               Studio
@@ -165,11 +165,11 @@ export function ContactSection() {
           </form>
 
           <div className="grid gap-5">
-            <FooterWord href="#work" className="text-[clamp(3.6rem,6.4vw,7.4rem)]">
+            <FooterWord href="/work" className="text-[clamp(3.6rem,6.4vw,7.4rem)]">
               Work
             </FooterWord>
             <p className="text-sm text-foreground/86">
-              &copy;2026 Yarsa Byte
+              &copy;2026 Portfoo
             </p>
           </div>
 

@@ -17,7 +17,7 @@ export const testimonials = [
 
 export const testimonialsIntro = {
   eyebrow: "Testimonials",
-  title: "Built to hold real client proof as Yarsa Byte grows.",
+  title: "Built to hold real client proof as Portfoo grows.",
   description:
     "These are testimonial preview cards, not client claims. Replace them with real quotes once clients approve public feedback.",
 };

@@ -15,7 +15,7 @@ export function TestimonialsSection() {
             eyebrow={testimonialsIntro.eyebrow}
             title={
               <>
-                Built to hold real client proof as Yarsa Byte{" "}
+                Built to hold real client proof as Portfoo{" "}
                 <GradientText>grows.</GradientText>
               </>
             }
@@ -34,7 +34,7 @@ export function TestimonialsSection() {
                 Our Transparency Promise
               </p>
               <p className="text-xs leading-relaxed text-foreground/60">
-                Yarsa Byte is a newly launched digital partner. We choose not to showcase fake reviews or fabricate client numbers. The cards below are interactive previews ready for real client quotes. Want to be one of our first partners? Let&apos;s start a project today.
+                Portfoo is a newly launched digital partner. We choose not to showcase fake reviews or fabricate client numbers. The cards below are interactive previews ready for real client quotes. Want to be one of our first partners? Let&apos;s start a project today.
               </p>
             </div>
           </div>
