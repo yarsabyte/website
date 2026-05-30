@@ -78,7 +78,11 @@ function StudioOrbital() {
 
   return (
     <motion.div
+<<<<<<< HEAD
       className="relative mx-auto aspect-square w-full max-w-[28rem] transform-gpu"
+=======
+      className="relative mx-auto aspect-square w-140"
+>>>>>>> ca89187 ([Chore] studio-page-client.tsx: size fixes on rotating objects on `/studio` route)
       initial={{ opacity: 0, scale: 0.86, rotate: -8 }}
       animate={{ opacity: 1, scale: 1, rotate: 0 }}
       transition={{ duration: 0.9, delay: 0.2, ease }}

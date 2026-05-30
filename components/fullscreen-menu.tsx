@@ -110,10 +110,7 @@ export function FullscreenMenu({ open, onClose, origin }: FullscreenMenuProps) {
                 aria-hidden="true"
               />
             )}
-
             <div className="relative z-10 flex h-full flex-col">
-              
-
               <nav
                 className="flex flex-1 flex-col items-center justify-center px-6 pb-[28vh] sm:pb-[24vh]"
                 aria-label="Primary navigation"

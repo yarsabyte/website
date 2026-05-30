@@ -106,13 +106,8 @@ export function SiteHeader() {
 
   return (
     <>
-      <header
-        className={
-          "pointer-events-none fixed inset-x-0 top-0 z-[90] transform-gpu transition-transform duration-300 ease-out lg:left-3 lg:right-3 lg:top-3"
-        }
-        style={{ transform: isHeaderHidden ? "translateY(-120%)" : "translateY(0)" }}
-      >
-        <Container className="flex h-20 items-center justify-between gap-4 pt-4 sm:h-[4.5rem] sm:pt-0">
+      <header className="pointer-events-none fixed inset-x-0 top-0 z-[90] lg:left-3 lg:right-3 lg:top-3">
+        <Container className="flex h-20 items-center justify-between gap-4 px-50 sm:h-[4.5rem] sm:pt-0 backdrop-blur-lg ">
           <Link
             href="/"
             className="pointer-events-auto flex min-w-0 items-center gap-3"
