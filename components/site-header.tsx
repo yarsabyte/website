@@ -107,7 +107,7 @@ export function SiteHeader() {
   return (
     <>
       <header className="pointer-events-none fixed inset-x-0 top-0 z-[90] lg:left-3 lg:right-3 lg:top-3">
-        <Container className="flex h-20 items-center justify-between gap-4 px-50 sm:h-[4.5rem] sm:pt-0 backdrop-blur-lg ">
+        <div className="flex h-20 items-center justify-between gap-4 px-50 sm:h-[4.5rem] sm:pt-0 backdrop-blur-lg ">
           <Link
             href="/"
             className="pointer-events-auto flex min-w-0 items-center gap-3"
@@ -138,7 +138,7 @@ export function SiteHeader() {
           >
             <MenuIcon open={isMenuOpen} stroke={isMenuOpen ? "#252524" : "currentColor"} />
           </button>
-        </Container>
+        </div>
       </header>
 
       <FullscreenMenu

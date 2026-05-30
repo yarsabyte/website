@@ -78,11 +78,7 @@ function StudioOrbital() {
 
   return (
     <motion.div
-<<<<<<< HEAD
-      className="relative mx-auto aspect-square w-full max-w-[28rem] transform-gpu"
-=======
       className="relative mx-auto aspect-square w-140"
->>>>>>> ca89187 ([Chore] studio-page-client.tsx: size fixes on rotating objects on `/studio` route)
       initial={{ opacity: 0, scale: 0.86, rotate: -8 }}
       animate={{ opacity: 1, scale: 1, rotate: 0 }}
       transition={{ duration: 0.9, delay: 0.2, ease }}
@@ -138,22 +134,24 @@ export function StudioPageClient() {
   return (
     <main className="overflow-hidden">
       <section className="relative min-h-dvh overflow-hidden border-b border-foreground/10 pt-28">
-        <div className="service-grid-surface absolute inset-0 opacity-25" aria-hidden="true" />
-        <motion.div
-          className="absolute left-[-10%] top-24 h-14 w-[140%] -rotate-2 border-y border-foreground/10 bg-accent text-background"
-          animate={reduceMotion ? undefined : { x: ["0%", "-100%"] }}
-          transition={reduceMotion ? undefined : { duration: 20, repeat: Infinity, ease: "linear" }}
-          aria-hidden="true"
-        >
-          <div className="flex h-full items-center gap-6 whitespace-nowrap text-xl font-black uppercase">
-            {Array.from({ length: 20 }).map((_, index) => (
-              <span key={index}>Yarsa Byte Studio / Strategy / Motion / Launch</span>
-            ))}
-          </div>
-        </motion.div>
+        <div className="service-grid-surface absolute inset-0 opacity-50" aria-hidden="true">
+          <motion.div
+            className="left-[-10%] h-14 w-max -rotate-2 border-y border-foreground/10 bg-accent text-background"
+            animate={reduceMotion ? undefined : { x: ["0%", "-20%"] }}
+            transition={reduceMotion ? undefined : { duration: 20, repeat: Infinity, ease: "linear" }}
+            aria-hidden="true"
+          >
+            <div className="flex h-full items-center gap-6 whitespace-nowrap text-xl font-black uppercase">
+              {Array.from({ length: 20 }).map((_, index) => (
+                <span key={index}>Yarsa Byte Studio / Strategy / Motion / Launch</span>
+              ))}
+            </div>
+          </motion.div>
+        </div>
 
         <Container className="relative z-10 grid min-h-[calc(100dvh-7rem)] content-end gap-12 pb-12 lg:grid-cols-[0.62fr_0.38fr] lg:items-end">
           <div>
+            {/*
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -163,7 +161,7 @@ export function StudioPageClient() {
               A small digital studio mixing useful strategy, expressive motion,
               and clean development for businesses that need to look trusted fast.
             </motion.p>
-
+            */}
             <h1 className="mt-8 max-w-[14ch] text-[clamp(3.6rem,10.8vw,10.5rem)] font-black uppercase leading-[0.84] text-foreground transform-gpu">
               <SplitWords text="Minds mettle magic" />
               <HexGlyph className="ml-[0.08em] size-[0.16em] min-h-4 min-w-4 translate-y-[-0.04em]" />
