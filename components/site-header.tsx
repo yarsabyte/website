@@ -13,7 +13,10 @@ type MenuOrigin = { x: number; y: number };
 export function SiteHeader() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [menuOrigin, setMenuOrigin] = useState<MenuOrigin | null>(null);
+  const [isHeaderHidden, setIsHeaderHidden] = useState(false);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
+  const lastScrollRef = useRef(0);
+  const tickingRef = useRef(false);
 
   const updateMenuOrigin = useCallback(() => {
     const button = menuButtonRef.current;
@@ -56,6 +59,44 @@ export function SiteHeader() {
     return () => window.removeEventListener("resize", updateMenuOrigin);
   }, [isMenuOpen, updateMenuOrigin]);
 
+  useEffect(() => {
+    if (isMenuOpen) {
+      setIsHeaderHidden(false);
+      return;
+    }
+
+    const scroller = document.querySelector<HTMLElement>(".site-frame");
+    const getScrollTop = () => scroller?.scrollTop ?? window.scrollY;
+
+    lastScrollRef.current = getScrollTop();
+
+    const onScroll = () => {
+      if (tickingRef.current) {
+        return;
+      }
+
+      tickingRef.current = true;
+      requestAnimationFrame(() => {
+        const current = getScrollTop();
+        const delta = current - lastScrollRef.current;
+
+        if (Math.abs(delta) > 8) {
+          setIsHeaderHidden(delta > 0);
+          lastScrollRef.current = current;
+        }
+
+        tickingRef.current = false;
+      });
+    };
+
+    const target = scroller ?? window;
+    target.addEventListener("scroll", onScroll, { passive: true });
+
+    return () => {
+      target.removeEventListener("scroll", onScroll);
+    };
+  }, [isMenuOpen]);
+
   const toggleMenu = () => {
     if (!isMenuOpen) {
       updateMenuOrigin();
@@ -65,7 +106,12 @@ export function SiteHeader() {
 
   return (
     <>
-      <header className="pointer-events-none fixed inset-x-0 top-0 z-[90] lg:left-3 lg:right-3 lg:top-3">
+      <header
+        className={
+          "pointer-events-none fixed inset-x-0 top-0 z-[90] transform-gpu transition-transform duration-300 ease-out lg:left-3 lg:right-3 lg:top-3"
+        }
+        style={{ transform: isHeaderHidden ? "translateY(-120%)" : "translateY(0)" }}
+      >
         <Container className="flex h-20 items-center justify-between gap-4 pt-4 sm:h-[4.5rem] sm:pt-0">
           <Link
             href="/"

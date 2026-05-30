@@ -19,6 +19,7 @@ const cardOffsets = ["-3rem", "3rem", "-1.5rem", "2.5rem", "-2rem"];
 export function AttitudeSection() {
   const sectionRef = useRef<HTMLElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
+  const snapLockRef = useRef(false);
 
   useGSAP(
     () => {
@@ -80,6 +81,39 @@ export function AttitudeSection() {
             onUpdate: (self) => {
               const fill = Math.sin(self.progress * Math.PI) * 100;
               section.style.setProperty("--attitude-fill", `${fill}%`);
+
+              if (snapLockRef.current) {
+                return;
+              }
+
+              const velocity = Math.abs(self.getVelocity());
+              if (velocity < 700) {
+                return;
+              }
+
+              snapLockRef.current = true;
+              const targetTop = section.offsetTop;
+              const targetBottom = targetTop + section.offsetHeight;
+              const snapTarget = self.direction === 1 ? targetBottom : targetTop;
+              const lenis = (window as { __lenis?: { scrollTo?: Function } })
+                .__lenis;
+
+              if (lenis?.scrollTo) {
+                lenis.scrollTo(snapTarget, { duration: 0.35 });
+                gsap.delayedCall(0.4, () => {
+                  snapLockRef.current = false;
+                });
+              } else {
+                gsap.to(scroller, {
+                  scrollTop: snapTarget,
+                  duration: 0.22,
+                  ease: "power2.out",
+                  overwrite: true,
+                  onComplete: () => {
+                    snapLockRef.current = false;
+                  },
+                });
+              }
             },
             onLeave: () => {
               section.style.setProperty("--attitude-fill", "0%");
