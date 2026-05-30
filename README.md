@@ -1,4 +1,4 @@
-# Yarsa-byte
+# YarsaByte
 
 A modern personal portfolio and demo site built with Next.js (app router), React and TypeScript showcasing 3D visuals and smooth interactions.
 
@@ -104,15 +104,7 @@ Guidance:
 
 Recommended: deploy to Vercel for zero-config Next.js hosting.
 
-## Contributing
-PRs and issues welcome. Keep changes small, add TypeScript types, and run linting before opening a PR.
-
-## License
-If you plan to publish this repository, add a LICENSE file (e.g., MIT).
 
 ## Author
-Anupam Baral
-
+Team YarsaByte
 ---
-
-If you'd like, provide an author email, demo URL or deployment badge and the README can be updated to include them.
