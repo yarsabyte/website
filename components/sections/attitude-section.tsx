@@ -14,6 +14,10 @@ const sectionStyle = {
   "--attitude-fill": "0%",
 } as CSSProperties;
 
+type LenisInstance = {
+  scrollTo?: (target: number, options?: { duration?: number }) => void;
+};
+
 const cardOffsets = ["-3rem", "3rem", "-1.5rem", "2.5rem", "-2rem"];
 
 export function AttitudeSection() {
@@ -95,8 +99,7 @@ export function AttitudeSection() {
               const targetTop = section.offsetTop;
               const targetBottom = targetTop + section.offsetHeight;
               const snapTarget = self.direction === 1 ? targetBottom : targetTop;
-              const lenis = (window as { __lenis?: { scrollTo?: Function } })
-                .__lenis;
+              const lenis = (window as { __lenis?: LenisInstance }).__lenis;
 
               if (lenis?.scrollTo) {
                 lenis.scrollTo(snapTarget, { duration: 0.35 });
