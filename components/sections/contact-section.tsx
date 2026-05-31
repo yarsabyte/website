@@ -16,19 +16,6 @@ const serviceLinks = services.map((service) => ({
   )}`,
 }));
 
-function SectionRule({ className }: { className?: string }) {
-  return (
-    <div
-      className={cn("flex items-center gap-0 text-foreground/72", className)}
-      aria-hidden="true"
-    >
-      <span className="size-2.5 rounded-full border border-current" />
-      <span className="h-px flex-1 bg-current" />
-      <span className="size-2.5 rounded-full border border-current" />
-    </div>
-  );
-}
-
 function AccentMark() {
   return (
     <span
@@ -68,48 +55,32 @@ export function ContactSection() {
       className="min-h-[98svh] bg-background px-5 py-8 text-foreground sm:px-8 lg:px-20 lg:py-10"
     >
       <div className="relative mx-auto flex min-h-[calc(90svh-5rem)] max-w-[118rem] flex-col">
-        <div className="grid shrink-0 grid-cols-[auto_1fr_auto] items-start gap-4">
-          <div
-            className="hidden w-16 justify-self-end pt-3 text-foreground/85 lg:block"
-            aria-hidden="true"
-          ></div>
+        <div className="grid shrink-0 grid-cols-[1fr_auto_1fr] items-start gap-4">
+          <div className="hidden lg:block" aria-hidden="true" />
           <a
             href="mailto:yarsabyte@gmail.com?subject=Let%27s%20Talk"
-            className="group justify-self-center text-center font-helvetica-bold text-[clamp(3.2rem,8.4vw,7.6rem)] uppercase leading-[0.82] tracking-normal transition hover:text-accent focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
+            className="group justify-self-center text-center font-helvetica-bold text-[clamp(3.6rem,6.4vw,7.4rem)] uppercase leading-[0.82] tracking-normal transition hover:text-accent focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
           >
             Let&apos;s Talk
             <AccentMark />
           </a>
 
-          <div
-            className="hidden w-16 justify-self-end pt-3 text-foreground/85 lg:block"
-            aria-hidden="true"
-          >
-            
-          </div>
+          <div className="hidden lg:block" aria-hidden="true" />
         </div>
 
 
-        <div className="grid flex-1 gap-8 py-10 lg:grid-cols-[0.38fr_0.24fr_0.38fr] lg:items-center lg:gap-10 lg:py-8">
-          <div className="flex flex-col justify-center gap-8 lg:self-stretch">
+        <div className="grid flex-1 gap-8 py-10 lg:grid-cols-[1fr_auto_1fr] lg:items-center lg:gap-10 lg:px-6 lg:py-8">
+          <div className="flex flex-col justify-center gap-8">
             <FooterWord
               href="/studio"
               className="text-[clamp(3.6rem,6.4vw,7.4rem)]"
             >
               Studio
             </FooterWord>
-            <a
-              href="mailto:yarsabyte@gmail.com"
-              className="max-w-xs text-sm font-semibold uppercase leading-6 text-foreground/84 transition hover:text-accent sm:text-base"
-            >
-              Butwal, Nepal
-              <br />
-	      yarsabyte@gmail.com
-            </a>
           </div>
 
           <nav
-            className="grid min-w-64 content-center gap-2 text-sm font-semibold uppercase leading-tight text-foreground/90 sm:text-base lg:pt-10"
+            className="grid min-w-64 justify-items-center gap-2 text-center text-sm font-semibold uppercase leading-tight text-foreground/90 sm:text-base"
             aria-label="Footer services"
           >
             {serviceLinks.map((service) => (
@@ -123,70 +94,89 @@ export function ContactSection() {
             ))}
           </nav>
 
-          <div className="flex flex-col items-start gap-6 lg:items-end lg:self-stretch lg:pt-24">
+          <div className="flex flex-col items-start gap-6 lg:items-end lg:justify-center">
             <FooterWord
               href="mailto:yarsabyte@gmail.com?subject=Services"
-              className="text-[clamp(3.6rem,6.4vw,7.4rem)] lg:text-right"
+              className="text-[clamp(3.6rem,6.2vw,7.4rem)] lg:text-right"
             >
               Services
             </FooterWord>
-            <SectionRule className="w-full lg:mt-auto" />
           </div>
         </div>
 
-        <div className="grid shrink-0 gap-7 lg:grid-cols-[0.38fr_0.24fr_0.38fr] lg:items-end lg:gap-10">
-          <form
-            action="mailto:yarsabyte@gmail.com"
-            method="post"
-            className="max-w-xl"
-          >
-            <label
-              htmlFor="footer-email"
-              className="text-xs font-semibold uppercase tracking-[0.16em] text-foreground/90"
-            >
-              Newsletter
-            </label>
-            <div className="mt-6 flex items-end gap-6 border-b border-foreground/78 pb-3">
-              <input
-                id="footer-email"
-                name="email"
-                type="email"
-                placeholder="Your Email"
-                className="min-w-0 flex-1 bg-transparent text-base text-foreground placeholder:text-foreground/86 focus:outline-none sm:text-lg"
-              />
-              <button
-                type="submit"
-                aria-label="Submit email"
-                className="grid size-9 place-items-center text-foreground transition hover:text-accent focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
-              >
-                <ArrowRight className="size-7" />
-              </button>
-            </div>
-          </form>
-
-          <div className="grid gap-5">
+        <div className="grid shrink-0 gap-7">
+          <div className="grid justify-items-center gap-5 text-center">
             <FooterWord href="/work" className="text-[clamp(3.6rem,6.4vw,7.4rem)]">
               Work
             </FooterWord>
-            <p className="text-sm text-foreground/86">
-              &copy;2026 Yarsa Byte
-            </p>
+            <div
+              className="flex w-[75%] max-w-[75%] items-center gap-0 text-foreground/80"
+              aria-hidden="true"
+            >
+              <span className="size-2.5 rounded-full border border-current" />
+              <span className="h-px flex-1 bg-current" />
+              <span className="size-2.5 rounded-full border border-current" />
+            </div>
           </div>
 
-          <nav
-            className="flex flex-wrap gap-x-7 gap-y-3 text-sm text-foreground/86 lg:justify-end sm:text-base"
-            aria-label="Social links"
-          >
-            {socialLinks.map((link) => (
-              <a
-                key={link.label}
-                href={link.href}
-                className="transition hover:text-accent focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
+          <div className="grid gap-6 text-sm text-foreground/86 sm:text-base lg:grid-cols-[1fr_auto_1fr] lg:items-center">
+            <a
+              href="mailto:yarsabyte@gmail.com"
+              className="max-w-xs text-sm font-semibold uppercase leading-6 text-foreground/84 transition hover:text-accent sm:text-base"
+            >
+              Butwal, Nepal
+              <br />
+              yarsabyte@gmail.com
+            </a>
+
+            <nav
+              className="flex flex-wrap justify-center gap-x-7 gap-y-3"
+              aria-label="Social links"
+            >
+              {socialLinks.map((link) => (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  className="transition hover:text-accent focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
+                >
+                  {link.label}
+                </a>
+              ))}
+            </nav>
+
+            <form
+              action="mailto:yarsabyte@gmail.com"
+              method="post"
+              className="w-full max-w-xs lg:justify-self-end"
+            >
+              <label
+                htmlFor="footer-email"
+                className="text-xs font-semibold uppercase tracking-[0.16em] text-foreground/90"
               >
-                {link.label}
-              </a>
-            ))}
-          </nav>
+                Newsletter
+              </label>
+              <div className="mt-4 flex items-end gap-6 border-b border-foreground/78 pb-3">
+                <input
+                  id="footer-email"
+                  name="email"
+                  type="email"
+                  placeholder="Your Email"
+                  className="min-w-0 flex-1 bg-transparent text-base text-foreground placeholder:text-foreground/86 focus:outline-none sm:text-lg"
+                />
+                <button
+                  type="submit"
+                  aria-label="Submit email"
+                  className="grid size-9 place-items-center text-foreground transition hover:text-accent focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
+                >
+                  <ArrowRight className="size-7" />
+                </button>
+              </div>
+            </form>
+          </div>
+
+          <p className="text-center text-sm text-foreground/86">
+            &copy;2026 Yarsa Byte
+          </p>
         </div>
       </div>
     </section>
